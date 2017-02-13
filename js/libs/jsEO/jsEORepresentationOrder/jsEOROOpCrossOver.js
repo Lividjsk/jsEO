@@ -14,39 +14,66 @@ var jsEOROOpCrossOver = new Class({
                 "applicationRate " + this.applicationRate);
 
     },
-    operate: function(_auxPop) {
+    operate: function(_auxPop, tamSecuency) {
         jsEOUtils.debugln("Applying jsEOROOpCrossOver");
         var toRet = new jsEOPopulation();
+        
+        //If the population type is not defined, a new population is returned
         if (typeof _auxPop == 'undefined') {
             return toRet;
         }
+        
+        //Preguntar a Victor. Esto es raro
         if (_auxPop.length() <= 0) {
             toRet.add(_auxPop.getAt(0).copy());
             return toRet;
         }
 
-        var rnd2 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
-        jsEOUtils.debugln("  rnd2 is " + rnd2 +
+        var individual1 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
+        var individual2 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
+        jsEOUtils.debugln("  rnd2 is " + individual1 +
                 " while length is " + _auxPop.length() +
                 " and " + typeof _auxPop.pop[0]);
 
-        var tmpChr1 = _auxPop.getAt(0).getChromosome();
-        var tmpChr2 = _auxPop.getAt(rnd2).getChromosome();
+        var tmpChr1 = _auxPop.getAt(individual1).getChromosome();
+        var tmpChr2 = _auxPop.getAt(individual2).getChromosome();
         var point1 = Math.floor(Math.random() * (tmpChr1.length - 1));
-        var point2 = point1 + Math.floor(Math.random() * (tmpChr1.length - point1));
+        //var point2 = point1 + tamSecuency;
 
         jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
-        jsEOUtils.debugln("  Points are " + point1 + " and " + point2);
+        jsEOUtils.debugln("  Cut Point is " + point1);
 
-        var newChr = new Array();
-        for (var i = 0; i < point1; ++i) {
-            newChr.push(tmpChr1[i]);
+        var newChr = new Array(tmpChr1.length);
+        var auxChr = new Array();
+        var orderChr = tmpChr2;
+        
+        //Comentarios en español para luego cambiarlos
+        //Se copia la subsecuencia del primer padre en un individuo auxiliar
+        for (var i = 0; i < tamSecuency; ++i){
+            auxChr.push(tmpChr1[point1 + i]);
         }
-        for (var i = point1; i <=point2; ++i) {
-            newChr.push(tmpChr2[i]);
+        
+        //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
+        //Y se copian en el orden corresponidente y mas parecido al del padre
+        var auxIndex = 0;
+        for (var i = 0; i < orderChr.length; ++i){
+              if(auxChr[auxIndex] == orderChr[i] && auxIndex < tamSecuency){
+                  orderChr.splice(i,1);
+                  ++auxIndex;
+              }
         }
-        for (var i = point2+1; i < tmpChr1.length; ++i) {
-            newChr.push(tmpChr1[i]);
+        
+        //Una vez obtenido el orden, rellenamos el hijo
+        //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
+        for (var i = 0; i < tamSecuency; ++i){
+            newChr[point1 + i] = auxChr[i];
+        }
+        
+        for (var j = 0; j < tmpChr1.length; ++j){
+            if (newChr[i] == 'undefined'){
+                newChr[i] = orderChr[0];
+                orderChr.shift();
+            }
         }
 
         jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
