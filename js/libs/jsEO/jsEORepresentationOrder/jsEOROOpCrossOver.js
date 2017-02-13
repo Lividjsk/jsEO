@@ -19,7 +19,7 @@ var jsEOROOpCrossOver = new Class({
         var toRet = new jsEOPopulation();
         
         //If the population type is not defined, a new population is returned
-        if (typeof _auxPop == 'undefined') {
+        if (typeof _auxPop === 'undefined') {
             return toRet;
         }
         
@@ -70,7 +70,7 @@ var jsEOROOpCrossOver = new Class({
         }
         
         for (var j = 0; j < tmpChr1.length; ++j){
-            if (newChr[i] == 'undefined'){
+            if (typeof newChr[i] === 'undefined'){
                 newChr[i] = orderChr[0];
                 orderChr.shift();
             }
