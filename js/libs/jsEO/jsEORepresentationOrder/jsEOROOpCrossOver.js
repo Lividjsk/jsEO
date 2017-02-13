@@ -49,29 +49,39 @@ var jsEOROOpCrossOver = new Class({
         
         //Comentarios en español para luego cambiarlos
         //Se copia la subsecuencia del primer padre en un individuo auxiliar
-        for (var i = 0; i < tamSecuency; ++i){
+        for (var i = 0; i < tamSecuency-1; ++i){
             auxChr.push(tmpChr1[point1 + i]);
         }
         
         //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
         //Y se copian en el orden corresponidente y mas parecido al del padre
         var auxIndex = 0;
-        for (var i = 0; i < orderChr.length; ++i){
-              if(auxChr[auxIndex] == orderChr[i] && auxIndex < tamSecuency){
-                  orderChr.splice(i,1);
-                  ++auxIndex;
-              }
-        }
+        var esta = false;
+        for (var i = 0; i < auxChr.length; ++i){
+            var index = orderChr.indexOf(auxChr[i]);
+            if( index != -1){
+                orderChr.splice(index,1);
+            }
+        }            
         
         //Una vez obtenido el orden, rellenamos el hijo
         //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
-        for (var i = 0; i < tamSecuency; ++i){
+        for (var i = 0; i < tamSecuency-1; ++i){
             newChr[point1 + i] = auxChr[i];
         }
         
-        for (var j = 0; j < tmpChr1.length; ++j){
-            if (typeof newChr[i] === 'undefined'){
-                newChr[i] = orderChr[0];
+        //Colocamos detras de la subsecuencia
+        for (var j = point1 + tamSecuency; j < tmpChr1.length; ++j){
+            if (typeof newChr[j] === 'undefined'){
+                newChr[j] = orderChr[0];
+                orderChr.shift();
+            }
+        }
+        
+        //Colocamos antes de la subsecuencia
+        for (var j = 0; j < point1; ++j){
+            if (typeof newChr[j] === 'undefined'){
+                newChr[j] = orderChr[0];
                 orderChr.shift();
             }
         }
