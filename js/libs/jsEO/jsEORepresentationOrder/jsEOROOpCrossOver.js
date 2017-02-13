@@ -19,7 +19,7 @@ var jsEOROOpCrossOver = new Class({
         var toRet = new jsEOPopulation();
         
         //If the population type is not defined, a new population is returned
-        if (typeof _auxPop === 'undefined') {
+        if (typeof _auxPop == 'undefined') {
             return toRet;
         }
         
@@ -72,7 +72,7 @@ var jsEOROOpCrossOver = new Class({
         
         //Colocamos detras de la subsecuencia
         for (var j = point1 + tamSecuency; j < tmpChr1.length; ++j){
-            if (typeof newChr[j] === 'undefined'){
+            if (typeof newChr[j] == 'undefined'){
                 newChr[j] = orderChr[0];
                 orderChr.shift();
             }
@@ -80,7 +80,7 @@ var jsEOROOpCrossOver = new Class({
         
         //Colocamos antes de la subsecuencia
         for (var j = 0; j < point1; ++j){
-            if (typeof newChr[j] === 'undefined'){
+            if (typeof newChr[j] == 'undefined'){
                 newChr[j] = orderChr[0];
                 orderChr.shift();
             }
