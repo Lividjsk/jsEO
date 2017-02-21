@@ -14,7 +14,7 @@ var jsEOROOpCrossOver = new Class({
                 "applicationRate " + this.applicationRate);
 
     },
-    operate: function(_auxPop, tamSecuency) {
+    operate: function(_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpCrossOver");
         var toRet = new jsEOPopulation();
         
@@ -38,7 +38,14 @@ var jsEOROOpCrossOver = new Class({
         var tmpChr1 = _auxPop.getAt(individual1).getChromosome();
         var tmpChr2 = _auxPop.getAt(individual2).getChromosome();
         var point1 = Math.floor(Math.random() * (tmpChr1.length - 1));
-        //var point2 = point1 + tamSecuency;
+        var point2 = Math.floor(Math.random() * (tmpChr1.length - 1));
+        
+        //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
+        //Ese mismo punto de corte
+        if(point1 == point2)
+            tamSecuency = 1;
+        else
+            tamSecuency = point2 - point1;
 
         jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
         jsEOUtils.debugln("  Cut Point is " + point1);
@@ -49,14 +56,12 @@ var jsEOROOpCrossOver = new Class({
         
         //Comentarios en español para luego cambiarlos
         //Se copia la subsecuencia del primer padre en un individuo auxiliar
-        for (var i = 0; i < tamSecuency-1; ++i){
-            auxChr.push(tmpChr1[point1 + i]);
+        for (var i = 0; i < tamSecuency; ++i){
+            auxChr.push(tmpChr1[(point1 + i)%tmpChr1.length]);
         }
         
         //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
         //Y se copian en el orden corresponidente y mas parecido al del padre
-        var auxIndex = 0;
-        var esta = false;
         for (var i = 0; i < auxChr.length; ++i){
             var index = orderChr.indexOf(auxChr[i]);
             if( index != -1){
@@ -66,26 +71,16 @@ var jsEOROOpCrossOver = new Class({
         
         //Una vez obtenido el orden, rellenamos el hijo
         //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
-        for (var i = 0; i < tamSecuency-1; ++i){
+        for (var i = 0; i < tamSecuency; ++i){
             newChr[point1 + i] = auxChr[i];
-        }
+        }       
         
-        //Colocamos detras de la subsecuencia
-        for (var j = point1 + tamSecuency; j < tmpChr1.length; ++j){
+        for (var j = 0; j < orderChr.length; ++j){
             if (typeof newChr[j] == 'undefined'){
-                newChr[j] = orderChr[0];
-                orderChr.shift();
+                newChr[(point1+tamSecuency+j)%newChr.length] = orderChr[j];
             }
         }
         
-        //Colocamos antes de la subsecuencia
-        for (var j = 0; j < point1; ++j){
-            if (typeof newChr[j] == 'undefined'){
-                newChr[j] = orderChr[0];
-                orderChr.shift();
-            }
-        }
-
         jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
         toRet.add(new jsEOROIndividual());
         toRet.getAt(0).setChromosome(newChr);
