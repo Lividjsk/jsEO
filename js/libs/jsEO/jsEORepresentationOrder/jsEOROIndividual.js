@@ -19,14 +19,14 @@
 
 var jsEOROIndividual = new Class({
     Extends: jsEOIndividual,
-    initialize: function(_floats) {
-        this.parent(_floats); // calls initalize method of jsEOIndividual class
+    initialize: function(_integers) {
+        this.parent(_integers); // calls initalize method of jsEOIndividual class
         jsEOUtils.debug("Initializating a jsEOROIndividual ");
     },
     randomize: function(_length, _min, _max) {
-        var chr = new Array();
+        
         if (typeof _length == 'undefined') {
-            _length = 8;
+            _length = 10;
         }
         if (typeof _min == 'undefined') {
             _min = 0;
@@ -35,9 +35,22 @@ var jsEOROIndividual = new Class({
             _max = 1;
         }
 
-        for (var i = 0; i < _length; ++i) {
-            chr.push(Math.random() * (_max - _min) + _min);
+        var used = new Array(_length);
+        var chr = new Array(_length);
+        
+        for ( var i = 0; i < _length; ++i){
+            used[i] = false;
         }
+        
+        var index = 0;
+        for ( var j = 0; j < _length; ++j){
+            do{
+                index = Math.round(Math.random()*(_length-1)+1);
+            }while(used[index]);
+            chr[j] = index;
+            used[index] = true;
+        }
+        
         this.setChromosome(chr);
         return this;
     },
