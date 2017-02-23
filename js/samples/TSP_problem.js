@@ -28,7 +28,7 @@ function fitnessFunction(_chr) {
     var fitness = 0, position;
     for( var i = 0; i < _chr.length; ++i){
         position = _chr[i];
-        for ( var j = 0; j < _chr.length; ++j) {
+        for ( var j = 0; j < cities[i].length(); ++j) {
             fitness += cities[position - 1][j];
         } 
     }
