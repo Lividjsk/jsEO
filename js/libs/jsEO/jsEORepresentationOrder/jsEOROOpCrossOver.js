@@ -37,8 +37,9 @@ var jsEOROOpCrossOver = new Class({
 
         var tmpChr1 = _auxPop.getAt(individual1).getChromosome();
         var tmpChr2 = _auxPop.getAt(individual2).getChromosome();
-        var point1 = Math.floor(Math.random() * (tmpChr1.length() - 1));
-        var point2 = Math.floor(Math.random() * (tmpChr1.length() - 1));
+        alert(tmpChr1);
+        var point1 = Math.floor(Math.random() * (tmpChr1.length - 1));
+        var point2 = Math.floor(Math.random() * (tmpChr1.length - 1));
         
         //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
         //Ese mismo punto de corte
