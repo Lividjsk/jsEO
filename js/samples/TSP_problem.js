@@ -17,6 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function MatrixCreation(_numberCities){
+    
+    cities = new Array();
+    for( var i = 0; i < _numberCities; ++i){
+        cities[i] = new Array();
+        for( var j = 0; j < _numberCities; ++j){
+            if( i == j ){
+                cities[i][j] = 0;
+            }else{
+                cities[i][j] = Math.round(Math.random()*1000);
+            }
+        }
+    }
+    return cities;
+}
+
 var cities = MatrixCreation(10);
 
 function fitnessFunction(_chr) {
@@ -33,22 +49,6 @@ function fitnessFunction(_chr) {
         } 
     }
     return fitness;
-}
-
-function MatrixCreation(_numberCities){
-    
-    cities = new Array(_numberCities);
-    for( var i = 0; i < _numberCities; ++i){
-        cities[i] = new Array(_numberCities);
-        for( var j = 0; j < _numberCities; ++j){
-            if( i == j ){
-                cities[i][j] = 0;
-            }else{
-                cities[i][j] = Math.round(Math.random()*1000);
-            }
-        }
-    }
-    return cities;
 }
 
 function main() {
