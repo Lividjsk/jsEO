@@ -33,7 +33,9 @@ function MatrixCreation(_numberCities){
     return array;
 };
 
-cities = MatrixCreation(10);
+var _numberCities = 10;
+
+cities = MatrixCreation(_numberCities);
 
 function fitnessFunction(_chr) {
     
@@ -71,7 +73,7 @@ function main() {
     myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 3));
     myROGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myROGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
-    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", 10));
+    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numberCities));
 
     myROGA.run(fitnessFunction);
 
