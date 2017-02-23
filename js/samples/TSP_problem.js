@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+var _numberCities = 10;
 
-function MatrixCreation(_numberCities){
+function MatrixDistancesCreation(_numberCities){
     
     array = new Array();
     for( var i = 0; i < _numberCities; ++i){
@@ -31,9 +32,9 @@ function MatrixCreation(_numberCities){
         }
     }
     return array;
-};
+}
 
-cities = MatrixCreation(10);
+var cities = MatrixDistancesCreation(_numberCities);
 
 function fitnessFunction(_chr) {
     
@@ -41,11 +42,10 @@ function fitnessFunction(_chr) {
         return null;
     }
     
-    var fitness = 0, position;
+    var fitness = 0; 
     for( var i = 0; i < _chr.length; ++i){
-        position = _chr[i];
-        for ( var j = 0; j < _chr.length; ++j) {
-            fitness += cities[position - 1][j];
+        for ( var j = 1; j < _chr.length; ++j) {
+            fitness += cities[_chr[i]][j];
         } 
     }
     return fitness;
@@ -71,7 +71,7 @@ function main() {
     myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 3));
     myROGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myROGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
-    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", 10));
+    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numberCities));
 
     myROGA.run(fitnessFunction);
 
