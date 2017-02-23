@@ -17,7 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function MatrixCreation(_numberCities){
+var _numberCities = 10;
+
+var cities = function (_numberCities){
     
     cities = new Array();
     for( var i = 0; i < _numberCities; ++i){
@@ -31,9 +33,7 @@ function MatrixCreation(_numberCities){
         }
     }
     return cities;
-}
-
-var cities = MatrixCreation(10);
+};
 
 function fitnessFunction(_chr) {
     
