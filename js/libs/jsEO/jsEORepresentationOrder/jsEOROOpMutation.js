@@ -48,7 +48,7 @@ var jsEOROOpMutation = new Class({
             //Preguntar a Victor donde se evalua al individuo una vez mutado
         }
         jsEOUtils.debugln("  Final  " + newChr);
-        toRet.add(new jsEOFVIndividual());
+        toRet.add(new jsEOROIndividual());
         toRet.getAt(0).setChromosome(newChr);
         return toRet;
     }

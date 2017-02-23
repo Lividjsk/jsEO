@@ -28,8 +28,8 @@ function fitnessFunction(_chr) {
     var fitness = 0, position;
     for( var i = 0; i < _chr.length; ++i){
         position = _chr[i];
-        for ( var j = 0; j < _chr; ++j) {
-            fitness = fitness + cities[position][j];
+        for ( var j = 0; j < _chr.length; ++j) {
+            fitness += parseInt(cities[position][j]);
         } 
     }
     return fitness;

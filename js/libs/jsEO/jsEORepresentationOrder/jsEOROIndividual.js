@@ -43,7 +43,9 @@ var jsEOROIndividual = new Class({
         }
         
         var index = 0;
-        for ( var j = 0; j < _length; ++j){
+        chr[0] = 1;
+        used[0] = true;
+        for ( var j = 1; j < _length; ++j){
             do{
                 index = Math.round(Math.random()*(_length-1)+1);
             }while(used[index]);
