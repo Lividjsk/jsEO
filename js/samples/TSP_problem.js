@@ -17,23 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var _numberCities = 10;
-
-var cities = function (_numberCities){
+function MatrixCreation(_numberCities){
     
-    cities = new Array();
+    array = new Array();
     for( var i = 0; i < _numberCities; ++i){
-        cities[i] = new Array();
+        array[i] = new Array();
         for( var j = 0; j < _numberCities; ++j){
             if( i == j ){
-                cities[i][j] = 0;
+                array[i][j] = 0;
             }else{
-                cities[i][j] = Math.round(Math.random()*1000);
+                array[i][j] = Math.round(Math.random()*1000);
             }
         }
     }
-    return cities;
+    return array;
 };
+
+cities = MatrixCreation(10);
 
 function fitnessFunction(_chr) {
     
