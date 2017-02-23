@@ -26,7 +26,6 @@ var jsEOROOpMutation = new Class({
     operate: function(_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpMutation");
         var toRet = new jsEOPopulation();
-        var newInd = new jsEOROIndividual();
         var tam = _auxPop.getAt(0).length;
         var number_mutation = Math.ceil(_auxPop.length() * tam * this.genesRate);
         var chromosome = 0;

@@ -17,13 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function fitnessFunction(_cities,_chr) {
+var cities = MatrixCreation(10);
+
+function fitnessFunction(_chr) {
+    
+    if (typeof _chr == 'undefined') {
+        return null;
+    }
     
     var fitness = 0, position;
     for( var i = 0; i < _chr.length; ++i){
         position = _chr[i];
         for ( var j = 0; j < _chr; ++j) {
-            fitness = fitness + _cities[position][j];
+            fitness = fitness + cities[position][j];
         } 
     }
     return fitness;

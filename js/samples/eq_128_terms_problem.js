@@ -89,6 +89,7 @@ function main() {
     myFVGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", numCoefs));
 
     myFVGA.run(fitnessFunction);
+    
     /*
      jsEOUtils.print("coefs=new Array( ");
      for (var i = 0; i < numCoefs; ++i) {
