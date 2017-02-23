@@ -52,7 +52,7 @@ function main() {
 
     
     
-    var myROGA = new jsEOFVGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
+    var myROGA = new jsEOROGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
 
     myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 60));
     myROGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
