@@ -88,7 +88,7 @@ function main() {
     myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 3));
     myROGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myROGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
-    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numberCities));
+    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
 
     myROGA.run(fitnessFunction);
 
