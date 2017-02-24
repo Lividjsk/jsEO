@@ -59,13 +59,11 @@ function fitnessFunction(_chr) {
         return null;
     }
     
+    alert(_cities);
     var fitness = 0;
     for( var i = 0; i < _chr.length; ++i){
         for ( var j = 0; j < _chr.length; ++j) {
-            if(typeof _cities[_chr[i]][j] !== 'undefined')
                 fitness += parseInt(_flows[i][j] * _cities[_chr[i]][j]);
-            else
-                alert("No declarado");
         } 
     }
     return fitness;
