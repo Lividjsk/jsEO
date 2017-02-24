@@ -62,7 +62,7 @@ function fitnessFunction(_chr) {
     var fitness = 0;
     for( var i = 0; i < _chr.length; ++i){
         for ( var j = 0; j < _chr.length; ++j) {
-            fitness = fitness + (_flows[i][j] * _cities[_chr[i]][j]);
+            fitness += parseInt(_flows[i][j] * _cities[_chr[i]][j]);
         } 
     }
     return fitness;
