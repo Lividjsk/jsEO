@@ -62,7 +62,7 @@ function fitnessFunction(_chr) {
     var fitness = 0;
     for( var i = 0; i < _chr.length; ++i){
         for ( var j = 0; j < _chr.length; ++j) {
-            if(_flows && _cities)
+            if(typeof _cities[_chr[i]][j] !== 'undefined')
                 fitness += parseInt(_flows[i][j] * _cities[_chr[i]][j]);
             else
                 alert("No declarado");
