@@ -16,13 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _numberCities = 10;
+var _numCities = 10;
 
 function MatrixDistancesCreation(_numberCities){
     
-    array = new Array();
+    var array = new Array(_numberCities);
     for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array();
+        array[i] = new Array(_numberCities);
         for( var j = 0; j < _numberCities; ++j){
             if( i == j ){
                 array[i][j] = 0;
@@ -36,9 +36,9 @@ function MatrixDistancesCreation(_numberCities){
 
 function MatrixFlowsCreation(_numberCities){
     
-    array = new Array();
+    var array = new Array(_numberCities);
     for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array();
+        array[i] = new Array(_numberCities);
         for( var j = 0; j < _numberCities; ++j){
             if( i == j ){
                 array[i][j] = 0;
@@ -50,8 +50,8 @@ function MatrixFlowsCreation(_numberCities){
     return array;
 }
 
-_cities = MatrixDistancesCreation(_numberCities);
-_flows = MatrixFlowsCreation(_numberCities);
+_cities = MatrixDistancesCreation(_numCities);
+_flows = MatrixFlowsCreation(_numCities);
 
 function fitnessFunction(_chr) {
     
@@ -59,7 +59,6 @@ function fitnessFunction(_chr) {
         return null;
     }
     
-    alert(_cities);
     var fitness = 0;
     for( var i = 0; i < _chr.length; ++i){
         for ( var j = 0; j < _chr.length; ++j) {
