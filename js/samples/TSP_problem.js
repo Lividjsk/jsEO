@@ -34,7 +34,24 @@ function MatrixDistancesCreation(_numberCities){
     return array;
 }
 
-var cities = MatrixDistancesCreation(_numberCities);
+function MatrixFlowsCreation(_numberCities){
+    
+    array = new Array();
+    for( var i = 0; i < _numberCities; ++i){
+        array[i] = new Array();
+        for( var j = 0; j < _numberCities; ++j){
+            if( i == j ){
+                array[i][j] = 0;
+            }else{
+                array[i][j] = Math.round(Math.random()*1000);
+            }
+        }
+    }
+    return array;
+}
+
+var _cities = MatrixDistancesCreation(_numberCities);
+var _flows = MatrixFlowsCreation(_numberCities);
 
 function fitnessFunction(_chr) {
     
@@ -42,10 +59,10 @@ function fitnessFunction(_chr) {
         return null;
     }
     
-    var fitness = 0; 
+    var fitness = 0;
     for( var i = 0; i < _chr.length; ++i){
         for ( var j = 0; j < _chr.length; ++j) {
-            fitness += cities[_chr[i]][j];
+            fitness = fitness + (_flows[i][j] * _cities[_chr[i]][j]);
         } 
     }
     return fitness;
