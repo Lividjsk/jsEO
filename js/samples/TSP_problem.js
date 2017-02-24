@@ -44,10 +44,9 @@ function fitnessFunction(_chr) {
     
     var fitness = 0; 
     for( var i = 0; i < _chr.length; ++i){
-        alert(_chr[i],i);
-        //for ( var j = 0; j < _chr.length; ++j) {
-        //    fitness += cities[_chr[i]][j];
-        //} 
+        for ( var j = 0; j < _chr.length; ++j) {
+            fitness += cities[_chr[i]][j];
+        } 
     }
     return fitness;
 }
