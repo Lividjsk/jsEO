@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _numCities = 10;
+var _numCities = 5;
 
 //function MatrixDistancesCreation(_numberCities){
 //    
@@ -50,14 +50,14 @@ var _numCities = 10;
 //    return array;
 //}
 
-_cities = new Array(5);
+_cities = new Array(_numCities);
 _cities[0] = new Array(0, 10, 7, 3, 9);
 _cities[1] = new Array(3, 0, 7, 5, 1);
 _cities[2] = new Array(8, 2, 0, 4, 6);
 _cities[3] = new Array(3, 5, 7, 0, 9);
 _cities[4] = new Array(8, 7, 2, 4, 0);
 
-_flows = new Array(5);
+_flows = new Array(_numCities);
 _flows[0] = new Array(0, 2, 6, 4, 8);
 _flows[1] = new Array(4, 0, 3, 5, 9);
 _flows[2] = new Array(4, 4, 0, 4, 7);
@@ -72,11 +72,10 @@ function fitnessFunction(_chr) {
     
     var fitness = 0;
     var pos;
-    for( var i = 0; i < _chr.length; ++i){
+    for( var i = 0; i < _numCities; ++i){
         pos = _chr[i];
-        if(typeof pos == 'undefined')
-            return -1;
-        for ( var j = 0; j < _chr.length; ++j) {
+        console.log(pos);
+        for ( var j = 0; j < _numCities; ++j) {
                 fitness += parseInt(_flows[i][j] * _cities[pos][j]);
         } 
     }
