@@ -36,8 +36,8 @@ var jsEOROOpMutation = new Class({
             for (var j = 0; j < number_mutation; ++j) {
                 gen_mutation = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
                 do {
-                    gen_mutation2 = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
-                } while (gen_mutation == gen_mutation2);
+                    gen_mutation_2 = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
+                } while (gen_mutation == gen_mutation_2);
 
                 newChr = _auxPop.getAt(i).slice();
                 jsEOUtils.debugln("  Individual is " + newChr);

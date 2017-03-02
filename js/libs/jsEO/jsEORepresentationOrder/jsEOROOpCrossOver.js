@@ -82,9 +82,7 @@ var jsEOROOpCrossOver = new Class({
         }       
         
         for (var j = 0; j < orderChr.length; ++j){
-            if (typeof newChr[j] == 'undefined'){
                 newChr[(point1+tamSecuency+j)%newChr.length] = orderChr[j];
-            }
         }
         
         jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
