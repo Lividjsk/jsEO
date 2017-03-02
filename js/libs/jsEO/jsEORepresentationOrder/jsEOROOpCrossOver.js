@@ -48,6 +48,7 @@ var jsEOROOpCrossOver = new Class({
         }while(point2 < point1);
         //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
         //Ese mismo punto de corte
+        var tamSecuency = 0;
         if(point1 == point2)
             tamSecuency = 1;
         else

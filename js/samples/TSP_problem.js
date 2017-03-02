@@ -70,7 +70,8 @@ function fitnessFunction(_chr) {
         return null;
     }
     
-    var fitness = 0, pos;
+    var fitness = 0;
+    var pos;
     for( var i = 0; i < _chr.length; ++i){
         pos = _chr[i];
         if(typeof pos == 'undefined')
