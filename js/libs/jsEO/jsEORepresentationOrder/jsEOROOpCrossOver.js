@@ -58,7 +58,7 @@ var jsEOROOpCrossOver = new Class({
 
         var newChr = new Array(tmpChr1.length);
         var auxChr = new Array();
-        var orderChr = tmpChr2;
+        var orderChr = tmpChr2.slice();
         
         //Comentarios en español para luego cambiarlos
         //Se copia la subsecuencia del primer padre en un individuo auxiliar

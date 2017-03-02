@@ -18,40 +18,51 @@
  */
 var _numCities = 10;
 
-function MatrixDistancesCreation(_numberCities){
-    
-    var array = new Array(_numberCities);
-    for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array(_numberCities);
-        for( var j = 0; j < _numberCities; ++j){
-            if( i == j ){
-                array[i][j] = 0;
-            }else{
-                array[i][j] = Math.round(Math.random()*1000);
-            }
-        }
-    }
-    return array;
-}
+//function MatrixDistancesCreation(_numberCities){
+//    
+//    var array = new Array(_numberCities);
+//    for( var i = 0; i < _numberCities; ++i){
+//        array[i] = new Array(_numberCities);
+//        for( var j = 0; j < _numberCities; ++j){
+//            if( i == j ){
+//                array[i][j] = 0;
+//            }else{
+//                array[i][j] = Math.round(Math.random()*1000);
+//            }
+//        }
+//    }
+//    return array;
+//}
+//
+//function MatrixFlowsCreation(_numberCities){
+//    
+//    var array = new Array(_numberCities);
+//    for( var i = 0; i < _numberCities; ++i){
+//        array[i] = new Array(_numberCities);
+//        for( var j = 0; j < _numberCities; ++j){
+//            if( i == j ){
+//                array[i][j] = 0;
+//            }else{
+//                array[i][j] = Math.round(Math.random()*100);
+//            }
+//        }
+//    }
+//    return array;
+//}
 
-function MatrixFlowsCreation(_numberCities){
-    
-    var array = new Array(_numberCities);
-    for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array(_numberCities);
-        for( var j = 0; j < _numberCities; ++j){
-            if( i == j ){
-                array[i][j] = 0;
-            }else{
-                array[i][j] = Math.round(Math.random()*100);
-            }
-        }
-    }
-    return array;
-}
+_cities = new Array(5);
+_cities[0] = new Array(0, 10, 7, 3, 9);
+_cities[1] = new Array(3, 0, 7, 5, 1);
+_cities[2] = new Array(8, 2, 0, 4, 6);
+_cities[3] = new Array(3, 5, 7, 0, 9);
+_cities[4] = new Array(8, 7, 2, 4, 0);
 
-_cities = new Array(new Array(0, 10, 7, 3, 9), new Array(3, 0, 7, 5, 1), new Array(8, 2, 0, 4, 6), new Array(3, 5, 7, 0, 9), new Array(8, 7, 2, 4, 0));
-_flows = new Array(new Array(0, 2, 6, 4, 8), new Array(4, 0, 3, 5, 9), new Array(4, 4, 0, 4, 7), new Array(7, 3, 6, 0, 2), new Array(7, 10, 1, 10, 0));
+_flows = new Array(5);
+_flows[0] = new Array(0, 2, 6, 4, 8);
+_flows[1] = new Array(4, 0, 3, 5, 9);
+_flows[2] = new Array(4, 4, 0, 4, 7);
+_flows[3] = new Array(7, 3, 6, 0, 2);
+_flows[4] = new Array(7, 10, 1, 10, 0);
 
 function fitnessFunction(_chr) {
     
@@ -62,8 +73,10 @@ function fitnessFunction(_chr) {
     var fitness = 0, pos;
     for( var i = 0; i < _chr.length; ++i){
         pos = _chr[i];
+        if(typeof pos == 'undefined')
+            return -1;
         for ( var j = 0; j < _chr.length; ++j) {
-                fitness += _flows[i][j] * _cities[pos][j];
+                fitness += parseInt(_flows[i][j] * _cities[pos][j]);
         } 
     }
     return fitness;

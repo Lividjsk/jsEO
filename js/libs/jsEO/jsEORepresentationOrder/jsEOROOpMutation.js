@@ -39,9 +39,9 @@ var jsEOROOpMutation = new Class({
                     gen_mutation2 = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
                 } while (gen_mutation == gen_mutation2);
 
-                newChr = _auxPop.getAt(chromosome);
+                newChr = _auxPop.getAt(i).slice();
                 jsEOUtils.debugln("  Individual is " + newChr);
-                value = auxChr[gen_mutation];
+                value = newChr[gen_mutation];
                 newChr[gen_mutation] = newChr[gen_mutation_2];
                 newChr[gen_mutation_2] = value;
                 jsEOUtils.debugln("  Final  " + newChr);
