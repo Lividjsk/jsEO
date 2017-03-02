@@ -26,7 +26,7 @@ var jsEOROOpMutation = new Class({
     operate: function (_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpMutation");
         var toRet = new jsEOPopulation();
-        var number_mutation = Math.ceil(tam * this.genesRate);
+        var number_mutation = Math.ceil(_auxPop.length() * this.genesRate);
         var gen_mutation = 0;
         var gen_mutation_2 = 0;
         var value = 0;
