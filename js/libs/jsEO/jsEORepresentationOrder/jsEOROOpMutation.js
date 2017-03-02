@@ -31,7 +31,6 @@ var jsEOROOpMutation = new Class({
         var gen_mutation_2 = 0;
         var value = 0;
         var newChr;
-        var tam = _auxPop.getAt(i).length;
         for (var i = 0; i < _auxPop.length(); ++i) {    
             for (var j = 0; j < number_mutation; ++j) {
                 gen_mutation = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
