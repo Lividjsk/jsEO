@@ -50,8 +50,8 @@ function MatrixFlowsCreation(_numberCities){
     return array;
 }
 
-_cities = MatrixDistancesCreation(_numCities);
-_flows = MatrixFlowsCreation(_numCities);
+_cities = new Array(new Array(0, 10, 7, 3, 9), new Array(3, 0, 7, 5, 1), new Array(8, 2, 0, 4, 6), new Array(3, 5, 7, 0, 9), new Array(8, 7, 2, 4, 0));
+_flows = new Array(new Array(0, 2, 6, 4, 8), new Array(4, 0, 3, 5, 9), new Array(4, 4, 0, 4, 7), new Array(7, 3, 6, 0, 2), new Array(7, 10, 1, 10, 0));
 
 function fitnessFunction(_chr) {
     
@@ -59,10 +59,11 @@ function fitnessFunction(_chr) {
         return null;
     }
     
-    var fitness = 0;
+    var fitness = 0, pos;
     for( var i = 0; i < _chr.length; ++i){
+        pos = _chr[i];
         for ( var j = 0; j < _chr.length; ++j) {
-                fitness += parseInt(_flows[i][j] * _cities[_chr[i]][j]);
+                fitness += _flows[i][j] * _cities[pos][j];
         } 
     }
     return fitness;
@@ -71,7 +72,7 @@ function fitnessFunction(_chr) {
 function main() {
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    jsEOUtils.setProblemId("http://jsEO.vrivas.es/20171030120000_INTEGERS" + 10);
+    //jsEOUtils.setProblemId("http://jsEO.vrivas.es/20171030120000_INTEGERS" + 10);
 
     
     

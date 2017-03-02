@@ -10,7 +10,7 @@ var jsEOROOpMutation = new Class({
     genesRate: null,
     min: null,
     max: null,
-    initialize: function(_applicationRate, _genesRate, _min, _max) {
+    initialize: function (_applicationRate, _genesRate, _min, _max) {
         this.parent(_applicationRate);
         this.genesRate = _genesRate;
         this.min = _min;
@@ -23,34 +23,34 @@ var jsEOROOpMutation = new Class({
                 );
 
     },
-    operate: function(_auxPop) {
+    operate: function (_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpMutation");
         var toRet = new jsEOPopulation();
-        var tam = _auxPop.getAt(0).length;
-        var number_mutation = Math.ceil(_auxPop.length() * tam * this.genesRate);
-        var chromosome = 0;
+        var number_mutation = Math.ceil(tam * this.genesRate);
         var gen_mutation = 0;
         var gen_mutation_2 = 0;
         var value = 0;
         var newChr;
-        for (var i = 0; i < number_mutation; ++i) {
-            gen_mutation = Math.random() % ((_auxPop.length() * _auxPop.getAt(0).length) - 1);
-            chromosome = gen_mutation / (_auxPop.getAt(0).length);
-            gen_mutation_2 = gen_mutation % tam;
-            while (gen_mutation_2 == gen_mutation) {
-                gen_mutation_2 = Math.random()() % (tam - 1);
+        var tam = _auxPop.getAt(i).length;
+        for (var i = 0; i < _auxPop.length(); ++i) {    
+            for (var j = 0; j < number_mutation; ++j) {
+                gen_mutation = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
+                do {
+                    gen_mutation2 = jsEOUtils.intRandom(1, _auxPop.getAt(0).length - 1);
+                } while (gen_mutation == gen_mutation2);
+
+                newChr = _auxPop.getAt(chromosome);
+                jsEOUtils.debugln("  Individual is " + newChr);
+                value = auxChr[gen_mutation];
+                newChr[gen_mutation] = newChr[gen_mutation_2];
+                newChr[gen_mutation_2] = value;
+                jsEOUtils.debugln("  Final  " + newChr);
+                toRet.add(new jsEOROIndividual());
+                toRet.getAt(0).setChromosome(newChr);
             }
-            newChr = _auxPop.getAt(chromosome);
-            jsEOUtils.debugln("  Individual is " + newChr);
-            value = auxChr[gen_mutation];
-            newChr[gen_mutation] = newChr[gen_mutation_2];
-            newChr[gen_mutation_2] = value;
-            //Preguntar a Victor donde se evalua al individuo una vez mutado
         }
-        jsEOUtils.debugln("  Final  " + newChr);
-        toRet.add(new jsEOROIndividual());
-        toRet.getAt(0).setChromosome(newChr);
         return toRet;
     }
 });
+
 

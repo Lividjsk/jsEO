@@ -17,7 +17,6 @@ var jsEOROOpCrossOver = new Class({
     operate: function(_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpCrossOver");
         var toRet = new jsEOPopulation();
-        
         //If the population type is not defined, a new population is returned
         if (typeof _auxPop == 'undefined') {
             return toRet;
@@ -29,18 +28,24 @@ var jsEOROOpCrossOver = new Class({
             return toRet;
         }
 
-        var individual1 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
-        var individual2 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
+        var individual1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+        do{
+            var individual2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+        }while (individual1 == individual2);
+        
         jsEOUtils.debugln("  rnd2 is " + individual1 +
                 " while length is " + _auxPop.length() +
                 " and " + typeof _auxPop.pop[0]);
 
         var tmpChr1 = _auxPop.getAt(individual1).getChromosome();
         var tmpChr2 = _auxPop.getAt(individual2).getChromosome();
-        alert(tmpChr1);
-        var point1 = Math.floor(Math.random() * (tmpChr1.length - 1));
-        var point2 = Math.floor(Math.random() * (tmpChr1.length - 1));
-        
+        //alert(tmpChr1);
+        var point1;
+        var point2;
+        do{
+            point1 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
+            point2 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
+        }while(point2 < point1);
         //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
         //Ese mismo punto de corte
         if(point1 == point2)

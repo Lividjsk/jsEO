@@ -43,11 +43,11 @@ var jsEOROIndividual = new Class({
         }
         
         var index = 0;
-        chr[0] = 1;
+        chr[0] = 0;
         used[0] = true;
         for ( var j = 1; j < _length; ++j){
             do{
-                index = Math.round(Math.random()*((_length-1) - 1)+1);
+                index = jsEOUtils.intRandom(1,_length-1);
             }while(used[index]);
             chr[j] = index;
             used[index] = true;
