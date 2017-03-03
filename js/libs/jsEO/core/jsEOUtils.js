@@ -187,6 +187,17 @@ var jsEOUtils = {
             toRet += _aPop.getAt(i).getFitness();
         return (toRet / _aPop.length());
     }
+    , bestFitness: function(_aPop){
+        var toRet = 9999999;
+        if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
+            return toRet;
+        }
+        for ( i = 0; i < _aPop.length(); ++i){
+            if(_aPop.getAt(i).getFitness() < toRet)
+                toRet = _aPop.getAt(i).getFitness();
+        }
+        return toRet;
+    }
     , getInputParam: function (_param, _default) {
         var str = location.search.toLowerCase();
         var pos = str.indexOf((_param + "=").toLowerCase());
