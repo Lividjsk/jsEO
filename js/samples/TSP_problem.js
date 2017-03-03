@@ -22,23 +22,7 @@ var _numCities = 5;
 //    
 //    var array = new Array(_numberCities);
 //    for( var i = 0; i < _numberCities; ++i){
-//        array[i] = new Array(_numberCities);
-//        for( var j = 0; j < _numberCities; ++j){
-//            if( i == j ){
-//                array[i][j] = 0;
-//            }else{
-//                array[i][j] = Math.round(Math.random()*1000);
-//            }
-//        }
-//    }
-//    return array;
-//}
-//
-//function MatrixFlowsCreation(_numberCities){
-//    
-//    var array = new Array(_numberCities);
-//    for( var i = 0; i < _numberCities; ++i){
-//        array[i] = new Array(_numberCities);
+//        array[i] = new Array();
 //        for( var j = 0; j < _numberCities; ++j){
 //            if( i == j ){
 //                array[i][j] = 0;
@@ -49,6 +33,25 @@ var _numCities = 5;
 //    }
 //    return array;
 //}
+//
+//function MatrixFlowsCreation(_numberCities){
+//    
+//    var array = new Array(_numberCities);
+//    for( var i = 0; i < _numberCities; ++i){
+//        array[i] = new Array();
+//        for( var j = 0; j < _numberCities; ++j){
+//            if( i == j ){
+//                array[i][j] = 0;
+//            }else{
+//                array[i][j] = Math.round(Math.random()*100);
+//            }
+//        }
+//    }
+//    return array;
+//}
+
+//_cities = MatrixDistancesCreation(_numCities);
+//_flows = MatrixFlowsCreation(_numCities);
 
 _cities = new Array(_numCities);
 _cities[0] = new Array(0, 10, 7, 3, 9);
@@ -75,6 +78,7 @@ function fitnessFunction(_chr) {
     for( var i = 0; i < _numCities; ++i){
         //console.log(_chr);
         pos = _chr[i];
+        //console.log(pos);
         for ( var j = 0; j < _numCities; ++j) {
                 fitness += parseInt(_flows[i][j] * _cities[pos][j]);
         } 
@@ -91,7 +95,7 @@ function main() {
     
     var myROGA = new jsEOROGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
 
-    myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 10));
+    myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 60));
     myROGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
     myROGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
     myROGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));

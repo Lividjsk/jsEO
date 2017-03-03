@@ -95,7 +95,7 @@ var jsEOROGA = new Class({
         this.population.sort();
 
         this.indivSelector = new jsEOOpSelectorTournament(this.tournamentSize,
-                Math.floor(this.popSize * this.replaceRate));
+                1);
 
         this.operSelector = new jsEOOperatorsWheel();
         this.operSelector.

@@ -28,31 +28,30 @@ var jsEOROOpCrossOver = new Class({
             return toRet;
         }
 
-        var individual1 = jsEOUtils.intRandom2(0, _auxPop.length() - 1);
-        var individual2 = 0;
-        if (_auxPop.length() > 1) {
-            do {
-                individual2 = jsEOUtils.intRandom2(0, _auxPop.length() - 1);
-            } while (individual1 == individual2);
-        }else
-            individual2 = individual1;
+        //console.log(_auxPop)
+//        var individual1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+//        var individual2;
+//        do {
+//            individual2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+//        } while (individual1 == individual2);
 
-        jsEOUtils.debugln("  rnd2 is " + individual1 +
-                " while length is " + _auxPop.length() +
-                " and " + typeof _auxPop.pop[0]);
+//        jsEOUtils.debugln("  rnd2 is " + individual1 +
+//                " while length is " + _auxPop.length() +
+//                " and " + typeof _auxPop.pop[0]);
 
-        var tmpChr1 = _auxPop.getAt(individual1).getChromosome().slice();
-        var tmpChr2 = _auxPop.getAt(individual2).getChromosome().slice();
-        //alert(tmpChr1);
+        var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
+        var tmpChr2 = _auxPop.getAt(1).getChromosome().slice();
+        console.log(tmpChr1);
+        console.log(tmpChr2);
+        //console.log(tmpChr1);
+        //console.log(tmpChr2);
         var point1;
         var point2;
-        do {
-            point1 = jsEOUtils.intRandom2(1, tmpChr1.length - 1);
-            point2 = jsEOUtils.intRandom2(1, tmpChr1.length - 1);
-        } while (point2 < point1);
+        point1 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
+        point2 = jsEOUtils.intRandom(point1, tmpChr1.length - 1);
         //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
         //Ese mismo punto de corte
-        var tamSecuency = 0;
+        var tamSecuency;
         if (point1 == point2)
             tamSecuency = 1;
         else
@@ -67,8 +66,8 @@ var jsEOROOpCrossOver = new Class({
 
         //Comentarios en español para luego cambiarlos
         //Se copia la subsecuencia del primer padre en un individuo auxiliar
-        for (var i = 0; i < tamSecuency; ++i) {
-            auxChr.push(tmpChr1[(point1 + i) % tmpChr1.length]);
+        for (var i = point1; i <= point2; ++i) {
+            auxChr.push(tmpChr1[i]);
         }
 
         //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
@@ -79,17 +78,40 @@ var jsEOROOpCrossOver = new Class({
                 orderChr.splice(index, 1);
             }
         }
-
+        orderChr.splice(0, 1);
+        
+        console.log(point1);
+        console.log(point2);
+        console.log(orderChr);
+        console.log(auxChr);
         //Una vez obtenido el orden, rellenamos el hijo
         //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
-        for (var i = 0; i < tamSecuency; ++i) {
-            newChr[point1 + i] = auxChr[i];
+        var count_aux = 0;
+        while(auxChr.length > 0) {
+            newChr[point1 + count_aux] = auxChr[0];
+            count_aux++;
+            auxChr.shift();
+        }
+        
+        console.log(newChr);
+        
+        var count_order = point2 + 1;
+        while( orderChr.length > 0){
+            if((count_order % newChr.length) == 0){
+                count_order = 1;
+                newChr[count_order] = orderChr[0];
+                orderChr.shift();
+            }else{
+                newChr[count_order] = orderChr[0];
+                orderChr.shift();
+            }
+            count_order++;
         }
 
-        for (var j = 0; j < orderChr.length; ++j) {
-            newChr[(point1 + tamSecuency + j) % newChr.length] = orderChr[j];
-        }
+        newChr[0] = 0;
 
+        console.log(newChr);
+        
         jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
         toRet.add(new jsEOROIndividual());
         toRet.getAt(0).setChromosome(newChr);
