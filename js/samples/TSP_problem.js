@@ -66,14 +66,14 @@ _flows[4] = new Array(7, 10, 1, 10, 0);
 
 function fitnessFunction(_chr) {
     
-//    if (typeof _chr == 'undefined') {
-//        return null;
-//    }
+    if (typeof _chr == 'undefined') {
+        return null;
+    }
     
     var fitness = 0;
     var pos;
     for( var i = 0; i < _numCities; ++i){
-        console.log(_chr);
+        //console.log(_chr);
         pos = _chr[i];
         for ( var j = 0; j < _numCities; ++j) {
                 fitness += parseInt(_flows[i][j] * _cities[pos][j]);
@@ -91,7 +91,7 @@ function main() {
     
     var myROGA = new jsEOROGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
 
-    myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 60));
+    myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 10));
     myROGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
     myROGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
     myROGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
