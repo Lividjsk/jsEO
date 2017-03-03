@@ -28,11 +28,11 @@ var jsEOROOpCrossOver = new Class({
             return toRet;
         }
 
-        var individual1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
-        var individual2;
+        var individual1 = jsEOUtils.intRandom2(0, _auxPop.length() - 1);
+        var individual2 = 0;
         if (_auxPop.length() > 1) {
             do {
-                individual2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+                individual2 = jsEOUtils.intRandom2(0, _auxPop.length() - 1);
             } while (individual1 == individual2);
         }else
             individual2 = individual1;
@@ -47,8 +47,8 @@ var jsEOROOpCrossOver = new Class({
         var point1;
         var point2;
         do {
-            point1 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
-            point2 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
+            point1 = jsEOUtils.intRandom2(1, tmpChr1.length - 1);
+            point2 = jsEOUtils.intRandom2(1, tmpChr1.length - 1);
         } while (point2 < point1);
         //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
         //Ese mismo punto de corte

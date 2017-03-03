@@ -362,7 +362,16 @@ var jsEOUtils = {
     , intRandom: function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
+    
+    /**
+     * Creates a random integer number between min and max, both of them included
+     * @param {type} min Lowest value
+     * @param {type} max Greatest value
+     * @returns {Number} Random integer number in the range [min,max]
+     */
+    , intRandom2: function (min, max) {
+        return Math.round(Math.random() * (max - min + 1)) + min;
+    }
     /**
      * Creates a random number between [min, max)
      * @param {type} min Lowest value
