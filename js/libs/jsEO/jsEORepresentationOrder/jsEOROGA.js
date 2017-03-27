@@ -111,13 +111,13 @@ var jsEOROGA = new Class({
 
         jsEOUtils.showPop(this.population, "Initial population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitness(this.population));
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMin(this.population));
 
-        this.privateRun(_fitFn, this.numGenerations, this.showing);
+        this.privateRun(_fitFn, this.showing, this.numGenerations );
 
         jsEOUtils.showPop(this.population, "Final population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitness(this.population));
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMin(this.population));
         //jsEOUtils.drawStats();
     }
 
