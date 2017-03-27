@@ -187,6 +187,39 @@ var jsEOUtils = {
 
         return this;
     }
+    , showPopQueens: function (_aPop, _message, _numIndiv) {
+        if (typeof _message != 'undefined' && _message) {
+            jsEOUtils.print("<h2>" + _message + "</h2>");
+        }
+        if (typeof _aPop == 'undefined') {
+            return this;
+        }
+
+        // Fixing the value of _numIndiv in case of problems
+        _numIndiv = (typeof _numIndiv == 'undefined') ? this.showing : _numIndiv;
+        _numIndiv = (_numIndiv < 0 || _numIndiv > _aPop.length()) ? _aPop.length() : _numIndiv;
+
+        var tb = "";
+        tb += "<table class='tb_indiv' cols='3' border='0'>\n<tr>\n" +
+                "<th class='nInd'>#Indiv</th>\n " +
+                "<th class='chr'>Chromosome</th>\n " +
+                "<th class='fit'>Fitness</th>\n " +
+                "</tr>\n ";
+        for (var i = 0; i < _numIndiv; ++i) {
+            var chr = _aPop.getAt(i).show();
+            tb += "<tr>\n " +
+                    "<td class='nInd'>" + i + "</td>\n" +
+                    "<td class='chr'><span title='" + chr + "'>" +
+                    ((chr.length <= 50) ? chr : (chr.substr(0) + "...")) + "</span></td>\n" +
+                    "<td class='chr'>" + _aPop.getAt(i).getFitness() + "</td>\n" +
+                    "</tr>\n ";
+
+        }
+        tb += "</table>\n";
+        this.print(tb);
+
+        return this;
+    }
     , averageFitness: function (_aPop) {
         var toRet = 0;
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
