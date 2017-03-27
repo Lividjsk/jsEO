@@ -37,13 +37,17 @@ var jsEO = new Class({
         this.fitness=_fitness;
         return this;
     }
+    // comparison for sort
+    , compare: function( _eo ) {
+        return( this.fitness<_eo.fitness?-1:(this.fitness==_eo.fitness?0:1));
+    }
     // Less than
     , lt: function( _eo ) {
         return this.fitness<_eo.fitness;
     }
     // Equal to
     , eq: function( _eo ) {
-       return this.fitness===_eo.fitness; 
+       return (this.fitness===_eo.fitness)?0:1; 
     }
     // Greater than
     , gt: function( _eo ) {
