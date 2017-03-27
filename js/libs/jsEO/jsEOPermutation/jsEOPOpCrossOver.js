@@ -29,27 +29,35 @@ var jsEOPOpCrossOver = new Class({
 
         var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
         var tmpChr2 = _auxPop.getAt(1).getChromosome().slice();
-        var currentSon = 1;
-        for (var i = 0; i < 2; ++i) {
+        var newChr1 = new Array(tmpChr1.length);
 
-            var newChr = new Array(tmpChr1.length);
-            if (currentSon == 1) {
-                newChr[0] = tmpChr1[0];
-                newChr[1] = tmpChr1[1];
-                newChr[2] = tmpChr2[2];
-                newChr[3] = tmpChr2[3];
-            } else {
-                newChr[0] = tmpChr2[0];
-                newChr[1] = tmpChr2[1];
-                newChr[2] = tmpChr1[2];
-                newChr[3] = tmpChr1[3];
-            }
-            currentSon++;
-
-            jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
-            toRet.add(new jsEOPIndividual());
-            toRet.getAt(i).setChromosome(newChr);
+        //Creacion del primer hijo
+        //Rellenamos la primera parte
+        for ( var i = 0; i < tmpChr1.length/2; ++i){
+            newChr1[i]=tmpChr1[i];
         }
+        
+        for(var j = (tmpChr1.length/2); j <tmpChr1.length; ++j){
+            newChr1[j]=tmpChr2[j];
+        }
+        
+        jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr1);
+        toRet.add(new jsEOPIndividual());
+        toRet.getAt(0).setChromosome(newChr1);
+        //Creación del segundo hijo
+        var newChr2 = new Array(tmpChr1.length);
+
+        for ( var i = 0; i < tmpChr1.length/2; ++i){
+            newChr2[i]=tmpChr2[i];
+        }
+        
+        for(var j = (tmpChr1.length/2); j < tmpChr1.length; ++j){
+            newChr2[j]=tmpChr1[j];
+        }
+
+        jsEOUtils.debugln("  Inicio es " + tmpChr2 + " Final  " + newChr2);
+        toRet.add(new jsEOPIndividual());
+        toRet.getAt(1).setChromosome(newChr2);
         return toRet;
     }
 });

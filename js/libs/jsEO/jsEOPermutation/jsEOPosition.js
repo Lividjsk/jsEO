@@ -48,11 +48,14 @@ var jsEOPosition = new Class({
         return this;
     } 
     , eq: function (position) {
-        return this.x===position.x && this.y===position.y;
+        return this.x===position.getX() && this.y===position.getY();
     }
     , kills: function( position ) {
-        return Math.abs(this.x-position.x)===0 
-                || Math.abs(this.y-position.y)==0
-                || Math.abs(this.x-position.x)===Math.abs(this.y-position.y);
+        return Math.abs(this.x-position.getX())===0 
+                || Math.abs(this.y-position.getY())==0
+                || Math.abs(this.x-position.getX())===Math.abs(this.y-position.getY());
+    }
+    , getPosition: function(){
+        return "("+this.x+","+this.y+")";
     }
 });

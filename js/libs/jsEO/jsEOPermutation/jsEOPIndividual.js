@@ -45,14 +45,21 @@ var jsEOPIndividual = new Class({
         }
 
         var chr = new Array(_length);
-
-        for (var i = 0; i < _length; ++i) {
-            chr[i] = (new jsEOPosition()).setRandomly(_length);
-            //chr[i].setRandomly(_length);
+        var used = new Array();
+        
+        for(var n = 0; n < _length; ++n){
+            for ( var m = 0; m < _length; ++m){
+                used.push(new jsEOPosition(n,m));
+            }
         }
-
+        
+        for (var i = 0; i < _length; ++i) {
+            var random = jsEOUtils.intRandom(0, used.length - 1);
+            chr[i] = used[random];
+            used.splice(random,1);
+        }
+        
         this.setChromosome(chr);
-        //console.log("Nuevo cromosoma: ", this.chromosome);
         return this;
     },
     evaluate: function (_fitFn) {
@@ -66,6 +73,18 @@ var jsEOPIndividual = new Class({
             }
         }
         return false;
+    }
+    , show: function(){
+        //console.log(this.chromosome);
+        var chr = this.chromosome;
+        var cadena = "";
+        for(var j = 0; j < chr.length; ++j){
+            if(j != chr.length - 1)
+                cadena += chr[j].getPosition() +","; 
+            else
+                cadena += chr[j].getPosition();
+        }
+        return cadena;
     }
 });
 

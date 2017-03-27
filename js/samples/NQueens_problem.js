@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _Queens = 4;
+var _Queens = 16;
 
 function fitnessFunction(_chr) {
 
@@ -23,7 +23,7 @@ function fitnessFunction(_chr) {
         return null;
     }
 
-    console.log( "FitnessFn, longitud del cromosoma es ", _chr.length);
+    //console.log( _chr.toString());
     var fitness = _chr.length;
     for (var i = 0; i < _chr.length && fitness>0; ++i) {
         for (var j = i+1; j < _chr.length && fitness>0; ++j) {
@@ -42,15 +42,15 @@ function main() {
     
     var myPGA = new jsEOPGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
 
-    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 5));
+    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 50));
     myPGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
     myPGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
     myPGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
     myPGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
     myPGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);    
-    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 100));
+    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 200));
     myPGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
-    myPGA.showing = parseInt(jsEOUtils.getInputParam("showing", 6));
+    myPGA.showing = parseInt(jsEOUtils.getInputParam("showing", 5));
     myPGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myPGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
     myPGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _Queens));

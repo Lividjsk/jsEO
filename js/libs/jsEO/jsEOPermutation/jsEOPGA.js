@@ -86,9 +86,7 @@ var jsEOPGA = new Class({
             return;
         }
         this.population = new jsEOPopulation();
-        this.population.addIndividual(( (new jsEOPIndividual()).solution4Q())
-                .evaluate(_fitFn) );
-        for (var i = 1; i < this.popSize; ++i) {
+        for (var i = 0; i < this.popSize; ++i) {
             var myRO = new jsEOPIndividual();
             myRO.randomize(this.indSize, this.minValue, this.maxValue).
                     evaluate(_fitFn);
@@ -111,13 +109,13 @@ var jsEOPGA = new Class({
             this.operSelector.addOperator(this.opGet);
         }
 
-        jsEOUtils.showPop(this.population, "Initial population", this.showing);
+        jsEOUtils.showPopQueens(this.population, "Initial population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
 
         this.privateRun(_fitFn, this.showing, this.numGenerations );
 
-        jsEOUtils.showPop(this.population, "Final population", this.showing);
+        jsEOUtils.showPopQueens(this.population, "Final population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
         //jsEOUtils.drawStats();
