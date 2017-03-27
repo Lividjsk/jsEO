@@ -41,80 +41,79 @@ var jsEOROOpCrossOver = new Class({
 
         var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
         var tmpChr2 = _auxPop.getAt(1).getChromosome().slice();
-        console.log(tmpChr1);
-        console.log(tmpChr2);
-        //console.log(tmpChr1);
-        //console.log(tmpChr2);
-        var point1;
-        var point2;
-        point1 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
-        point2 = jsEOUtils.intRandom(point1, tmpChr1.length - 1);
-        //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
-        //Ese mismo punto de corte
-        var tamSecuency;
-        if (point1 == point2)
-            tamSecuency = 1;
-        else
-            tamSecuency = point2 - point1;
+        for (var son = 0; son < 2; ++son) {
+            var point1;
+            var point2;
+            point1 = jsEOUtils.intRandom(1, tmpChr1.length - 1);
+            point2 = jsEOUtils.intRandom(point1, tmpChr1.length - 1);
+            //Si los 2 puntos de corte son iguales, el tamaño de la subsecuencia es uno
+            //Ese mismo punto de corte
+            var tamSecuency;
+            if (point1 == point2)
+                tamSecuency = 1;
+            else
+                tamSecuency = point2 - point1;
 
-        jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
-        jsEOUtils.debugln("  Cut Point is " + point1);
+            jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
+            jsEOUtils.debugln("  Cut Point is " + point1);
 
-        var newChr = new Array(tmpChr1.length);
-        var auxChr = new Array();
-        var orderChr = tmpChr2.slice();
+            var newChr = new Array(tmpChr1.length);
+            var auxChr = new Array();
+            var orderChr = tmpChr2.slice();
 
-        //Comentarios en español para luego cambiarlos
-        //Se copia la subsecuencia del primer padre en un individuo auxiliar
-        for (var i = point1; i <= point2; ++i) {
-            auxChr.push(tmpChr1[i]);
-        }
-
-        //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
-        //Y se copian en el orden corresponidente y mas parecido al del padre
-        for (var i = 0; i < auxChr.length; ++i) {
-            var index = orderChr.indexOf(auxChr[i]);
-            if (index != -1) {
-                orderChr.splice(index, 1);
+            //Comentarios en español para luego cambiarlos
+            //Se copia la subsecuencia del primer padre en un individuo auxiliar
+            for (var i = point1; i <= point2; ++i) {
+                auxChr.push(tmpChr1[i]);
             }
-        }
-        orderChr.splice(0, 1);
-        
-        console.log(point1);
-        console.log(point2);
-        console.log(orderChr);
-        console.log(auxChr);
-        //Una vez obtenido el orden, rellenamos el hijo
-        //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
-        var count_aux = 0;
-        while(auxChr.length > 0) {
-            newChr[point1 + count_aux] = auxChr[0];
-            count_aux++;
-            auxChr.shift();
-        }
-        
-        console.log(newChr);
-        
-        var count_order = point2 + 1;
-        while( orderChr.length > 0){
-            if((count_order % newChr.length) == 0){
-                count_order = 1;
-                newChr[count_order] = orderChr[0];
-                orderChr.shift();
-            }else{
-                newChr[count_order] = orderChr[0];
-                orderChr.shift();
+
+            //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
+            //Y se copian en el orden corresponidente y mas parecido al del padre
+            for (var i = 0; i < auxChr.length; ++i) {
+                var index = orderChr.indexOf(auxChr[i]);
+                if (index != -1) {
+                    orderChr.splice(index, 1);
+                }
             }
-            count_order++;
+            orderChr.splice(0, 1);
+/*
+            console.log(point1);
+            console.log(point2);
+            console.log(orderChr);
+            console.log(auxChr);
+            */
+            //Una vez obtenido el orden, rellenamos el hijo
+            //Para ello insertamos la subsecuencia del padre, y luego el resto en el orden acordado
+            var count_aux = 0;
+            while (auxChr.length > 0) {
+                newChr[point1 + count_aux] = auxChr[0];
+                count_aux++;
+                auxChr.shift();
+            }
+
+            //console.log(newChr);
+
+            var count_order = point2 + 1;
+            while (orderChr.length > 0) {
+                if ((count_order % newChr.length) == 0) {
+                    count_order = 1;
+                    newChr[count_order] = orderChr[0];
+                    orderChr.shift();
+                } else {
+                    newChr[count_order] = orderChr[0];
+                    orderChr.shift();
+                }
+                count_order++;
+            }
+
+            newChr[0] = 0;
+
+            //console.log(newChr);
+
+            jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
+            toRet.add(new jsEOROIndividual());
+            toRet.getAt(son).setChromosome(newChr);
         }
-
-        newChr[0] = 0;
-
-        console.log(newChr);
-        
-        jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
-        toRet.add(new jsEOROIndividual());
-        toRet.getAt(0).setChromosome(newChr);
         return toRet;
     }
 });
