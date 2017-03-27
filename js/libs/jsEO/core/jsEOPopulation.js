@@ -74,10 +74,11 @@ var jsEOPopulation = new Class({
     }
     , sort: function () {
         pop = this.pop.sort(function (a, b) {
-            return a.lt(b);
+            return (jsEOUtils.getMaximize()?-1:1)*a.compare(b);
         });
         return this;
     }
+    
     , crop: function (_size) {
         if (typeof _size == 'undefined') {
             _size = this.pop.length;
@@ -97,6 +98,17 @@ var jsEOPopulation = new Class({
             this.pop[j + _i] = _aPop.pop[j];
         }
         return this;
+    }
+    , worstIndividual: function (){
+        var worstPosition = -1;
+        var value = 0;
+        for ( var i = 0; i < _this.population.length(); ++i){
+            if(this.population.getAt(i).getFitness() > value){
+                worstPosition = i;
+                value = this.population.getAt(i).getFitness();
+            }
+        }
+        return worstPosition;
     }
     /**
      * Evaluates the individuals of the population, one after other
