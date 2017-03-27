@@ -16,56 +16,56 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _numCities = 5;
+var _numCities = 30;
 
-//function MatrixDistancesCreation(_numberCities){
-//    
-//    var array = new Array(_numberCities);
-//    for( var i = 0; i < _numberCities; ++i){
-//        array[i] = new Array();
-//        for( var j = 0; j < _numberCities; ++j){
-//            if( i == j ){
-//                array[i][j] = 0;
-//            }else{
-//                array[i][j] = Math.round(Math.random()*100);
-//            }
-//        }
-//    }
-//    return array;
-//}
+function MatrixDistancesCreation(_numberCities){
+    
+    var array = new Array(_numberCities);
+    for( var i = 0; i < _numberCities; ++i){
+        array[i] = new Array();
+        for( var j = 0; j < _numberCities; ++j){
+            if( i == j ){
+                array[i][j] = 0;
+            }else{
+                array[i][j] = Math.floor(Math.random()*10);
+            }
+        }
+    }
+    return array;
+}
+
+function MatrixFlowsCreation(_numberCities){
+    
+    var array = new Array(_numberCities);
+    for( var i = 0; i < _numberCities; ++i){
+        array[i] = new Array();
+        for( var j = 0; j < _numberCities; ++j){
+            if( i == j ){
+                array[i][j] = 0;
+            }else{
+                array[i][j] = Math.floor(Math.random()*10);
+            }
+        }
+    }
+    return array;
+}
+
+_cities = MatrixDistancesCreation(_numCities);
+_flows = MatrixFlowsCreation(_numCities);
+
+//_cities = new Array(_numCities);
+//_cities[0] = new Array(0, 10, 7, 3, 9);
+//_cities[1] = new Array(3, 0, 7, 5, 1);
+//_cities[2] = new Array(8, 2, 0, 4, 6);
+//_cities[3] = new Array(3, 5, 7, 0, 9);
+//_cities[4] = new Array(8, 7, 2, 4, 0);
 //
-//function MatrixFlowsCreation(_numberCities){
-//    
-//    var array = new Array(_numberCities);
-//    for( var i = 0; i < _numberCities; ++i){
-//        array[i] = new Array();
-//        for( var j = 0; j < _numberCities; ++j){
-//            if( i == j ){
-//                array[i][j] = 0;
-//            }else{
-//                array[i][j] = Math.round(Math.random()*100);
-//            }
-//        }
-//    }
-//    return array;
-//}
-
-//_cities = MatrixDistancesCreation(_numCities);
-//_flows = MatrixFlowsCreation(_numCities);
-
-_cities = new Array(_numCities);
-_cities[0] = new Array(0, 10, 7, 3, 9);
-_cities[1] = new Array(3, 0, 7, 5, 1);
-_cities[2] = new Array(8, 2, 0, 4, 6);
-_cities[3] = new Array(3, 5, 7, 0, 9);
-_cities[4] = new Array(8, 7, 2, 4, 0);
-
-_flows = new Array(_numCities);
-_flows[0] = new Array(0, 2, 6, 4, 8);
-_flows[1] = new Array(4, 0, 3, 5, 9);
-_flows[2] = new Array(4, 4, 0, 4, 7);
-_flows[3] = new Array(7, 3, 6, 0, 2);
-_flows[4] = new Array(7, 10, 1, 10, 0);
+//_flows = new Array(_numCities);
+//_flows[0] = new Array(0, 2, 6, 4, 8);
+//_flows[1] = new Array(4, 0, 3, 5, 9);
+//_flows[2] = new Array(4, 4, 0, 4, 7);
+//_flows[3] = new Array(7, 3, 6, 0, 2);
+//_flows[4] = new Array(7, 10, 1, 10, 0);
 
 function fitnessFunction(_chr) {
     
@@ -101,13 +101,13 @@ function main() {
     myROGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
     myROGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
     myROGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);    
-    myROGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 50));
+    myROGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 800));
     myROGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
-    myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 3));
+    myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 6));
     myROGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myROGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
     myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
-
+    jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false) );
     myROGA.run(fitnessFunction);
 
 }
