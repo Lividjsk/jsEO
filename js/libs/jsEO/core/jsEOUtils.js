@@ -36,6 +36,7 @@ var jsEOUtils = {
     , sendURL: "http://jseo.vrivas.es/php/receiving.php"
     , proxyURL: "http://jseo.vrivas.es/php/proxy.php"
     , showing: 3
+    , maximize: true
     , setOutput: function (_id) {
         if (typeof _id != 'undefined') {
             this.idOutput = _id;
@@ -110,6 +111,14 @@ var jsEOUtils = {
     , getVerbose: function () {
         return this.verbose;
     }
+    , setMaximize: function (boolean) {
+        this.maximize = boolean;
+        return this;
+    }
+    , getMaximize: function () {
+        return this.maximize;
+    }
+    
     , setProblemId: function (_id) {
         this.problemID = this.remove_commas(_id);
         return this;
@@ -187,13 +196,24 @@ var jsEOUtils = {
             toRet += _aPop.getAt(i).getFitness();
         return (toRet / _aPop.length());
     }
-    , bestFitness: function(_aPop){
+    , bestFitnessMin: function(_aPop){
         var toRet = 9999999;
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
             return toRet;
         }
         for ( i = 0; i < _aPop.length(); ++i){
             if(_aPop.getAt(i).getFitness() < toRet)
+                toRet = _aPop.getAt(i).getFitness();
+        }
+        return toRet;
+    }
+    , bestFitnessMax: function(_aPop){
+        var toRet = 0;
+        if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
+            return toRet;
+        }
+        for ( i = 0; i < _aPop.length(); ++i){
+            if(_aPop.getAt(i).getFitness() > toRet)
                 toRet = _aPop.getAt(i).getFitness();
         }
         return toRet;
