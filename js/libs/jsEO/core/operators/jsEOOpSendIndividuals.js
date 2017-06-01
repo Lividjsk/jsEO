@@ -103,7 +103,7 @@ var jsEOOpSendIndividuals = new Class({
         try {
             new Request({
                 url: jsEOUtils.getSendURL(),
-                method: 'GET',
+                method: 'POST',
                 async: true,
                 data: data2bSend,
                 timeout: 1000,

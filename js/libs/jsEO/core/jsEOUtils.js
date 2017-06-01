@@ -32,9 +32,9 @@ var jsEOUtils = {
     , idGraphics: "jsEOGraphics"
     , idChart: "myChart"
     , problemID: null
-    , getURL: "http://jseo.vrivas.es/php/sending.php"
-    , sendURL: "http://jseo.vrivas.es/php/receiving.php"
-    , proxyURL: "http://jseo.vrivas.es/php/proxy.php"
+    , getURL: "http://localhost:8888/receiving"
+    , sendURL: "http://localhost:8888/sending"
+    , proxyURL: ""
     , showing: 3
     , maximize: true
     , setOutput: function (_id) {
