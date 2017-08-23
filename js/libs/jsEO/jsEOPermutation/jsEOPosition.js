@@ -56,6 +56,9 @@ var jsEOPosition = new Class({
                 || Math.abs(this.x-position.getX())===Math.abs(this.y-position.getY());
     }
     , getPosition: function(){
-        return "("+this.x+","+this.y+")";
+        return "{"+this.x+":"+this.y+"}";
     }
+	, getJSON: function(){
+		return {"x": this.x, "y": this.y};
+	}
 });

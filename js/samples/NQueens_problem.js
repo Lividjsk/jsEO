@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _Queens = 16;
+var _Queens;
 
 function fitnessFunction(_chr) {
 
@@ -24,7 +24,7 @@ function fitnessFunction(_chr) {
     }
 
     //console.log( _chr.toString());
-    var fitness = _chr.length;
+    var fitness = _chr.length-1;
     for (var i = 0; i < _chr.length && fitness>0; ++i) {
         for (var j = i+1; j < _chr.length && fitness>0; ++j) {
             fitness-=_chr[i].kills(_chr[j])?1:0;
@@ -34,29 +34,29 @@ function fitnessFunction(_chr) {
 }
 
 function main() {
+    
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    //jsEOUtils.setProblemId("http://jsEO.vrivas.es/20171030120000_INTEGERS" + 10);
-
+    jsEOUtils.setProblemId("NQueens");
     
-    
-    var myPGA = new jsEOPGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
+    var myPGA = new jsEOPGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());
 
-    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 50));
+    _Queens = 7;
+    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 1500));
     myPGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
     myPGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
     myPGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
-    myPGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
+    myPGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.5));
     myPGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);    
-    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 200));
+    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 100));
     myPGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
     myPGA.showing = parseInt(jsEOUtils.getInputParam("showing", 5));
     myPGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myPGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
     myPGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _Queens));
-    console.log( jsEOUtils.getInputParam("maximize", true) );
+    //console.log( jsEOUtils.getInputParam("maximize", true) );
     jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", true) );
-    console.log( jsEOUtils.getMaximize() );
+    //console.log( jsEOUtils.getMaximize() );
     myPGA.run(fitnessFunction);
 
-}
+}   

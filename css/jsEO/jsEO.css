@@ -1,0 +1,129 @@
+/*
+Copyright (C) 2013 vrivas
+
+Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
+GeNeura Team- http://geneura.ugr.es
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* 
+    Created on : 28-oct-2013, 22:30:20
+    Author     : vrivas
+*/
+
+
+/* latin */
+@font-face {
+  font-family: 'Snippet';
+  font-style: cursive;
+  font-weight: 400;
+  src: local('Snippet'), url(http://fonts.gstatic.com/s/snippet/v6/bkBpjFHXbzobTARQtiigvA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+* {
+    font-family: 'Snippet', cursive;
+}
+
+#details{
+	background-color: #3da1e0;
+}
+
+#autors{
+	padding-top: 30px;
+}
+
+#header{
+	margin-top: 10px;
+	margin-left: 1px;
+}
+
+#principal{
+	margin-top: 25px;
+}
+
+#title{
+	background-color: #3da1e0;
+	margin-top: 25px;
+}
+
+#jsEODescription{
+	margin: 0 auto;
+}
+
+#jsEOGraphics {
+    width: 90%;
+    height: 10px;
+	text-align: center;
+	margin-left: 65px;
+}
+
+#jsEOTSP {
+	width: 400px;
+	height: 400px;
+}
+
+#legend {
+	margin-top: 150px;
+}
+
+#aveFit, #genNum {
+    color: blue;
+}
+
+.tb_indiv {
+    border: 1px solid #aab;
+	margin: 0 auto;
+}
+
+
+
+#canvas {
+	width: 700px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#graphics{
+	margin-top: 100px;
+	background-color: lightgray;
+}
+
+#canvasMO {
+	width: 400px;
+	height: 200px;
+	margin-left: 15%;
+	margin-bottom: 200px;
+}
+
+.padre {
+   	display: flex;
+   	justify-content: center;
+	margin-left: 100px;
+}
+
+.inline #jsEOConsole, .inline #canvas, .inline #canvasMO{
+	display: inline-block;
+}
+
+#tables{
+	margin-top: 100px;	
+}
+
+#pie {
+	padding-bottom: 50px;
+}
+

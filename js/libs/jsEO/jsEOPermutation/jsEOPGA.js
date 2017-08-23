@@ -33,6 +33,7 @@ var jsEOPGA = new Class({
     minValue: parseInt(jsEOUtils.getInputParam("minValue", -10)),
     maxValue: parseInt(jsEOUtils.getInputParam("maxValue", 10)),
     indSize: parseInt(jsEOUtils.getInputParam("indSize", 2)),
+    positionsTSP: null,
     initialize: function(_opSend, _opGet) {
         if( typeof _opGet != 'undefined' ) {
             _opGet.setApplicationRate( this.getIndividualsRate );
@@ -87,15 +88,15 @@ var jsEOPGA = new Class({
         }
         this.population = new jsEOPopulation();
         for (var i = 0; i < this.popSize; ++i) {
-            var myRO = new jsEOPIndividual();
-            myRO.randomize(this.indSize, this.minValue, this.maxValue).
+            var myP = new jsEOPIndividual();
+            myP.randomize(this.indSize, this.minValue, this.maxValue).
                     evaluate(_fitFn);
-            this.population.addIndividual(myRO);
+            this.population.addIndividual(myP);
         }
         this.population.sort();
 
         this.indivSelector = new jsEOOpSelectorTournament(this.tournamentSize,
-                1);
+                Math.floor(this.popSize * this.replaceRate));
 
         this.operSelector = new jsEOOperatorsWheel();
         this.operSelector.
@@ -113,12 +114,26 @@ var jsEOPGA = new Class({
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
 
+		var popInit = [];
+		
+		for(var a = 0; a < 6; ++a){
+		 	popInit.push(this.population.getAt(a).getFitness());
+		}
+		
         this.privateRun(_fitFn, this.showing, this.numGenerations );
 
         jsEOUtils.showPopQueens(this.population, "Final population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
-        //jsEOUtils.drawStats();
+		
+		var popFin = [];
+		
+		for(var a = 0; a < 6; ++a){
+		 	popFin.push(this.population.getAt(a).getFitness());
+		}
+		
+		jsEOUtils.drawEvolutionFitness(popInit, popFin);
+        jsEOUtils.drawChessBoard(this.population.getAt(0));
     }
 
 });

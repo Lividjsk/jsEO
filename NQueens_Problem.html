@@ -8,12 +8,20 @@ and open the template in the editor.
     <head>
         <title>jsEO Testing: NQueens.</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!--Including CSS -->
-        <link rel="stylesheet" type="text/css" href="./css/jsEO.css">
-
+        <link rel="stylesheet" type="text/css" href="./css/jsEO/jsEO.css">
+		<link rel="stylesheet" type="text/css" href="./css/jsEO/NReinas.css">
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+		
+		<!-- Including Chart JS -->
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.min.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.min.js"></script>
+		
         <!-- Including Google's JS API -->
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="./js/libs/google/jsapi.js"></script>
 
         <!-- Including mootools -->
         <script src="./js/libs/mootools/mootools-core-full-compat.js"></script>
@@ -34,8 +42,8 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/core/operators/jsEOOpSelectorTournament.js"></script>
 
         <!-- Including operator/s to synchronize with others islands -->
-        <script src="./js/libs/jsEO/core/operators/jsEOOpSendIndividuals.js"></script>
-        <script src="./js/libs/jsEO/core/operators/jsEOOpGetIndividuals.js"></script>
+        <script src="./js/libs/jsEO/core/operators/jsEOOpSendIndividualsNode.js"></script>
+        <script src="./js/libs/jsEO/core/operators/jsEOOpGetIndividualsNode.js"></script>
 
         <!-- Including jsEOP elements -->
         <script src="./js/libs/jsEO/jsEOPermutation/jsEOPosition.js"></script>
@@ -64,11 +72,21 @@ and open the template in the editor.
         <p id="jsEOForm">
             <!-- <a href="./index.html?configure=true">Want to change configuration?</a>-->
         </p>
-        <p id="jsEOConsole"></p>
-        <p id="jsEOGraphics"></p>
+		<div id="jsEOGraphics">
+			<table id="tablero">
+			</table>
+		</div>
+        <div id="jsEOConsole" class="inline"></div>
+		<div id="canvas" class="inline">
+				<canvas id="lines">
+				</canvas>
+		</div>
         <script>
             setTimeout("main();"+
                     "alert( 'Execution finished!\\n\\nThanks!' );", 1000);
         </script>
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
+		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
+    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
     </body>
 </html>

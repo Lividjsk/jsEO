@@ -119,4 +119,3 @@ var jsEOOpGetIndividuals = new Class({
         return toRet;
     }
 });
-

@@ -8,70 +8,96 @@ and open the template in the editor.
     <head>
         <title>jsEO Testing Problems - Nov 2016</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!--Including CSS -->
-        <link rel="stylesheet" type="text/css" href="./css/jsEO.css">
-
-        
+		<link rel="stylesheet" href="./css/jsEO/jsEO.css">
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+		
+		<!-- Including jQuery -->
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
+		
+		<!-- Including Popper JS -->
+		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
+		
+		<!-- Including Boostrap -->
+    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
     </head>
     <body>
-        <h1>jsEO testing problems </h1>
-        <h4>By <a href="http://vrivas.es" target="_blank">Victor M. Rivas</a>,
-            from <a href="http://geneura.wordpress.com" target="_blank">Geneura Team</a></h4>
-        <p>
-            Thanks for helping us to test the jsEO library!
-        </p>
-        <p>
-            The time required to complete the execution should be less than
-            5 minutes, but it will vary depending on your
-            device's characteristics (CPU, memory, operating system, web browser...),
-            and also on your internet conection.
-        </p>
-        <p>
-            Please choose any of the following problems... you can execute it as many
-            times as desired, and change when you want the choosen problem.
-        </p>
-        <ul>
-            <li><a href="256_royal_road.html" 
-                   target="_blank">256 Royal Road problem</a></li>
-            <li><a href="eq_128_terms.html" 
-                   target="_blank">128 Terms Equation problem</a></li>
-            <li><a href="TSP_problem.html"
-                   target="tsp">TSP problem</a></li>
-            <li><a href="NQueens_problem.html"
-                   target="tsp">NQueens Problem</a></li>
-        </ul>
-        <p>
-            Thanks a lot!
-        </p>
-        <hr/>
-        <p>
-            ¡Gracias por ayudarnos a probar la biblioteca jsEO!
-        </p>
-        <p>
-            El tiempo necesario para completar cada ejecución debería ser inferior
-            a 5 minutos, aunque podrá variar en función de las características 
-            de tu dispositivo (CPU, memoria, sistema operativo, navegador...) 
-            así como de la velocidad de tu conexión a internet.
-        </p>
-
-        <p>
-            Por favor, elige cualquiera de los siguientes problemas... puedes hacerlo
-            tantas veces como desees, e incluso cambiar de problema si lo deseas.
-        </p>
-        <ul>
-            <li><a href="256_royal_road.html" 
-                   target="rr256">256 Royal Road problem</a></li>
-            <li><a href="eq_128_terms.html" 
-                   target="eq128">128 Terms Equation problem</a></li>
-            <li><a href="TSP_problem.html"
-                   target="tsp">TSP problem</a></li>
-            <li><a href="NQueens_problem.html"
-                   target="tsp">NQueens Problem</a></li>
-        </ul>
-        <p>
-            ¡Gracias!
-        </p>
-        
+		<div id="header" class="row">
+			<div class="col-4">
+				<img src="./images/ujaen.png" alt="Ujaen" width="100" height="75">
+			</div>
+			<div id="autors" class="col-4 text-center container">
+				<h6>Víctor Manuel Rivas Santos / Javier Guzmán García</h6>
+			</div>
+			<div class="col-4 text-right">
+				<img src="./images/Logo_EPS.png" alt="EPS" width="100" height="75">
+			</div>
+		</div>
+		<div id="principal" class="container">
+			<div class="row row-offcanvas row-offcanvas-right" style="background-color: #d5d6d7">
+				<div class="col-12">
+					<div id="title" class="jumbotron">
+            			<h1>Trabajo de Fin de Grado jsEO</h1>
+            			<p>jsEO es una biblioteca de codigo abierto la cual nos permite desarrollar Algoritmos Geneticos y resolver problemas mediante estos, diferentes 							problemas</p>
+          			</div>
+					<div class="row">
+						<div class="col-4 col-lg-4">
+						  <h2>Heading</h2>
+						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						</div><!--/span-->
+						<div class="col-4 col-lg-4">
+						  <h2>Heading</h2>
+						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						</div><!--/span-->
+						<div class="col-4 col-lg-4">
+						  <h2>Heading</h2>
+						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						</div><!--/span-->
+						<div class="col-4 col-lg-4">
+						  <h2>Heading</h2>
+						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						</div><!--/span-->
+						<div class="col-4 col-lg-4">
+						  <!-- Div vacio para hacer relleno -->
+						</div><!--/span-->
+						<div class="col-4 col-lg-4">
+						  <h2>TSP Problem</h2>
+						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						  <p>
+							   <label> Nº de Ciudades: </label>
+							   <select id="ciudades">
+								  <option value="5">5</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="10">10</option>
+							   </select> 
+							  <a id="details" class="btn btn-secondary" href="javascript:datos('TSP_problem.html', 'TSP Problem')" role="button">View details »</a>
+						  </p>
+						</div><!--/span-->
+				  	</div>
+				</div>
+			</div>
+			<hr>
+			<footer>
+				<p>© Universidad de Jaén 2017</p>
+			</footer>
+		</div>
+		<script>
+			function datos(url, title){
+				if(typeof(Storage) !== 'undefined'){
+					var index = document.getElementById("ciudades").selectedIndex;
+					var options = document.getElementById("ciudades").options;
+					localStorage.setItem("Ciudades", options[index].value);
+					window.open(url, title);
+				}else{
+					console.log("No esta soportado el almacenamiento web");
+				}
+			}
+		</script>
     </body>
 </html>

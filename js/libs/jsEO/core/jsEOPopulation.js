@@ -74,11 +74,11 @@ var jsEOPopulation = new Class({
     }
     , sort: function () {
         pop = this.pop.sort(function (a, b) {
-            return (jsEOUtils.getMaximize()?-1:1)*a.compare(b);
+            return (jsEOUtils.getMaximize() ? -1 : 1) * a.compare(b);
+            ;
         });
         return this;
     }
-    
     , crop: function (_size) {
         if (typeof _size == 'undefined') {
             _size = this.pop.length;
@@ -99,16 +99,24 @@ var jsEOPopulation = new Class({
         }
         return this;
     }
-    , worstIndividual: function (){
-        var worstPosition = -1;
-        var value = 0;
-        for ( var i = 0; i < _this.population.length(); ++i){
-            if(this.population.getAt(i).getFitness() > value){
-                worstPosition = i;
-                value = this.population.getAt(i).getFitness();
+	, sortMO: function (_aPop, obj_index) {
+
+        if(_aPop.length == 1)
+            return this;
+        
+        var ind1 = 0, ind2 = 0;
+		for (var i = (_aPop.length - 1); i > -1; --i) {
+            for (var j = 1; j < (i + 1); ++j) {
+                ind1 = _aPop[j - 1];
+                ind2 = _aPop[j];
+
+                if (ind1.getFitnessAt(obj_index) > ind2.getFitnessAt(obj_index)) {
+                    _aPop[j - 1] = ind2;
+                    _aPop[j] = ind1;
+                }
             }
         }
-        return worstPosition;
+        return this;
     }
     /**
      * Evaluates the individuals of the population, one after other
@@ -118,6 +126,7 @@ var jsEOPopulation = new Class({
      */
     , evaluate: function (_aFunction, _params) {
         this.pop.forEach(function (e) {
+            //console.log(e);
             e.evaluate(_aFunction, _params);
         });
         return this;

@@ -47,7 +47,7 @@ var jsEO = new Class({
     }
     // Equal to
     , eq: function( _eo ) {
-       return (this.fitness===_eo.fitness)?0:1; 
+       return this.fitness===_eo.fitness; 
     }
     // Greater than
     , gt: function( _eo ) {

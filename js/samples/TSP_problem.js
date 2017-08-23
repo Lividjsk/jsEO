@@ -16,98 +16,140 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var _numCities = 30;
+var _numCities;
+var _cities;
+var _positions;
 
-function MatrixDistancesCreation(_numberCities){
+
+
+function MatrixDistancesCreation(_numberCities) {
+
+    _positions = new Array();
+    var _x = 0, _y = 0;
+    for(var n = 0; n < _numberCities; ++n){
+        _x = jsEOUtils.intRandom(-370, 370);
+        _y = jsEOUtils.intRandom(-370, 370);
+        var obj = { 'x': _x, 'y': _y};
+        _positions.push(obj);
+    }
     
+
+    // jsEOUtils.intRandom(1, 10)
+    //Calculamos la matriz inicial
     var array = new Array(_numberCities);
-    for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array();
-        for( var j = 0; j < _numberCities; ++j){
-            if( i == j ){
-                array[i][j] = 0;
-            }else{
-                array[i][j] = Math.floor(Math.random()*10);
+    for (var i = 0; i < _numberCities; ++i) {
+        array[i] = new Array(_numberCities);
+        for (var j = 0; j < _numberCities; ++j) {
+            array[i][j] = 1;
+        }
+    }
+    
+    //console.log("Matriz inicial", array);
+    //Ahora ponemos la diagonal principal a cero
+    for(var n = 0; n < _numberCities; ++n){
+        for(var m = 0; m < _numberCities; ++m){
+            if(array[n][m] == 1){
+                if(n == m)
+                    array[n][m] = 0;
+                else{
+                    array[n][m] = parseInt(Math.sqrt(Math.pow(_positions[m].x - _positions[n].x, 2) + Math.pow(_positions[m].y - _positions[n].y, 2)));
+                    array[m][n] = array[n][m];
+                }
             }
         }
     }
-    return array;
-}
-
-function MatrixFlowsCreation(_numberCities){
     
-    var array = new Array(_numberCities);
-    for( var i = 0; i < _numberCities; ++i){
-        array[i] = new Array();
-        for( var j = 0; j < _numberCities; ++j){
-            if( i == j ){
-                array[i][j] = 0;
-            }else{
-                array[i][j] = Math.floor(Math.random()*10);
-            }
-        }
-    }
+    //console.log("Matriz Distancias final", array);
+    
     return array;
 }
 
-_cities = MatrixDistancesCreation(_numCities);
-_flows = MatrixFlowsCreation(_numCities);
+function greedySolution() {
+	  var solucion=[0];
+	  var ciudades=[];
+	  var toRet = [];
+	  var costeTotal=0;
+	  for( var i=1; i < _numCities; ++i ){
+		ciudades.push(i);
+	  }
+	  var ultimaCiudad=0;
+	  while( ciudades.length ){
+		var minCoste=-1, elegida=-1;
+		for( var i=0; i<ciudades.length; ++i ) {
+		  var coste=_cities[ultimaCiudad][ciudades[i]];
+		  if (minCoste<0 || coste<minCoste) {
+			minCoste=coste;
+			elegida=i;
+		  }
+		}
+		costeTotal+=minCoste;
+		ultimaCiudad=ciudades[elegida];
+		solucion.push( ultimaCiudad );
+		ciudades.splice(elegida,1);
 
-//_cities = new Array(_numCities);
-//_cities[0] = new Array(0, 10, 7, 3, 9);
-//_cities[1] = new Array(3, 0, 7, 5, 1);
-//_cities[2] = new Array(8, 2, 0, 4, 6);
-//_cities[3] = new Array(3, 5, 7, 0, 9);
-//_cities[4] = new Array(8, 7, 2, 4, 0);
-//
-//_flows = new Array(_numCities);
-//_flows[0] = new Array(0, 2, 6, 4, 8);
-//_flows[1] = new Array(4, 0, 3, 5, 9);
-//_flows[2] = new Array(4, 4, 0, 4, 7);
-//_flows[3] = new Array(7, 3, 6, 0, 2);
-//_flows[4] = new Array(7, 10, 1, 10, 0);
+	  }
+	  costeTotal+=_cities[ultimaCiudad][0];
+  	  toRet.push(solucion);
+  	  toRet.push(costeTotal);
+	  return toRet;
+}
+
 
 function fitnessFunction(_chr) {
-    
+
     if (typeof _chr == 'undefined') {
         return null;
     }
-    
+
     var fitness = 0;
-    var pos;
-    for( var i = 0; i < _numCities; ++i){
-        //console.log(_chr);
+    var pos, sig;
+    for (var i = 0; i < _numCities; ++i) {
         pos = _chr[i];
-        //console.log(pos);
-        for ( var j = 0; j < _numCities; ++j) {
-                fitness += parseInt(_flows[i][j] * _cities[pos][j]);
-        } 
+        sig = (i < _numCities - 1) ? _chr[i + 1] : _chr[0];
+        fitness += _cities[pos][sig];
     }
     return fitness;
 }
 
 function main() {
+
+	
+	
+    //Inicializacion de variables
+	//En este caso recuperamos el numero de ciudades indicadas para el problema
+	if(ciudades !== 'undefined')
+    	_numCities = ciudades;
+	else
+		_numCities = 6;
+
+    //Llamadas a funciones
+    _cities = MatrixDistancesCreation(_numCities);
+
+
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    //jsEOUtils.setProblemId("http://jsEO.vrivas.es/20171030120000_INTEGERS" + 10);
+    jsEOUtils.setProblemId("TSP");
 
-    
-    
-    var myROGA = new jsEOROGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
+	//Solucion greedy
+	var greedy = greedySolution();
 
-    myROGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 60));
-    myROGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
-    myROGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
-    myROGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
-    myROGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
-    myROGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);    
-    myROGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 800));
-    myROGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
-    myROGA.showing = parseInt(jsEOUtils.getInputParam("showing", 6));
-    myROGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
-    myROGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
-    myROGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
-    jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false) );
+    var myROGA = new jsEOROGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());
+
+    myROGA.popSize = jsEOUtils.getInputParam("popSize", 1000);
+    myROGA.tournamentSize = jsEOUtils.getInputParam("tournamentSize", 2);
+    myROGA.xOverRate = jsEOUtils.getInputParam("xOverRate", 10);
+    myROGA.mutRate = jsEOUtils.getInputParam("mutRate", 10);
+    myROGA.mutPower = jsEOUtils.getInputParam("mutPower", 0.5);
+    myROGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);
+    myROGA.numGenerations = jsEOUtils.getInputParam("numGenerations", 100);
+    myROGA.replaceRate = jsEOUtils.getInputParam("replaceRate", 0.5);
+    myROGA.showing = jsEOUtils.getInputParam("showing", 6);
+    myROGA.indSize = jsEOUtils.getInputParam("indSize", _numCities);
+    myROGA.positionsTSP = jsEOUtils.getInputParam("positionsTSP", _positions);
+    jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false));
+	jsEOUtils.setGreedy(jsEOUtils.getInputParam("greedySolution", greedy));
+	
+    // Running algorithm
     myROGA.run(fitnessFunction);
 
 }

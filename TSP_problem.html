@@ -8,12 +8,26 @@ and open the template in the editor.
     <head>
         <title>jsEO Testing: TSP.</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <!--Including CSS -->
-        <link rel="stylesheet" type="text/css" href="./css/jsEO.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
+		
+		<!--Including CSS -->
+		<link rel="stylesheet" type="text/css" href="./css/jsEO/jsEO.css">
+		<link href="./css/visjs/vis.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/sweetalert/sweetalert.css">
+		
+		<!-- Including Chart JS -->
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.min.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.min.js"></script>
+		
+		<!-- Including Vis JS -->
+		<script src="./js/libs/visjs/vis.min.js"></script>
+        
 
         <!-- Including Google's JS API -->
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="./js/libs/google/jsapi.js"></script>
 
         <!-- Including mootools -->
         <script src="./js/libs/mootools/mootools-core-full-compat.js"></script>
@@ -34,8 +48,8 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/core/operators/jsEOOpSelectorTournament.js"></script>
 
         <!-- Including operator/s to synchronize with others islands -->
-        <script src="./js/libs/jsEO/core/operators/jsEOOpSendIndividuals.js"></script>
-        <script src="./js/libs/jsEO/core/operators/jsEOOpGetIndividuals.js"></script>
+        <script src="./js/libs/jsEO/core/operators/jsEOOpSendIndividualsNode.js"></script>
+        <script src="./js/libs/jsEO/core/operators/jsEOOpGetIndividualsNode.js"></script>
 
         <!-- Including jsEORO elements -->
         <script src="./js/libs/jsEO/jsEORepresentationOrder/jsEOROIndividual.js"></script>
@@ -44,30 +58,32 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEORepresentationOrder/jsEOROGA.js"></script>
 
         <!-- Including main representation order program -->        
-        <script src="./js/samples/TSP_problem.js"></script>
+        <script src="./js/samples/TSP_problem.js?ciudades"></script>
     </head>
-    <body>
-        <h1>jsEO testing problem</h1>
-        <div id="jsEODescription">
-            <h2>TSP</h2>
-            <h4>By <a href="http://vrivas.es" target="_blank">Victor M. Rivas</a>,
-            from <a href="http://geneura.wordpress.com" target="_blank">Geneura Team</a></h4>
-        
-
-            <p class='english'>Thanks for helping us to test jsEO library.</p>
-            <p class='english'>We are trying to solve the TSP</p>
-            <p>
-                Execution started... wait, please!
-            </p>
-        </div>
-        <p id="jsEOForm">
-            <!-- <a href="./index.html?configure=true">Want to change configuration?</a>-->
-        </p>
-        <p id="jsEOConsole"></p>
-        <p id="jsEOGraphics"></p>
+    <body id="body" onLoad="chargeHTML()">
+        <script>
+			
+			function chargeHTML(){
+				$.get("template.html", function(htmlexterno){
+				   $("#body").html(htmlexterno);
+				});
+			}
+			
+		</script>
+		<script>
+			if(typeof(Storage) !== 'undefined'){
+				var ciudades = localStorage.getItem("Ciudades");
+			}else{
+				console.log("No esta soportado el almacenamiento web");
+			}
+		</script>
         <script>
             setTimeout("main();"+
-                    "alert( 'Execution finished!\\n\\nThanks!' );", 1000);
+                    "swal( 'Execution finished!', 'Time execution: 200 ms', 'success' );", 1000);
         </script>
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
+		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
+    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
+		<script src="./js/libs/sweetalert/sweetalert.min.js" ></script>
     </body>
 </html>

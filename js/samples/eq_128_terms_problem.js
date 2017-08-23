@@ -68,12 +68,12 @@ function fitnessFunction(_chr) {
 function main() {
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    jsEOUtils.setProblemId("http://jsEO.vrivas.es/20131030120000_FLOAT" + numCoefs);
+	//"http://jsEO.vrivas.es/20131030120000_FLOAT" + numCoefs
+    jsEOUtils.setProblemId("FloatVector");
 
     
     
-    var myFVGA = new jsEOFVGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
-    //var myFVGA = new jsEOFVGA();
+    var myFVGA = new jsEOFVGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());
 
     myFVGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 500));
     myFVGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
@@ -89,7 +89,6 @@ function main() {
     myFVGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", numCoefs));
 
     myFVGA.run(fitnessFunction);
-    
     /*
      jsEOUtils.print("coefs=new Array( ");
      for (var i = 0; i < numCoefs; ++i) {

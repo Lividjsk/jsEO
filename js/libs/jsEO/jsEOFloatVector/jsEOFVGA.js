@@ -113,7 +113,7 @@ var jsEOFVGA = new Class({
         jsEOUtils.showPop(this.population, "Initial population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
 
-        this.privateRun(_fitFn, this.showing,  this.numGenerations );
+        this.privateRun(_fitFn, this.showing, this.numGenerations);
 
         jsEOUtils.showPop(this.population, "Final population", this.showing);
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));

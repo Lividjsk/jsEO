@@ -1,0 +1,20 @@
+{
+  "name": "jseo",
+  "version": "1.0.0",
+  "description": "Servidor Node para jsEO",
+  "main": ".mongorc.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.6",
+    "node-stringify": "^0.2.0",
+    "vis": "^4.20.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier Guzman Garcia",
+  "license": "ISC"
+}

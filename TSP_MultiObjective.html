@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>jsEO Testing: TSP.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+        <!--Including CSS -->
+        <link rel="stylesheet" type="text/css" href="./css/jsEO/jsEO.css">
+        <link href="./css/visjs/vis.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+		
+        <!-- Including Chart JS -->
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.min.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.min.js"></script>
+		
+		<!-- Including Vis JS -->
+        <script src="./js/libs/visjs/vis.min.js"></script>
+
+
+        <!-- Including Google's JS API -->
+        <script type="text/javascript" src="./js/libs/google/jsapi.js"></script>
+
+        <!-- Including mootools -->
+        <script src="./js/libs/mootools/mootools-core-full-compat.js"></script>
+
+        <!-- Including jsEO core -->
+        <script src="./js/libs/jsEO/core/jsEOUtils.js"></script>
+        <script src="./js/libs/jsEO/core/jsEO.js"></script>
+        <script src="./js/libs/jsEO/core/jsEOMOIndividual.js"></script>
+        <script src="./js/libs/jsEO/core/jsEOPopulation.js"></script>
+        <script src="./js/libs/jsEO/core/jsEOOperator.js"></script>
+        <script src="./js/libs/jsEO/core/jsEOOperatorsWheel.js"></script>
+        <script src="./js/libs/jsEO/core/jsEOAlgorithm.js"></script>
+
+        <!-- Including type of algorithms -->
+        <script src="./js/libs/jsEO/core/algorithms/jsEOMOGA.js"></script>
+
+        <!-- Including operator/s to select indviduals for new population -->
+        <script src="./js/libs/jsEO/core/operators/jsEOOpSelectorTournamentBinary.js"></script>
+
+        <!-- Including operator/s to synchronize with others islands -->
+        <script src="./js/libs/jsEO/core/operators/jsEOOpSendIndividualsNodeMO.js"></script>
+        <script src="./js/libs/jsEO/core/operators/jsEOOpGetIndividualsNodeMO.js"></script>
+
+        <!-- Including jsEORO elements -->
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOTSPIndividual.js"></script>
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOOpMutation.js"></script>
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOOpCrossOver.js"></script>
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOCrowdingDistance.js"></script>
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOOpSortingND.js"></script>
+        <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOTSPGA.js"></script>
+
+        <!-- Including main representation order program -->        
+        <script src="./js/samples/TSP_MultiObjective.js"></script>
+    </head>
+    <body>
+        <h1>jsEO testing problem</h1>
+        <div id="jsEODescription">
+            <h2>TSP</h2>
+            <h4>By <a href="http://vrivas.es" target="_blank">Victor M. Rivas</a>,
+                from <a href="http://geneura.wordpress.com" target="_blank">Geneura Team</a></h4>
+
+
+            <p class='english'>Thanks for helping us to test jsEO library.</p>
+            <p class='english'>We are trying to solve the TSP</p>
+            <p>
+                Execution started... wait, please!
+            </p>
+        </div>
+        <p id="jsEOForm">
+            <!-- <a href="./index.html?configure=true">Want to change configuration?</a>-->
+        </p>
+        <div class="padre">
+			<div id="jsEOTSP"></div>
+			<div id="legend"></div>
+		</div>
+		<div class="inline">
+			<div id="jsEOConsole"></div>
+			<div id="canvasMO"><canvas id="pie" style="display: inline"></canvas></div>
+		</div>
+        <script>
+            setTimeout("main();" +
+                    "alert( 'Execution finished!\\n\\nThanks!' );", 1000);
+        </script>
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js"></script>
+    	<script src="./js/libs/popper/umd/popper.min.js"></script>
+    	<script src="./js/libs/bootstrap/bootstrap.min.js"></script>
+    </body>
+</html>

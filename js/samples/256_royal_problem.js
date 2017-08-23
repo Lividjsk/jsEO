@@ -33,10 +33,11 @@ function fitnessFunction(_chr) {
 function main() {
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    jsEOUtils.setProblemId("http://jsEO.vrivas.es/20131030120000256ROYALFUNCTION");
+	//http://jsEO.vrivas.es/20131030120000256ROYALFUNCTION
+    jsEOUtils.setProblemId("BitString");
     
     // Initializing algorithm
-    var myBSGA = new jsEOBSGA(new jsEOOpSendIndividuals(), new jsEOOpGetIndividuals());
+    var myBSGA = new jsEOBSGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());
 
     // Stablishing parameters
     myBSGA.popSize = jsEOUtils.getInputParam("popSize", 500);

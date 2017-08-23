@@ -53,6 +53,7 @@ var jsEOROIndividual = new Class({
             used[index] = true;
         }
         
+        //console.log("Individuo creado");
         this.setChromosome(chr);
         return this;
     },
