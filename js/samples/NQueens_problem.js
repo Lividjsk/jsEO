@@ -23,7 +23,6 @@ function fitnessFunction(_chr) {
         return null;
     }
 
-    //console.log( _chr.toString());
     var fitness = _chr.length-1;
     for (var i = 0; i < _chr.length && fitness>0; ++i) {
         for (var j = i+1; j < _chr.length && fitness>0; ++j) {
@@ -35,28 +34,35 @@ function fitnessFunction(_chr) {
 
 function main() {
     
+	//Initialization of variables
+	//In this case we retrieve the number of queens indicated for the problem
+	if(queens !== 'undefined')
+    	_Queens = queens;
+	else
+		_Queens = 6;
+	
+	//Calls to Functions
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
     jsEOUtils.setProblemId("NQueens");
     
     var myPGA = new jsEOPGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());
 
-    _Queens = 7;
-    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 1500));
+    myPGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 2500));
     myPGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
     myPGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
     myPGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
     myPGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.5));
     myPGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 1);    
-    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 100));
+    myPGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 250));
     myPGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
     myPGA.showing = parseInt(jsEOUtils.getInputParam("showing", 5));
     myPGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
     myPGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
     myPGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _Queens));
-    //console.log( jsEOUtils.getInputParam("maximize", true) );
     jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", true) );
-    //console.log( jsEOUtils.getMaximize() );
+	
+	// Running algorithm
     myPGA.run(fitnessFunction);
 
 }   

@@ -2,6 +2,7 @@
  * Copyright (C) 2013 vrivas
  *
  * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
+ * Javier Guzmń García: jgg00045@red.ujaen.es
  * GeNeura Team- http://geneura.ugr.es
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,13 +30,13 @@ var jsEOUtils = {
     , worstFit: []
     , averageFit: []
     , positionsTSP: []
-    , greedySolution: []
+	, greedySolution: []
     , idOutput: "jsEOConsole"
     , idGraphics: "jsEOGraphics"
     , idChart: "myChart"
     , problemID: null
-    , getURL: "./receiving"
-    , sendURL: "./sending"
+    , getURL: "../receiving"
+    , sendURL: "../sending"
     , proxyURL: ""
     , showing: 3
     , maximize: true
@@ -164,9 +165,7 @@ var jsEOUtils = {
         return this.showing;
     }
     , showPop: function (_aPop, _message, _numIndiv, _id) {
-        if (typeof _message != 'undefined' && _message) {
-            jsEOUtils.print("<h2>" + _message + "</h2>", _id);
-        }
+        
         if (typeof _aPop == 'undefined') {
             return this;
         }
@@ -176,17 +175,19 @@ var jsEOUtils = {
         _numIndiv = (_numIndiv < 0 || _numIndiv > _aPop.length()) ? _aPop.length() : _numIndiv;
 
         var tb = "";
-        tb += "<table class='table-striped tb_indiv table-hover table-bordered' cols='3' border='0'>\n<tr>\n" +
-                "<th>#Indiv</th>\n " +
+		tb += "<div class='card'>"+
+				"<div class='card-header text-center'>"+
+				"<h2>" + _message + "</h2>" + "</div>"+
+				"<div class='card-block'>";
+        tb += "<table class='tb_indiv' cols='3' border='0'>\n<tr>\n" +
                 "<th>Chromosome</th>\n " +
                 "<th>Fitness</th>\n " +
                 "</tr>\n ";
         for (var i = 0; i < _numIndiv; ++i) {
             var chr = _aPop.getAt(i).getChromosome().toString();
             tb += "<tr>\n " +
-                    "<td>" + i + "</td>\n" +
                     "<td><span title='" + chr + "'>" +
-                    ((chr.length <= 50) ? chr : (chr.substr(0) + "...")) + "</span></td>\n" +
+                    ((chr.length <= 10) ? chr : (chr.substr(0, 10) + "...")) + "</span></td>\n" +
                     "<td>" + _aPop.getAt(i).getFitness() + "</td>\n" +
                     "</tr>\n ";
 
@@ -197,9 +198,7 @@ var jsEOUtils = {
         return this;
     },
     showPopMOTSP: function (_aPop, _message, _numIndiv, _id) {
-        if (typeof _message != 'undefined' && _message) {
-            jsEOUtils.print("<h2>" + _message + "</h2>", _id);
-        }
+        
         if (typeof _aPop == 'undefined') {
             return this;
         }
@@ -209,8 +208,11 @@ var jsEOUtils = {
         _numIndiv = (_numIndiv < 0 || _numIndiv > _aPop.length()) ? _aPop.length() : _numIndiv;
 
         var tb = "";
+		tb += "<div class='card'>"+
+				"<div class='card-header text-center'>"+
+				"<h2>" + _message + "</h2>" + "</div>"+
+				"<div class='card-block'>";
         tb += "<table class='tb_indiv' cols='4' border='0'>\n<tr>\n" +
-                "<th class='nInd'>#Indiv</th>\n " +
                 "<th class='chr'>Chromosome</th>\n " +
                 "<th class='fit'>Distance(km)</th>\n " +
                 "<th class='fit'>Time(min)</th>\n " +
@@ -219,24 +221,21 @@ var jsEOUtils = {
         for (var i = 0; i < _numIndiv; ++i) {
             var chr = _aPop.getAt(i).getChromosome().toString();
             tb += "<tr>\n " +
-                    "<td class='nInd'>" + i + "</td>\n" +
                     "<td class='chr'><span title='" + chr + "'>" +
                     ((chr.length <= 50) ? chr : (chr.substr(0) + "...")) + "</span></td>\n" +
                     "<td class='chr'>" + _aPop.getAt(i).getFitnessAt(0) + "</td>\n" +
                     "<td class='chr'>" + _aPop.getAt(i).getFitnessAt(1) + "</td>\n" +
 					"<td class='chr'>" + ((_aPop.getAt(i).getRank() == 0)?"Front of Pareto":_aPop.getAt(i).getRank()) + "</td>\n" +
                     "</tr>\n ";
-
         }
         tb += "</table>\n";
+		tb += "</div>"+ "</div>";
         this.print(tb, _id);
 
         return this;
     }
     , showPopQueens: function (_aPop, _message, _numIndiv, _id) {
-        if (typeof _message != 'undefined' && _message) {
-            jsEOUtils.print("<h2>" + _message + "</h2>", _id);
-        }
+        
         if (typeof _aPop == 'undefined') {
             return this;
         }
@@ -246,15 +245,17 @@ var jsEOUtils = {
         _numIndiv = (_numIndiv < 0 || _numIndiv > _aPop.length()) ? _aPop.length() : _numIndiv;
 
         var tb = "";
+		tb += "<div class='card'>"+
+				"<div class='card-header text-center'>"+
+				"<h2>" + _message + "</h2>" + "</div>"+
+				"<div class='card-block'>";
         tb += "<table class='tb_indiv' cols='3' border='0'>\n<tr>\n" +
-                "<th class='nInd'>#Indiv</th>\n " +
                 "<th class='chr'>Chromosome</th>\n " +
                 "<th class='fit'>Fitness</th>\n " +
                 "</tr>\n ";
         for (var i = 0; i < _numIndiv; ++i) {
             var chr = _aPop.getAt(i).show();
             tb += "<tr>\n " +
-                    "<td class='nInd'>" + i + "</td>\n" +
                     "<td class='chr'><span title='" + chr + "'>" +
                     ((chr.length <= 50) ? chr : (chr.substr(0) + "...")) + "</span></td>\n" +
                     "<td class='chr'>" + _aPop.getAt(i).getFitness() + "</td>\n" +
@@ -262,21 +263,29 @@ var jsEOUtils = {
 
         }
         tb += "</table>\n";
+		tb += "</div>"+ "</div>";
         this.print(tb, _id);
 
         return this;
     }
     , averageFitness: function (_aPop) {
-        var toRet = 0;
+		
+		//Function to calculate the average fitness of a population
+        
+		var toRet = 0;
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
             return toRet;
         }
         for (var i = 0; i < _aPop.length(); ++i)
             toRet += _aPop.getAt(i).getFitness();
         return (toRet / _aPop.length());
+		
     }
     , averageFitnessMO: function (_aPop, _objectives) {
-        var toRet = "";
+		
+		//Function to calculate the average fitness of a population multiobjective
+        
+		var toRet = "";
 
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
             return toRet;
@@ -292,8 +301,12 @@ var jsEOUtils = {
             toRet += (_aux / _aPop.length());
         }
         return toRet;
+		
     }
     , bestFitnessMin: function (_aPop) {
+		
+		//Function to calculate the best fitness of one population with the criterion of minimization
+		
         var toRet = 9999999;
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
             return toRet;
@@ -303,9 +316,12 @@ var jsEOUtils = {
                 toRet = _aPop.getAt(i).getFitness();
         }
         return toRet;
+		
     }
     , bestFitnessMinMO: function (_aPop, _objectives) {
 
+		//Function to calculate the best fitness of one population multiobjective with the criterion of minimization
+		
         var toRet = "";
 
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
@@ -327,6 +343,9 @@ var jsEOUtils = {
         return toRet;
     }
     , bestFitnessMax: function (_aPop) {
+		
+		//Function to calculate the best fitness with the criterion of maximization
+		
         var toRet = 0;
         if (typeof _aPop == 'undefined' || _aPop.length() <= 0) {
             return toRet;
@@ -437,24 +456,24 @@ var jsEOUtils = {
 
         var tam = chromosome.length;
 
-        //Creamos un vector para insertar las ciudades
+        //We create a vector to insert the cities
         var auxNodes = [];
 
         var x = 0, y = 0;
 
-        //Insertamos las ciudades dentro del vector
+        //We insert the cities into the vector
         for (var i = 0; i < chromosome.length; ++i) {
             auxNodes.push({id: i, label: 'Ciudad ' + i, x: _positions[i].x * 5, y: _positions[i].y * 5});
         }
 
-        //Creamos el conjunto de nodos a partir del vector con las ciudades
+        //We create the set of nodes from the vector with the cities
         var nodes = new vis.DataSet(auxNodes);
 
-        //Creamos un vector para insertar los ejes
+        //We create a vector to insert the axes
         var auxEdges = [];
 
         var count = 0;
-        //Conectamos todas las ciudades entre si
+        //We connect all the cities with each other
         for (var i = 0; i < chromosome.length; ++i) {
             for (var j = 0; j < chromosome.length; ++j) {
                 if (i != j && i < j)
@@ -462,7 +481,7 @@ var jsEOUtils = {
             }
         }
 
-		//Dibujamos de color rojo el camino minimo obtenido con jsEO
+		//We draw red color the minimum path obtained with jsEO
         var a = 0;
         while (count < tam - 1) {
             if (auxEdges[a].from == chromosome[count] && auxEdges[a].to == chromosome[count + 1] ||
@@ -476,8 +495,10 @@ var jsEOUtils = {
 
         auxEdges[chromosome[tam - 1] - 1].color = 'red';
 		
-		
-		//Ahora hacemos lo mismo pero con la solucion greedy. En esta caso la pintaremos de verde
+		if(this.greedySolution.length != 0){
+		//Now we do the same but with greedy solution.
+		//In this case we will paint it green.
+		//We will only paint it in case there is a greedy solution available
 		var a = 0, count = 0;
         while (count < tam - 1) {
             if (auxEdges[a].from == this.greedySolution[0][count] && auxEdges[a].to == this.greedySolution[0][count + 1] ||
@@ -490,9 +511,11 @@ var jsEOUtils = {
         }
 
         auxEdges[this.greedySolution[0][tam - 1] - 1].color = 'green';
+		}
 
         var edges = new vis.DataSet(auxEdges);
 
+		//We add the axes and the nodes
         var data = {nodes: nodes, edges: edges};
 
         var options = {
@@ -501,8 +524,8 @@ var jsEOUtils = {
                 improvedLayout: false
             }
         }
-        console.log(options.layout.randomSeed);
 
+		//And finally we create the graph
         this.network = new vis.Network(container, data, options);
 
         return this;
@@ -520,8 +543,6 @@ var jsEOUtils = {
 
         var figQueen = "♔";
 
-
-        jsEOUtils.print("<h2>Best Solutión</h2>", jsEOUtils.idGraphics);
         //Creation of the Chessboard
         var table = document.getElementById("tablero");
         table.className = "table-chess";
@@ -537,7 +558,6 @@ var jsEOUtils = {
         for (c = 0; c < chromosome.length; ++c) {
             table.rows[chromosome[c].getX()].cells[chromosome[c].getY()].innerHTML = "<span class=negras>" + figQueen + "</span>";
         }
-
 
         return this;
     }
@@ -567,6 +587,7 @@ var jsEOUtils = {
 			_id = "lines";
 		}
 		
+		//Creating graph for representing solutions with jsEO
 		var ctx = document.getElementById(_id).getContext("2d");
 		
 		var fitnessInit = [], fitnessFin = [], fitnessGreedy = [];
@@ -637,37 +658,122 @@ var jsEOUtils = {
         return this;
 		
 	}
-	, drawGreedySolution: function(_message, _id){
+	, showDescription: function(_problem, _id){
 		
-		if (typeof _message != 'undefined' && _message) {
-            jsEOUtils.print("<h2>" + _message + "</h2>", _id);
-        }
+		//Function that shows the description of each problem. To view a new problem, add the description here
+		
+		var p = "";
+		
+		switch(_problem){
+			case 'TSP':
+				p += "<p>" + "We are trying to solve the TSP(Travelling Salesman Problem),"+
+					"where we have to find a way that goes through all the cities" +
+					"without going through any of them again and return to the city where it started." +
+					"In this case, the best path will be the one with the least distance. (Minimization problem)";
+				p += "</p>";
+				break;
+			case 'NQueens':
+				p += "<p>" + "We are trying to solve the NQueens problem." +
+					"This tries to place on a board of size NxN, N-queens so that they do not eat each other," +
+					"that is to say, neither horizontally, nor vertically nor diagonally." +
+					"In this case, the best solution will be the one in which fewer queens will eat each other. (Maximization problem)";
+				p += "</p>";
+				break;
+			case 'TSP_MO':
+				p += "<p>" + "In this case we will solve the TSP problem,"+
+					"but using a multiobjective algorithm. In this case the multiobjective algorithm" +
+					"will have 2 parameters the main one, which will remain the distance and the time,"+
+					"so that not only is it sought to travel all the cities and return to the origin in the" +
+					"minimum possible time, but also, Do it also in the shortest possible time. (Minimization problem)";
+				p += "</p>";
+				break;
+			case 'Bit':
+				p += "<p>" + "We are trying to find 256-length bit-strings with" + 
+                "the maximum number of '0000' and/or '1111' sequences. (Global" +
+                "maximum is 253, corresponding to the string composed by only '1s'" +
+                "or only '0s').";
+            	p += "</p>";
+				break;
+			case 'Float':
+				p += "<p>" + "We are trying to solve the following equation:"+ "<br>";
+                p += "(x<sub>0</sub> -7.156) + (x<sub>1</sub> +2.229) +" +
+                "(x<sub>2</sub> -5.535) + (x<sub>3</sub> -4.618) +" +
+                "(x<sub>4</sub> +6.902) + (x<sub>5</sub> -3.912) +" +
+                "(x<sub>6</sub> +7.246) + (x<sub>7</sub> -9.204) +" +
+                "(x<sub>8</sub> +8.919) + (x<sub>9</sub> +5.979) +" +
+                "(x<sub>10</sub> +9.348) + (x<sub>11</sub> +9.444) +" +
+                "(x<sub>12</sub> +8.353) + (x<sub>13</sub> +5.018) +" +
+                "(x<sub>14</sub> +4.606) + (x<sub>15</sub> +0.961) +" +
+                "(x<sub>16</sub> +7.225) + (x<sub>17</sub> +1.903) +" +
+                "(x<sub>18</sub> +1.452) + (x<sub>19</sub> -5.583) +" +
+                "(x<sub>20</sub> -9.210) + (x<sub>21</sub> +4.003) + (x<sub>22</sub> -2.308) + (x<sub>23</sub> -9.555) + (x<sub>24</sub> +5.903) + (x<sub>25</sub> -3.676) + (x<sub>26</sub> -9.837) + (x<sub>27</sub> -5.272) + (x<sub>28</sub> +3.882) + (x<sub>29</sub> -5.365) + (x<sub>30</sub> +8.509) + (x<sub>31</sub> -8.524) + (x<sub>32</sub> +5.927) + (x<sub>33</sub> -5.617) + (x<sub>34</sub> +8.877) + (x<sub>35</sub> +6.647) + (x<sub>36</sub> +6.081) + (x<sub>37</sub> +0.921) + (x<sub>38</sub> +5.566) + (x<sub>39</sub> -7.609) + (x<sub>40</sub> -0.804) + (x<sub>41</sub> -8.849) + (x<sub>42</sub> +6.493) + (x<sub>43</sub> -3.435) + (x<sub>44</sub> +9.561) + (x<sub>45</sub> +1.836) + (x<sub>46</sub> -8.239) + (x<sub>47</sub> +4.165) + (x<sub>48</sub> -0.434) + (x<sub>49</sub> +5.654) + (x<sub>50</sub> -6.245) + (x<sub>51</sub> -8.889) + (x<sub>52</sub> -2.784) + (x<sub>53</sub> +2.473) + (x<sub>54</sub> +1.843) + (x<sub>55</sub> -4.917) + (x<sub>56</sub> -3.704) + (x<sub>57</sub> +0.405) + (x<sub>58</sub> +5.132) + (x<sub>59</sub> +2.956) + (x<sub>60</sub> -6.344) + (x<sub>61</sub> +8.843) + (x<sub>62</sub> +2.651) + (x<sub>63</sub> -0.127) + (x<sub>64</sub> -5.662) + (x<sub>65</sub> -5.994) + (x<sub>66</sub> -8.043) + (x<sub>67</sub> +1.111) + (x<sub>68</sub> -2.832) + (x<sub>69</sub> -3.571) + (x<sub>70</sub> -5.677) + (x<sub>71</sub> -5.370) + (x<sub>72</sub> -9.045) + (x<sub>73</sub> -0.591) + (x<sub>74</sub> +7.523) + (x<sub>75</sub> -0.441) + (x<sub>76</sub> +4.587) + (x<sub>77</sub> +7.550) + (x<sub>78</sub> -4.303) + (x<sub>79</sub> -6.137) + (x<sub>80</sub> +3.080) + (x<sub>81</sub> +5.412) + (x<sub>82</sub> +9.824) + (x<sub>83</sub> +3.046) + (x<sub>84</sub> +6.025) + (x<sub>85</sub> -2.371) + (x<sub>86</sub> +2.083) + (x<sub>87</sub> -9.011) + (x<sub>88</sub> +4.910) + (x<sub>89</sub> +3.966) + (x<sub>90</sub> -7.329) + (x<sub>91</sub> -6.136) + (x<sub>92</sub> -8.572) + (x<sub>93</sub> -4.568) + (x<sub>94</sub> +8.636) + (x<sub>95</sub> +8.604) + (x<sub>96</sub> +0.157) + (x<sub>97</sub> -9.133) + (x<sub>98</sub> +0.860) + (x<sub>99</sub> +8.441) + (x<sub>100</sub> -4.106) + (x<sub>101</sub> +7.366) + (x<sub>102</sub> -2.493) + (x<sub>103</sub> +9.860) + (x<sub>104</sub> -1.570) + (x<sub>105</sub> -7.574) +" +
+                "(x<sub>106</sub> -9.881) + (x<sub>107</sub> -2.417) +" +
+                "(x<sub>108</sub> -4.276) + (x<sub>109</sub> +0.906) +" +
+                "(x<sub>110</sub> -8.008) + (x<sub>111</sub> +7.272) +" +
+                "(x<sub>112</sub> -9.818) + (x<sub>113</sub> -4.328) +" +
+                "(x<sub>114</sub> -2.490) + (x<sub>115</sub> +9.182) +" +
+                "(x<sub>116</sub> -7.859) + (x<sub>117</sub> +7.229) +" +
+                "(x<sub>118</sub> +5.884) + (x<sub>119</sub> -9.712) +" +
+                "(x<sub>120</sub> -0.302) + (x<sub>121</sub> +4.695) +" +
+                "(x<sub>122</sub> -6.982) + (x<sub>123</sub> -2.770) +" +
+                "(x<sub>124</sub> +4.645) + (x<sub>125</sub> +8.147) +" +
+                "(x<sub>126</sub> +1.214) + (x<sub>127</sub> -2.052) = 0"; 
+            	p += "</p>";
+				break;
+		}	
+		this.print(p, _id);
+	}
+	,showTime: function(_time, _id){
+		
+		//Function that shows the time of execution of the problem
+		this.print(_time, _id);
+	}
+	, showLegend: function(_id){
+		
+		//Function that shows the legend for the graph
+		var span = "<ul class='list-group'>" +
+   					"<li class='list-group-item list-group-item-danger'>" + "Camino minimo Algoritmo Genetico jsEOTSP" + "</li>"+
+					"<li class='list-group-item list-group-item-success'>" + "Camino minimo Algoritmo Greedy" + "</li>"+
+					"<li class='list-group-item list-group-item-info'>" + "Caminos no incluidos en la solución óptima" + "</li>"+
+					"</ul>";
+		this.print(span, "legend");
+		
+	}
+	, showLegendMO: function(_id){
+		
+		//Function that shows the legend for the graph of the multiobjective problem
+		var span = "<ul class='list-group'>" +
+   					"<li class='list-group-item list-group-item-danger'>" + "Camino minimo Algoritmo Genetico jsEOTSP" + "</li>"+
+					"<li class='list-group-item list-group-item-info'>" + "Caminos no incluidos en la solución óptima" + "</li>"+
+					"</ul>";
+		this.print(span, "legend");
+		
+	}
+	, drawGreedySolution: function(_message, _id){
 		
 		if(typeof _id === 'undefined' || !_id){
 			_id = this.idOutput;
 		}
 		
+		//Function that shows us what would be the greedy solution to the TSP
 		
-		
-		var span = "<ul>" +
-   					"<li><span style='color: red'>" + "Camino minimo Algoritmo Genetico jsEOTSP" + "</li>"+
-					"<li><span style='color: green'>" + "Camino minimo Algoritmo Greedy" + "</li>"+
-					"</ul>";
-		this.print(span, "legend");
 		var tb = "";
-        tb += "<table class='tb_indiv table-striped table-hover table-bordered' cols='3' border='0'>\n<tr>\n" +
-                "<th>Indiv</th>\n " +
+		tb += "<div class='card'>"+
+				"<div class='card-header text-center'>"+
+				"<h2>" + _message + "</h2>" + "</div>"+
+				"<div class='card-block'>";
+        tb += "<table class='tb_indiv' cols='3' border='0'>\n<tr>\n" +
                 "<th>Chromosome</th>\n " +
                 "<th>Fitness</th>\n " +
                 "</tr>\n ";
         var chr = this.greedySolution[0].toString();
         tb += "<tr>\n " +
-                "<td>" + 'Greedy' + "</td>\n" +
                 "<td><span title='" + chr + "'>" +
                 ((chr.length <= 50) ? chr : (chr.substr(0) + "...")) + "</span></td>\n" +
                 "<td>" + this.greedySolution[1] + "</td>\n" +
                 "</tr>\n ";
         tb += "</table>\n";
+		tb += "</div>"+ "</div>";
 		
         this.print(tb, _id);
 
@@ -675,8 +781,10 @@ var jsEOUtils = {
 	}
 	, drawEvolutionFitnessMO: function(_aPop, _id){
 		if(typeof _id === 'undefined' || !_id){
-			_id = "pie";
+			_id = "lines";
 		}
+		
+		//Creating graph for representing solutions with jsEO for multiobjective problems
 		
 		var ctx = document.getElementById(_id);
 		

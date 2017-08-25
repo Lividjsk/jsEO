@@ -112,19 +112,22 @@ var jsEOMOTSPGA = new Class({
             this.operSelector.addOperator(this.opGet);
         }
 
-        console.log("Muestra poblacion inicial");
-        jsEOUtils.showPopMOTSP(this.population, "Initial population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives));
+		jsEOUtils.showLegendMO("legend");
+        jsEOUtils.showPopMOTSP(this.population, "Initial population", this.showing, "ipop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "ipop");
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "ipop");
 
-		
+		var startTime = new Date();
 		
         this.privateRun(_fitFn, this.showing, this.numGenerations );
-
-        console.log("Muestra poblacion final");
-        jsEOUtils.showPopMOTSP(this.population, "Final population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives));
+		
+		var endTime = new Date();
+		
+		jsEOUtils.showTime((endTime - startTime), "time");
+		jsEOUtils.showDescription("TSP_MO", "definition");
+        jsEOUtils.showPopMOTSP(this.population, "Final population", this.showing, "fpop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "fpop");
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "fpop");
 		
 		
 		var popFinal = this.population;

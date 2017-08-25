@@ -1,12 +1,12 @@
 /* 
  * Copyright (C) 2013 vrivas
  *
- * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
- * GeNeura Team- http://geneura.ugr.es
+ * Javier Guzmán García: jgg00045@red.ujaen.es
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -72,11 +72,11 @@ var jsEOOpSendIndividualsNodeMO = new Class({
 				onComplete: function(response){
 					var res = JSON.parse(response);
 					var result = {Solution: JSON.parse(res.Solution), Objectives: JSON.parse(res.Objectives)};
-					console.log("Respuesta del servidor al enviar individuo", res.msg);
+					console.log("Response of the server when sending individual", res.msg);
 				}
 			}).send();
 	}catch(error){
-		console.log("Error al enviar individuo");
+		console.log("Error sending individual");
 	}
         return null;
     }

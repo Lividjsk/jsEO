@@ -35,48 +35,101 @@ and open the template in the editor.
 			</div>
 		</div>
 		<div id="principal" class="container">
-			<div class="row row-offcanvas row-offcanvas-right" style="background-color: #d5d6d7">
+			<div id="content" class="row">
 				<div class="col-12">
 					<div id="title" class="jumbotron">
-            			<h1>Trabajo de Fin de Grado jsEO</h1>
-            			<p>jsEO es una biblioteca de codigo abierto la cual nos permite desarrollar Algoritmos Geneticos y resolver problemas mediante estos, diferentes 							problemas</p>
+            			<h1>Trabajo de Fin de Grado</h1>
+						<h2>jsEO 2: Uso y ampliacion de una biblioteca de Algoritmos Bioinspirados escrita en Javascript</h2>
+            			<p>jsEO es una biblioteca de codigo abierto la cual nos permite desarrollar Algoritmos Geneticos haciendo uso de individuos, poblaciones, 									operadores, etc. para resolver problemas planteados. Y todo esto en Javascript!!</p>
           			</div>
 					<div class="row">
-						<div class="col-4 col-lg-4">
-						  <h2>Heading</h2>
-						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						<div class="col-md-4 col-xs-6">
+						  <h2>Equation with 128 Terms</h2>
+<pre>
+Solution: Bit string
+Selection Operator: Tournament Selection
+Crossing Operator: Multipoint Crossing
+Mutation Operator: Bit Mutation
+Criteria: Maximization
+</pre>
+						  <p><a id="details" class="btn btn-secondary" href="javascript:chargeHTML('eq_128_terms.html','Equal 128 Terms Problem')" role="button">View details »</a></p>
 						</div><!--/span-->
-						<div class="col-4 col-lg-4">
-						  <h2>Heading</h2>
-						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
+						<div class="col-md-4 col-xs-6">
+						  <h2>256 Royal Road Function</h2>
+<pre>
+Solution: Floats array
+Selection Operator: Tournament Selection
+Crossing Operator: Multipoint Crossing
+Mutation Operator: Gene Mutation
+Criteria: Maximization
+</pre>
+						  <p><a id="details" class="btn btn-secondary" href="javascript:chargeHTML('256_royal_road.html','256 Royal Road Problem')" role="button">View details »</a></p>
 						</div><!--/span-->
-						<div class="col-4 col-lg-4">
-						  <h2>Heading</h2>
-						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
-						</div><!--/span-->
-						<div class="col-4 col-lg-4">
-						  <h2>Heading</h2>
-						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-						  <p><a id="details" class="btn btn-secondary" href="#" role="button">View details »</a></p>
-						</div><!--/span-->
-						<div class="col-4 col-lg-4">
-						  <!-- Div vacio para hacer relleno -->
-						</div><!--/span-->
-						<div class="col-4 col-lg-4">
-						  <h2>TSP Problem</h2>
-						  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+						<div class="col-md-4 col-xs-6">
+						  <h2>Algorithm MultiObjective for TSP</h2>
+<pre>
+Solution: Integer Array
+Selection Operator: Binary Tournament 
+Selection
+Crossing Operator: Basic Crossing
+Mutation Operator: Exchange Mutation
+Other operators:
+      Sorting Not Dominated
+Criteria: Minimization
+</pre>
 						  <p>
-							   <label> Nº de Ciudades: </label>
-							   <select id="ciudades">
+							  <label> Cities: </label>
+							   <select id="citiesMO">
 								  <option value="5">5</option>
 								  <option value="7">7</option>
 								  <option value="8">8</option>
 								  <option value="10">10</option>
 							   </select> 
-							  <a id="details" class="btn btn-secondary" href="javascript:datos('TSP_problem.html', 'TSP Problem')" role="button">View details »</a>
+							  <a id="details" class="btn btn-secondary" href="javascript:TSPMO('TSP_MultiObjective.html', 'TSP_MO Problem')" role="button">View details 							»</a>
+							</p>
+						</div><!--/span-->
+						<div class="col-md-4 col-xs-6">
+						  <h2>Problem of the N-Queens</h2>
+<pre>
+Solution: Array of permutations
+Selection Operator: Tournament Selection
+Crossing Operator: OX (Order)
+Mutation Operator: Exchange
+Criteria: Maximization
+</pre>
+						  <p>
+							 <label> Queens: </label>
+							 	<select id="queens">
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="8">8</option>
+							   	</select> 
+							 <a id="details" class="btn btn-secondary" href="javascript:NQueens('NQueens_Problem.html', 'NQueens Problem')" role="button">View details
+							»</a>
+						 </p>
+						</div><!--/span-->
+						<div class="col-md-4 col-xs-6">
+						  <!-- Div vacio para hacer relleno -->
+						</div><!--/span-->
+						<div class="col-md-4 col-xs-6">
+						  <h2>TSP(Travelling Salesman Problem)</h2>
+<pre>
+Solution: Integer Array
+Selection Operator: Tournament Selection
+Crossing Operator: Basic Crossing
+Mutation Operator: Exchange
+Criteria: Minimization
+</pre>
+						  <p>
+							   <label> Cities: </label>
+							   <select id="cities">
+								  <option value="5">5</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="8">10</option>
+							   </select> 
+							  <a id="details" class="btn btn-secondary" href="javascript:TSP('TSP_problem.html', 'TSP Problem')" role="button">View details »</a>
 						  </p>
 						</div><!--/span-->
 				  	</div>
@@ -88,16 +141,46 @@ and open the template in the editor.
 			</footer>
 		</div>
 		<script>
-			function datos(url, title){
+			function TSP(url, title){
 				if(typeof(Storage) !== 'undefined'){
-					var index = document.getElementById("ciudades").selectedIndex;
-					var options = document.getElementById("ciudades").options;
-					localStorage.setItem("Ciudades", options[index].value);
-					window.open(url, title);
+					var index = document.getElementById("cities").selectedIndex;
+					var options = document.getElementById("cities").options;
+					localStorage.setItem("Cities", options[index].value);
+					chargeHTML(url, title);
 				}else{
-					console.log("No esta soportado el almacenamiento web");
+					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
+					chargeHTML(url, title);
 				}
 			}
+			
+			function TSPMO(url, title){
+				if(typeof(Storage) !== 'undefined'){
+					var index = document.getElementById("citiesMO").selectedIndex;
+					var options = document.getElementById("citiesMO").options;
+					localStorage.setItem("CitiesMO", options[index].value);
+					chargeHTML(url, title);
+				}else{
+					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
+					chargeHTML(url, title);
+				}
+			}
+			
+			function NQueens(url, title){
+				if(typeof(Storage) !== 'undefined'){
+					var index = document.getElementById("queens").selectedIndex;
+					var options = document.getElementById("queens").options;
+					localStorage.setItem("Queens", options[index].value);
+					chargeHTML(url, title);
+				}else{
+					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
+					chargeHTML(url, title);
+				}
+			}
+			
+			function chargeHTML(url, title, content){
+				window.open(url, title);
+			}
+			
 		</script>
     </body>
 </html>

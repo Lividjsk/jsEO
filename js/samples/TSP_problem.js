@@ -21,7 +21,7 @@ var _cities;
 var _positions;
 
 
-
+//Calculation of the distance matrix
 function MatrixDistancesCreation(_numberCities) {
 
     _positions = new Array();
@@ -33,9 +33,7 @@ function MatrixDistancesCreation(_numberCities) {
         _positions.push(obj);
     }
     
-
-    // jsEOUtils.intRandom(1, 10)
-    //Calculamos la matriz inicial
+    //We calculate the initial matrix
     var array = new Array(_numberCities);
     for (var i = 0; i < _numberCities; ++i) {
         array[i] = new Array(_numberCities);
@@ -44,8 +42,7 @@ function MatrixDistancesCreation(_numberCities) {
         }
     }
     
-    //console.log("Matriz inicial", array);
-    //Ahora ponemos la diagonal principal a cero
+    //Now we set the main diagonal to zero
     for(var n = 0; n < _numberCities; ++n){
         for(var m = 0; m < _numberCities; ++m){
             if(array[n][m] == 1){
@@ -59,11 +56,10 @@ function MatrixDistancesCreation(_numberCities) {
         }
     }
     
-    //console.log("Matriz Distancias final", array);
-    
     return array;
 }
 
+//Function to calculate the greedy solution
 function greedySolution() {
 	  var solucion=[0];
 	  var ciudades=[];
@@ -94,7 +90,7 @@ function greedySolution() {
 	  return toRet;
 }
 
-
+//Fitness Function
 function fitnessFunction(_chr) {
 
     if (typeof _chr == 'undefined') {
@@ -115,14 +111,14 @@ function main() {
 
 	
 	
-    //Inicializacion de variables
+    //Initialization of variables
 	//En este caso recuperamos el numero de ciudades indicadas para el problema
-	if(ciudades !== 'undefined')
-    	_numCities = ciudades;
+	if(cities !== 'undefined')
+    	_numCities = cities;
 	else
 		_numCities = 6;
 
-    //Llamadas a funciones
+    //Calls to Functions
     _cities = MatrixDistancesCreation(_numCities);
 
 
@@ -130,7 +126,7 @@ function main() {
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
     jsEOUtils.setProblemId("TSP");
 
-	//Solucion greedy
+	//Solution greedy
 	var greedy = greedySolution();
 
     var myROGA = new jsEOROGA(new jsEOOpSendIndividualsNode(), new jsEOOpGetIndividualsNode());

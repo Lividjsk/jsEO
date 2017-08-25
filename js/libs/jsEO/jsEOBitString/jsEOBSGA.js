@@ -106,14 +106,21 @@ var jsEOBSGA = new Class({
             this.operSelector.addOperator( this.opGet );
         }
 
-        jsEOUtils.showPop(this.population, "Initial population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
+        jsEOUtils.showPop(this.population, "Initial population", this.showing, "ipop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "ipop");
+		jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population), "ipop");
 
+		var startTime = new Date();
+		
         this.privateRun(_fitFn, this.showing, this.numGenerations);
-
-        jsEOUtils.showPop(this.population, "Final population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
-        //jsEOUtils.drawStats( "Graphics" );
+		
+		var endTime = new Date();
+		
+		jsEOUtils.showTime((endTime-startTime), "time");
+		jsEOUtils.showDescription("Bit", "definition");
+        jsEOUtils.showPop(this.population, "Final population", this.showing, "fpop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "fpop");
+		jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population), "fpop");
     }
 
 });

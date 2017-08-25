@@ -1,7 +1,20 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 jgg00045
+ *
+ * Javier Guzmán García: jgg00045@red.ujaen.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 var jsEOMOCrowdingDistance = new Class({
@@ -14,10 +27,10 @@ var jsEOMOCrowdingDistance = new Class({
     },
     operate: function (_aFront, _numberObjectives) {
 
-        //Este metodo lo que hace es en funcion del numero de objetivos a satisfacer
-        //va calculando la distancia de cada individuo del frente que se le pasa
-        //en funcion de los individuos que estan a su izquierda y a su derecha
-        //Finalmente devuelve el frente con los individuos pero ya estos con su distancia
+        //This method does what is done as a function of the number of objectives
+		//to be satisfied is calculating the distance of each individual from the front
+		//that is passed as a function of the individuals who are on his left and his right.
+		//Finally it returns the front with the individuals but already these with its distance
         if(_aFront.length == 0)
             return _aFront;
         

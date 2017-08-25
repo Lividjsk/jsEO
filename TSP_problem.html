@@ -16,6 +16,18 @@ and open the template in the editor.
 		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="./css/sweetalert/sweetalert.css">
 		
+		<!-- Including jQuery -->
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
+		
+		<!-- Including Popper JS -->
+		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
+		
+		<!-- Including Boostrap -->
+    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
+		
+		<!-- Including SweetAlert -->
+		<script src="./js/libs/sweetalert/sweetalert.min.js" ></script>
+		
 		<!-- Including Chart JS -->
 		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
 		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.min.js"></script>
@@ -24,7 +36,6 @@ and open the template in the editor.
 		
 		<!-- Including Vis JS -->
 		<script src="./js/libs/visjs/vis.min.js"></script>
-        
 
         <!-- Including Google's JS API -->
         <script type="text/javascript" src="./js/libs/google/jsapi.js"></script>
@@ -58,32 +69,26 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEORepresentationOrder/jsEOROGA.js"></script>
 
         <!-- Including main representation order program -->        
-        <script src="./js/samples/TSP_problem.js?ciudades"></script>
+        <script src="./js/samples/TSP_problem.js?cities"></script>
     </head>
     <body id="body" onLoad="chargeHTML()">
         <script>
-			
 			function chargeHTML(){
 				$.get("template.html", function(htmlexterno){
 				   $("#body").html(htmlexterno);
 				});
 			}
-			
 		</script>
 		<script>
 			if(typeof(Storage) !== 'undefined'){
-				var ciudades = localStorage.getItem("Ciudades");
+				var cities = localStorage.getItem("Cities");
 			}else{
 				console.log("No esta soportado el almacenamiento web");
 			}
 		</script>
         <script>
             setTimeout("main();"+
-                    "swal( 'Execution finished!', 'Time execution: 200 ms', 'success' );", 1000);
+                    "swal( 'Execution finished!', 'Time execution: ' + $('#time').text() + ' miliseconds', 'success' );", 1000);
         </script>
-		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
-		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
-    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
-		<script src="./js/libs/sweetalert/sweetalert.min.js" ></script>
     </body>
 </html>

@@ -1,12 +1,12 @@
 /* 
  * Copyright (C) 2013 vrivas
  *
- * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
- * GeNeura Team- http://geneura.ugr.es
+ * Javier Guzmán García: jgg00045@red.ujaen.es
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,7 +38,7 @@ var jsEOOpGetIndividualsNode = new Class({
     operate: function(_auxPop) {
         var toRet = _auxPop;
         
-        var data2bSend = "data=" + jsEOUtils.getProblemId();
+        var data2bSend = {"data": jsEOUtils.getProblemId(), "tamIndividual": _auxPop.getAt(0).getChromosome().length};
         jsEOUtils.debugln("  Sending a GetIndividual request with " + data2bSend);
         try {
 			new Request.JSON({
@@ -50,13 +50,13 @@ var jsEOOpGetIndividualsNode = new Class({
 						console.log("Error: "+response.msg);
 						return;
 					}else{
-						console.log("Respuesta del servidor al solicitar individuo: ", response.msg);
+						console.log("Server response when requesting individual:", response.msg);
 						if(response.Solution != null){
 							var newInd = new jsEOIndividual();
 							newInd.setChromosome(JSON.parse(response.Solution));
 							newInd.setFitness(response.Fitness);
 							toRet.add(newInd);
-							console.log("Individuo incorporado a la poblacion con exito");
+							console.log("Successfully incorporated individual to the population");
 						}else{
 							toRet = _auxPop;
 						}

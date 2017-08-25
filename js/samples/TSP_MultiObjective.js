@@ -21,7 +21,7 @@ var _cities;
 var _times;
 var _positions;
 
-
+//Calculation of the distance matrix
 function MatrixDistancesCreation(_numberCities) {
 
 
@@ -34,7 +34,7 @@ function MatrixDistancesCreation(_numberCities) {
         _positions.push(obj);
     }
 
-    //Calculamos la matriz inicial
+    //We calculate the initial matrix
     var array = new Array(_numberCities);
     for (var i = 0; i < _numberCities; ++i) {
         array[i] = new Array(_numberCities);
@@ -43,7 +43,7 @@ function MatrixDistancesCreation(_numberCities) {
         }
     }
 
-    //Ahora ponemos la diagonal principal a cero
+    //Now we set the main diagonal to zero
     for (var n = 0; n < _numberCities; ++n) {
         for (var m = 0; m < _numberCities; ++m) {
             if (array[n][m] == 1) {
@@ -60,10 +60,11 @@ function MatrixDistancesCreation(_numberCities) {
     return array;
 }
 
+//Calculation of the time matrix
 function MatrixTimesCreation(_numberCities) {
 
 
-    //Calculamos la matriz inicial
+    //We calculate the initial matrix
     var array = new Array(_numberCities);
     for (var i = 0; i < _numberCities; ++i) {
         array[i] = new Array(_numberCities);
@@ -72,7 +73,7 @@ function MatrixTimesCreation(_numberCities) {
         }
     }
 
-    //Ahora ponemos la diagonal principal a cero
+    //Now we set the main diagonal to zero
     for (var n = 0; n < _numberCities; ++n) {
         for (var m = 0; m < _numberCities; ++m) {
             if (array[n][m] == 1) {
@@ -88,7 +89,7 @@ function MatrixTimesCreation(_numberCities) {
     return array;
 }
 
-
+//Fitness Function
 function fitnessFunction(_chr) {
 
     if (typeof _chr == 'undefined') {
@@ -125,9 +126,14 @@ function main() {
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);
     jsEOUtils.setProblemId("TSP_MO");
     
-    
-    _numCities = 5;
+    //Initialization of variables
+	//In this case we retrieve the number of cities indicated for the problem
+    if(cities !== 'undefined')
+    	_numCities = cities;
+	else
+		_numCities = 6;
 
+	//Calls to Functions
     _cities = MatrixDistancesCreation(_numCities);
     _times = MatrixTimesCreation(_numCities);
 
@@ -147,6 +153,8 @@ function main() {
     myMOGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
     myMOGA.positionsTSP = jsEOUtils.getInputParam("positionsTSP", _positions);
     jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false));
+	
+	// Running algorithm
     myMOGA.run(fitnessFunction);
 
 }

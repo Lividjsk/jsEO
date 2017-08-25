@@ -36,6 +36,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     font-family: 'Snippet', cursive;
 }
 
+#content{
+	background-color: #d5d6d7;
+	margin-top: 50px;
+}
+
 #details{
 	background-color: #3da1e0;
 }
@@ -64,9 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #jsEOGraphics {
     width: 90%;
-    height: 10px;
-	text-align: center;
-	margin-left: 65px;
+	margin: auto;
 }
 
 #jsEOTSP {
@@ -75,55 +78,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 #legend {
-	margin-top: 150px;
+	margin-top: 100px;
 }
 
 #aveFit, #genNum {
     color: blue;
 }
 
-.tb_indiv {
-    border: 1px solid #aab;
-	margin: 0 auto;
-}
-
-
-
 #canvas {
-	width: 700px;
-	height: 300px;
+	width: 50%;
+	height: 50%;
 	margin: 0 auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
-#graphics{
-	margin-top: 100px;
-	background-color: lightgray;
+#content2{
+	margin-top: 50px;
 }
 
 #canvasMO {
 	width: 400px;
 	height: 200px;
-	margin-left: 15%;
-	margin-bottom: 200px;
+	margin: 0 auto;
 }
 
-.padre {
-   	display: flex;
-   	justify-content: center;
-	margin-left: 100px;
+
+#greedy{
+	margin-top: 25px;	
 }
 
-.inline #jsEOConsole, .inline #canvas, .inline #canvasMO{
-	display: inline-block;
+#ipop{
+	margin-top: 25px;
 }
 
-#tables{
-	margin-top: 100px;	
+#fpop{
+	margin-top: 25px;
 }
 
-#pie {
-	padding-bottom: 50px;
+#subtitle{
+	margin-top: 25px;
 }
 
+.tb_indiv {
+	margin: 0 auto;
+}

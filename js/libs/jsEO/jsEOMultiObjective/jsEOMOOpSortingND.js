@@ -1,7 +1,20 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 jgg00045
+ *
+ * Javier Guzmán García: jgg00045@red.ujaen.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -21,54 +34,52 @@ var jsEOMOOpSortingND = new Class({
         frentes[0] = new Array();
 
 
-        //Para cada individuo de la poblacion calculamos el frente al que pertenece
+        //For each individual of the population we calculate the front to which belongs
         for (var i = 0; i < _auxPop.length(); ++i) {
             _auxPop.getAt(i).sp = [];
             _auxPop.getAt(i).np = 0;
             for (var j = 0; j < _auxPop.length(); ++j) {
                 if (i === j)
                     continue;
-                //Crear este metodo. Devuelve true si el individuo i
-                // es mejor que el individuo j
-                //Si el individuo i es mejor que el j se mete en el conjunto
-                //de individuos dominados por i
+                //Create this method. Returns true if individual i is better than individual j
+                //If individual i is better than j, it gets into the set of individuals dominated by i
                 if (_auxPop.getAt(i).dominated(_auxPop.getAt(j))) {
-                    //console.log("introduzco");
+					
                     _auxPop.getAt(i).sp.push(_auxPop.getAt(j));
-                    //console.log("SP i", sp[i]);
-                    //Sino, se incremente el nivel de dominancia del individuo i
+                    
+                    //Otherwise, the level of dominance of the individual i
                 } else if (_auxPop.getAt(j).dominated(_auxPop.getAt(i))) {
                     _auxPop.getAt(i).np += 1;
                 }
             }
-            //Si el nivel de dominancia es 0, entonces va al primer frente
+            //If the dominance level is 0, then go to the first front
             if (_auxPop.getAt(i).np === 0){
                 _auxPop.getAt(i).rank = 0;
                 frentes[0].push(_auxPop.getAt(i));
             }
 
 
-            //Una vez creado el primer frente, calculamos los demas
+            //Once the first front is created, we calculate the others
             var n = 0;
 
-            //Mientras que el frente i no esta vacío
+            //While the front i is not empty
             while (frentes[n].length !== 0) {
                 var Q = new Array();
-                //Para cada individuo del frente
+                //For each individual on the front
                 for (var a = 0; a < frentes[n].length; ++a) {
                     var ind = frentes[n][a];
-                    //Para cada invididuo del conjunto de dominados del individuo i
+                    //For each individual of the dominated set of the individual i
                     for (var b = 0; b < ind.sp.length; ++b) {
-                        //Obtenemos su nivel de dominancia y le restamos 1
+                        //We obtain its level of dominance and we subtract 1
                         ind.sp[b].np -= 1;
-                        //Si su nivel de dominancia es 0, va al conjunto Q
+                        //If its dominance level is 0, it goes to the set Q
                         if (ind.sp[b].np === 0) {
                             ind.sp[b].rank = n + 1;
                             Q.push(ind.sp[b]);
                         }
                     }
                 }
-                //Finalmente, incrementamos el frente y se lo asignamos
+                //Finally, we increase the front and we assign it
                 ++n;
                 if(typeof frentes[n] != "undefined" && frentes[n] != null && frentes[n].length > 0){
                     for(var l = 0; l < Q.length; ++l)
@@ -77,7 +88,7 @@ var jsEOMOOpSortingND = new Class({
                     frentes[n] = Q;
             }
         }
-        //Devuelve el vector con los frentes
+        //Returns the vector with the fronts
         return frentes;
     }
 });

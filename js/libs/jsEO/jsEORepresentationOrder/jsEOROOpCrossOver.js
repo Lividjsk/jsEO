@@ -1,7 +1,20 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 jgg00045
+ *
+ * Javier Guzmán García: jgg00045@red.ujaen.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -17,54 +30,41 @@ var jsEOROOpCrossOver = new Class({
     operate: function (_auxPop) {
         jsEOUtils.debugln("Applying jsEOROOpCrossOver");
         var toRet = new jsEOPopulation();
-        //console.log("Poblacion Cruce", _auxPop);
+		
         //If the population type is not defined, a new population is returned
         if (typeof _auxPop == 'undefined') {
             return toRet;
         }
 
-        //Preguntar a Victor. Esto es raro
         if (_auxPop.length() <= 0) {
             toRet.add(_auxPop.getAt(0).copy());
             return toRet;
         }
 
+		//Basic CrossOver
+		
         var rnd2 = jsEOUtils.intRandom(1, _auxPop.length() - 1);
 		
         var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
-		
-		/*
-		while(typeof _auxPop.getAt(rnd2) == 'undefined'){
-			rnd2 = jsEOUtils.intRandom(1, _auxPop.length() - 1);
-		}
-		*/
 		
         var tmpChr2 = _auxPop.getAt(rnd2).getChromosome().slice();
 
         var point1 = Math.floor(tmpChr1.length / 2);
 
-        //Se selecciona el punto de corte, que ira desde la posicion 2 hasta
-        //dicho punto, que sera siempre la mitad del tamaño
+        //The cut-off point is chosen, which will go from position 2 to that point,
+		//which will always be half the size
 
-        jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
-        jsEOUtils.debugln("  Cut Point is " + point1);
-
-        //console.log("individuo 1", tmpChr1);
-        //console.log("individuo 2", tmpChr2);
-        
         var newChr = [];
         var auxChr = [];
         var orderChr = tmpChr2.slice();
 
-        //Comentarios en español para luego cambiarlos
-        //Se copia la subsecuencia del primer padre en un individuo auxiliar
+        //The subsequence of the first parent is copied to an auxiliary individual
         for (var i = 1; i <= point1; ++i) {
             auxChr.push(tmpChr1[i]);
         }
 
-        //console.log("Secuencia primer padre", auxChr);
-        //Una vez copiada la subsecuencia, se miran los elementos que se han copiado
-        //Y se copian en el orden corresponidente y mas parecido al del segundo padre
+        //Once the subsequence is copied, the elements that have been copied
+		//and copied in the corresponding orderand more similar to that of the second parent
         for (var i = 0; i < auxChr.length; ++i) {
             var index = orderChr.indexOf(auxChr[i]);
             if (index != -1) {
@@ -72,8 +72,6 @@ var jsEOROOpCrossOver = new Class({
             }
         }
         orderChr.splice(0, 1);
-
-        //console.log("Elementos del segundo padre que faltan por copiar", orderChr);
         
         newChr.push(0);
 
@@ -84,9 +82,6 @@ var jsEOROOpCrossOver = new Class({
         for (var n = 0; n < orderChr.length; ++n) {
             newChr.push(orderChr[n]);
         }
-
-
-        //console.log("Cromosoma cruce final", newChr);
         
         jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
         toRet.add(new jsEOROIndividual());

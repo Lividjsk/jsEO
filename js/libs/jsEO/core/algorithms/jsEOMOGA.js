@@ -1,7 +1,20 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2013 vrivas
+ *
+ * Javier Guzmán García: jgg00045@red.ujaen.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -43,8 +56,6 @@ var jsEOMOGA = new Class({
     },
     privateRun: function (_fitFn, _fitFnParams, _numGenerations) {
 
-
-        console.log("Entro en el algoritmo");
         var popSize = this.population.length();
         this.population.sort();
 
@@ -58,59 +69,54 @@ var jsEOMOGA = new Class({
         var bestFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)) + 1;
         var averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
 
-        //Ejecutamos tantas veces el algoritmo como numero de generaciones queramos
+        //We execute as many times the algorithm as number of generations ago
         for (var j = 0; (j < _numGenerations); ++j) {
 
-            //Creamos una poblacion en la que incluiremos los hijos y los padres
-            //La primera generacion solo estaran los padres
+            //We create a population in which we will include children and parents.
+			//The first generation will only be parents
             auxPop.join(this.population);
             auxPop.join(childrenPop);
 
-            //console.log("Poblacion padres e hijos", auxPop);
-            //Calculamos los frentes a partir del ordenamiento no dominado
+            //We calculate the fronts from the non-dominated ordering
             var fronts = sorting.operate(auxPop);
 
-            //console.log("Frentes", fronts);
-            //Una vez calculados los frentes, vamos añadiendolos a la nueva poblacion
+            //Once the fronts have been calculated, we will add them to the new population
             var n = 0;
-            //En este bucle mientras que no se supere el tamaño de la poblacion se va añadiendo
-            //a la nueva poblacion los frentes directamente
-            //Estos primero se ordenan por la distancia de Crowding
+			
+            //In this loop as long as the size of the population is not exceeded,
+			//the fronts are added to the new population.
+			//These are first sorted by the distance of Crowding
             while (newPop.length() + fronts[n].length <= popSize) {
                 if (newPop.length() == popSize)
                     break;
                 crowding.operate(fronts[n], this.numberObjectives);
                 var _aPop = new jsEOPopulation();
                 _aPop.setPopulation(fronts[n]);
-                //console.log("poblacion con frente", _aPop);
                 newPop.join(_aPop);
                 ++n;
             }
 
-            //Una vez no nos caben mas frentes completos, hacemos un ordenamiento por crowding
-            //Calculamos la distancia de crowding para el ultimo frente parcial
+            //Once we do not fit more complete fronts, we do a crowding order.
+			//We calculate the crowding distance for the last partial front
             if (newPop.length() < popSize) {
 
                 crowding.operate(fronts[n], this.numberObjectives);
                 this.sortCrowding(fronts[n]);
 
-                //Este nos dejara la poblacion ordenada en funcion de dicha distancia
+                //This will leave us the population ordered in function of said distance
                 var frontPopulation = new jsEOPopulation();
                 frontPopulation.setPopulation(fronts[n]);
 
-                //Y solo cogeremos todos aquellos que quepan en la nueva poblacion
+                //And we will only catch all those who fit in the new population
                 frontPopulation.crop(popSize - newPop.length());
 
-                //Los añadimos a la nueva poblacion
+                //We add them to the new population
                 newPop.join(frontPopulation);
             }
 
-            //console.log("poblacion con los frentes", newPop);
-
-            //Hacemos los cruces y mutaciones correspondientes despues de hacer la seleccion
-            //Aqui obtenemos los hijos despues de la seleccion y aplicamos el cruce y la mutacion
+            //We make the corresponding crosses and mutations after making the selection.
+			//Here we get the children after the selection and apply the crossing and the mutation
             var childrenPop = this.indivSelector.operate(this.population);
-            //console.log("Poblacion de hijos", childrenPop);
             for (var i = 0; i < childrenPop.length(); ++i) {
                 var tmpPop = new jsEOPopulation();
                 tmpPop.add(childrenPop.getAt(i)).join(childrenPop);
@@ -121,12 +127,11 @@ var jsEOMOGA = new Class({
                 childrenPop.setAt(i, tmpPop.getAt(0));
             }
 
-            //Una vez hemos obtenido los hijos, sustituimos la poblacion que teniamos al principio
-            //por la nueva poblacion sin añadir a los hijos
+            //Once we have obtained the children, we replace the population
+			//that we had at the beginning by the new population without adding to the children
             this.population.setPopulation(newPop.crop(popSize).getPopulation());
             
             this.population.sortMO(this.population.getPopulation());
-            //console.log("Poblacion al terminar la generacion", this.population);
 
             newPop = new jsEOPopulation();
 
@@ -138,13 +143,6 @@ var jsEOMOGA = new Class({
                 this.opGet.operate(this.population);
             }
 
-//            bestFit = parseFloat(this.population.getAt(0).getFitness().toFixed(5));
-//            averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
-//
-//            jsEOUtils.recordStats(this.population.getLast().getFitness(),
-//                    jsEOUtils.averageFitness(this.population),
-//                    this.population.getAt(0).getFitness());
-
             auxPop = new jsEOPopulation();
 
         } //for numGenerations
@@ -154,8 +152,8 @@ var jsEOMOGA = new Class({
     },
     sortCrowding: function (_aPop) {
 
-        //Este metodo es el que se encarga de ordernar los individuos de un frente
-        //cuando este no cabe entero en la nueva poblacion y solo podemos coger unos pocos
+        //This method is the one in charge of ordering the individuals of a front
+		//when this does not fit whole in the new population and we can only catch a few
         var ind1 = 0, ind2 = 0;
         for (var i = (_aPop.length - 1); i > -1; --i) {
             for (var j = 1; j < (i + 1); ++j) {

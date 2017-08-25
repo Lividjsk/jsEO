@@ -110,9 +110,9 @@ var jsEOPGA = new Class({
             this.operSelector.addOperator(this.opGet);
         }
 
-        jsEOUtils.showPopQueens(this.population, "Initial population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
+        jsEOUtils.showPopQueens(this.population, "Initial population", this.showing, "ipop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "ipop");
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population), "ipop");
 
 		var popInit = [];
 		
@@ -120,11 +120,18 @@ var jsEOPGA = new Class({
 		 	popInit.push(this.population.getAt(a).getFitness());
 		}
 		
+		var startTime = new Date();
+		
         this.privateRun(_fitFn, this.showing, this.numGenerations );
+		
+		var endTime = new Date();
+		
+		jsEOUtils.showTime((endTime-startTime), "time");
 
-        jsEOUtils.showPopQueens(this.population, "Final population", this.showing);
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population));
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population));
+		jsEOUtils.showDescription("NQueens", "definition");
+        jsEOUtils.showPopQueens(this.population, "Final population", this.showing, "fpop");
+        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "fpop");
+        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMax(this.population), "fpop");
 		
 		var popFin = [];
 		

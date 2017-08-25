@@ -111,6 +111,7 @@ var jsEOROGA = new Class({
         }
 
         jsEOUtils.drawGreedySolution("Solution Greedy", "greedy");
+		jsEOUtils.showLegend("legend");
         jsEOUtils.showPop(this.population, "Initial population", this.showing, "ipop");
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "ipop");
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMin(this.population), "ipop");
@@ -121,9 +122,14 @@ var jsEOROGA = new Class({
 		 	popInit.push(this.population.getAt(a).getFitness());
 		}
 		
+		var startTime = new Date();
 
         this.privateRun(_fitFn, this.showing, this.numGenerations );
-
+		
+		var endTime = new Date();
+		
+		jsEOUtils.showTime((endTime-startTime), "time");
+		jsEOUtils.showDescription("TSP", "definition");
         jsEOUtils.showPop(this.population, "Final population", this.showing, "fpop");
         jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitness(this.population), "fpop");
         jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMin(this.population), "fpop");

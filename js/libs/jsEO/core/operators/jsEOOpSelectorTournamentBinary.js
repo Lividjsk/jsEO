@@ -1,12 +1,12 @@
 /* 
  * Copyright (C) 2013 vrivas
  *
- * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
- * GeNeura Team- http://geneura.ugr.es
+ * Javier Guzmán García: jgg00045@red.ujaen.es
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -57,7 +57,8 @@ var jsEOOpSelectorTournamentBinary = new Class({
         var rnd1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
         var rnd2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
 
-
+		//Binary Tournament Selection
+		
         if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) < 0) {
             toRet.add(_auxPop.getAt(rnd1));
         } else if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) > 0) {

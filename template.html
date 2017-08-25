@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1>jsEO Testing Problem</h1>
-		<div class="row">
+		<div id="header" class="row">
+			<div class="col-4">
+				<img src="./images/ujaen.png" alt="Ujaen" width="100" height="75">
+			</div>
+			<div id="autors" class="col-4 text-center container">
+				<h6>Víctor Manuel Rivas Santos / Javier Guzmán García</h6>
+			</div>
+			<div class="col-4 text-right">
+				<img src="./images/Logo_EPS.png" alt="EPS" width="100" height="75">
+			</div>
 		</div>
-		<div id="jsEODescription">
-			<h2>TSP</h2>
-			<h4>By <a href="http://vrivas.es" target="_blank">Victor M. Rivas</a>,
-			from <a href="http://geneura.wordpress.com" target="_blank">Geneura Team</a></h4>
-
-			<p class='english'>Thanks for helping us to test jsEO library.</p>
-			<p class='english'>We are trying to solve the TSP</p>
-			<p>
-				Execution started... wait, please!
-			</p>
+		<div id="content" class="container">
+			<div class="row">
+				<div class="col-12">
+					<div id="title" class="jumbotron">
+						<div class="row text-center">
+							<div class="col-12">
+									<h1>jsEO Testing Problem</h1>
+							</div>
+						</div>
+						<div id="subtitle" class="row text-justify">
+							<div class="col-12">
+								<h5 id="definition"></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-8">
+					<div class="row">
+						<div id="jsEOTSP"class="col-6"></div>
+						<div id="jsEOGraphics" class="col-6">
+							<table id="tablero"></table>
+						</div>
+					</div>
+				</div>
+				<div id="legend" class="col-4"></div>
+			</div>
 		</div>
-		<div id="graphics" class="row">
-			<div id="jsEOTSP" class="col-6"></div>
-			<div id="legend" class="col-6"></div>
+		<div id="content2" class="container">
+			<div id="tables" class="row">
+				<div id="ipop" class="col-md-4 col-xs-12 text-center"></div>
+				<div id="greedy" class="col-md-4 col-xs-12 text-center"></div>
+				<div id="fpop" class="col-md-4 col-xs-12 text-center"></div>
+			</div>
+			<div id="canvas" class="row">
+				<div class="col-md-12 col-xs-12 text-center">
+					<canvas id="lines"></canvas>
+				</div>
+			</div>
+			<div style="display: none">
+			<p id="time"></p>
+			</div>
+			<hr>
+			<footer>
+				<p>© Universidad de Jaén 2017</p>
+			</footer>
 		</div>
-		<div id="jsEOGraphics" class="row">
-			<table id="tablero">
-			</table>
-		</div>
-		<div id="tables" class="row">
-			<div id="greedy" class="col-4 text-center"></div>
-			<div id="ipop" class="col-4 text-center"></div>
-			<div id="fpop" class="col-4 text-center"></div>
-		</div>
-		<div id="canvas" class="row text-center"><canvas id="lines"></canvas></div>
 	</body>
 </html>

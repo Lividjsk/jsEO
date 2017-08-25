@@ -1,6 +1,20 @@
-/* To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) 2013 vrivas
+ *
+ * Javier Guzmán García: jgg00045@red.ujaen.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 var jsEOMOIndividual = new Class({
@@ -30,10 +44,9 @@ var jsEOMOIndividual = new Class({
     }
     , dominated: function (_aIndividual) {
 
-        //Este metodo nos indica si un individuo es dominado por otro
-        //El concepto de dominacia se basa en que un individuo es mejor que otro
-        //Si este no es de menor calidad en ninguno de sus objetivos
-        //O si es mejor que el otro en al menos uno de los objetivos
+        //This method tells us if one individual is dominated by another.
+		//The concept of domination is based on one individual being better than another.
+		//If this is not of lower quality in any of its objectives or if it is better than the other in at least one of the objectives
         var dominates = false;
 
         for (var i = 0; i < this.matrixObjectives.length; ++i) {
@@ -47,8 +60,8 @@ var jsEOMOIndividual = new Class({
     }
     , crowdedComparison: function (_aInd2) {
 
-        //Este metodo compara 2 individuos en funcion de su distancia de crowding
-        //Se utiliza para saber que individuos entran del frente cuando este no cabe entero
+        //This method compares 2 individuals based on their crowding distance.
+		//It is used to know which individuals enter from the front when this does not fit whole
         if (this.crowding > _aInd2.crowding)
             return 1;
         else if (this.crowding < _aInd2.crowding)
@@ -65,8 +78,8 @@ var jsEOMOIndividual = new Class({
     }
     , evaluate: function (_fitFn) {
 
-        //Esta funcion de evaluar no recibe solo un fitness
-        //Sino que recibe un array con el fitness para cada objetivo a satisfacer
+        //This evaluation function does not only receive a fitness
+		//but receives an array with fitness for each objective to satisfy
         var objectives = _fitFn(this.chromosome);
 
         for (var i = 0; i < objectives.length; ++i) {

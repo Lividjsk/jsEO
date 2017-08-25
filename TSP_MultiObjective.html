@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>jsEO Testing: TSP.</title>
+        <title>jsEO Testing: TSP MultiObjective.</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
@@ -14,6 +14,19 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="./css/jsEO/jsEO.css">
         <link href="./css/visjs/vis.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/sweetalert/sweetalert.css">
+		
+		<!-- Including jQuery -->
+		<script src="./js/libs/jquery/jquery-3.2.1.min.js" ></script>
+		
+		<!-- Including Popper JS -->
+		<script src="./js/libs/popper/dist/umd/popper.min.js" ></script>
+		
+		<!-- Including Boostrap -->
+    	<script src="./js/libs/bootstrap/bootstrap.min.js" ></script>
+		
+		<!-- Including SweetAlert -->
+		<script src="./js/libs/sweetalert/sweetalert.min.js" ></script>
 		
         <!-- Including Chart JS -->
 		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
@@ -59,39 +72,26 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOTSPGA.js"></script>
 
         <!-- Including main representation order program -->        
-        <script src="./js/samples/TSP_MultiObjective.js"></script>
+        <script src="./js/samples/TSP_MultiObjective.js?cities"></script>
     </head>
-    <body>
-        <h1>jsEO testing problem</h1>
-        <div id="jsEODescription">
-            <h2>TSP</h2>
-            <h4>By <a href="http://vrivas.es" target="_blank">Victor M. Rivas</a>,
-                from <a href="http://geneura.wordpress.com" target="_blank">Geneura Team</a></h4>
-
-
-            <p class='english'>Thanks for helping us to test jsEO library.</p>
-            <p class='english'>We are trying to solve the TSP</p>
-            <p>
-                Execution started... wait, please!
-            </p>
-        </div>
-        <p id="jsEOForm">
-            <!-- <a href="./index.html?configure=true">Want to change configuration?</a>-->
-        </p>
-        <div class="padre">
-			<div id="jsEOTSP"></div>
-			<div id="legend"></div>
-		</div>
-		<div class="inline">
-			<div id="jsEOConsole"></div>
-			<div id="canvasMO"><canvas id="pie" style="display: inline"></canvas></div>
-		</div>
+    <body id="body" onLoad="chargeHTML()">
         <script>
-            setTimeout("main();" +
-                    "alert( 'Execution finished!\\n\\nThanks!' );", 1000);
+			function chargeHTML(){
+				$.get("template.html", function(htmlexterno){
+				   $("#body").html(htmlexterno);
+				});
+			}
+		</script>
+		<script>
+			if(typeof(Storage) !== 'undefined'){
+				var cities = localStorage.getItem("CitiesMO");
+			}else{
+				console.log("No esta soportado el almacenamiento web");
+			}
+		</script>
+        <script>
+            setTimeout("main();"+
+                    "swal( 'Execution finished!', 'Time execution: ' + $('#time').text() + ' miliseconds', 'success' );", 1000);
         </script>
-		<script src="./js/libs/jquery/jquery-3.2.1.min.js"></script>
-    	<script src="./js/libs/popper/umd/popper.min.js"></script>
-    	<script src="./js/libs/bootstrap/bootstrap.min.js"></script>
     </body>
 </html>

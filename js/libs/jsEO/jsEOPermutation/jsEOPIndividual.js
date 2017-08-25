@@ -29,7 +29,6 @@ var jsEOPIndividual = new Class({
                     , new jsEOPosition(1, 3)
                     , new jsEOPosition(3, 4)];
         this.setChromosome(chr);
-        //console.log("Nuevo cromosoma solution 4q: ", this.chromosome);
         return this;
     }
     , randomize: function (_length, _min, _max) {
@@ -75,7 +74,6 @@ var jsEOPIndividual = new Class({
         return false;
     }
     , show: function(){
-        //console.log(this.chromosome);
         var chr = this.chromosome;
         var cadena = "";
         for(var j = 0; j < chr.length; ++j){
