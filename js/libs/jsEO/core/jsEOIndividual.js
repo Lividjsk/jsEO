@@ -22,31 +22,29 @@
 
 
 var jsEOIndividual = new Class({
-    Extends: jsEO
-    , chromosome: null
-    , initialize: function (_chromosome) {
-        this.parent();
-        this.chromosome = _chromosome || null;
-        jsEOUtils.debug("Initialising a jsEOIndividual with chromosome " + this.chromosome +
-                "<br/>");
+	Extends: jsEO,
+	chromosome: null,
+	initialize: function(_chromosome) {
+		this.parent();
+		this.chromosome = _chromosome || null;
+		jsEOUtils.debug("Initialising a jsEOIndividual with chromosome " + this.chromosome + "<br/>");
 
-    }
-    , copy: function () {
-        var toRet = new jsEOIndividual();
-        toRet.fitness = (this.fitness.copy) ? this.fitness.copy() : this.fitness;
-        toRet.chromosome = (this.chromosome.copy) ? this.chromosome.copy() : this.chromosome;
-        return toRet;
-    }
-    , getChromosome: function () {
-        return this.chromosome;
-    }
-    , setChromosome: function (_chromosome) {
-        this.chromosome = _chromosome;
-        return this;
-    }
-    , evaluate: function (_fitFn, _params) {
-        this.setFitness(_fitFn(this.chromosome, _params));
-        return this;
-    }
+	},
+	copy: function() {
+		var toRet = new jsEOIndividual();
+		toRet.fitness = (this.fitness.copy) ? this.fitness.copy() : this.fitness;
+		toRet.chromosome = (this.chromosome.copy) ? this.chromosome.copy() : this.chromosome;
+		return toRet;
+	},
+	getChromosome: function() {
+		return this.chromosome;
+	},
+	setChromosome: function(_chromosome) {
+		this.chromosome = _chromosome;
+		return this;
+	},
+	evaluate: function(_fitFn, _params) {
+		this.setFitness(_fitFn(this.chromosome, _params));
+		return this;
+	}
 });
-

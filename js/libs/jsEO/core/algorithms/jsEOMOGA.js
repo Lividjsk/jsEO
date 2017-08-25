@@ -19,153 +19,150 @@
 
 
 var jsEOMOGA = new Class({
-    Extends: jsEOAlgorithm,
-    indivSelector: null,
-    operSelector: null,
-    population: null,
-    numberObjectives: 0,
-    initialize: function (_opSend, _opGet, _numberObjectives) {
-        this.parent(_opSend, _opGet);
-        jsEOUtils.debugln("Initializing a jsEOGA" +
-                " with this.population " + this.population +
-                ", selector of individuals " + this.indivSelector +
-                ", selector of operators " + this.operSelector
-                );
-        this.numberObjectives = _numberObjectives;
-    },
-    setPopulation: function (_pop) {
-        this.population = _pop;
-        return this;
-    },
-    setOperSelector: function (_op) {
-        this.operSelector = _op;
-        return this;
-    },
-    setIndividSelector: function (_op) {
-        this.indivSelector = _op;
-        return this;
-    },
-    getPopulation: function ( ) {
-        return this.population;
-    },
-    getOperSelector: function ( ) {
-        return this.operSelector;
-    },
-    getIndividSelector: function ( ) {
-        return this.indivSelector;
-    },
-    privateRun: function (_fitFn, _fitFnParams, _numGenerations) {
+	Extends: jsEOAlgorithm,
+	indivSelector: null,
+	operSelector: null,
+	population: null,
+	numberObjectives: 0,
+	initialize: function(_opSend, _opGet, _numberObjectives) {
+		this.parent(_opSend, _opGet);
+		jsEOUtils.debugln("Initializing a jsEOGA" + " with this.population " + this.population + ", selector of individuals " + this.indivSelector + ", selector of operators " + this.operSelector);
+		this.numberObjectives = _numberObjectives;
+	},
+	setPopulation: function(_pop) {
+		this.population = _pop;
+		return this;
+	},
+	setOperSelector: function(_op) {
+		this.operSelector = _op;
+		return this;
+	},
+	setIndividSelector: function(_op) {
+		this.indivSelector = _op;
+		return this;
+	},
+	getPopulation: function() {
+		return this.population;
+	},
+	getOperSelector: function() {
+		return this.operSelector;
+	},
+	getIndividSelector: function() {
+		return this.indivSelector;
+	},
+	privateRun: function(_fitFn, _fitFnParams, _numGenerations) {
 
-        var popSize = this.population.length();
-        this.population.sort();
+		var popSize = this.population.length();
+		this.population.sort();
 
-        var sorting = new jsEOMOOpSortingND();
-        var crowding = new jsEOMOCrowdingDistance();
-        var childrenPop = new jsEOPopulation();
-        var auxPop = new jsEOPopulation();
+		var sorting = new jsEOMOOpSortingND();
+		var crowding = new jsEOMOCrowdingDistance();
+		var childrenPop = new jsEOPopulation();
+		var auxPop = new jsEOPopulation();
 
-        var newPop = new jsEOPopulation();
+		var newPop = new jsEOPopulation();
 
-        var bestFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)) + 1;
-        var averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
+		var bestFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)) + 1;
+		var averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
 
-        //We execute as many times the algorithm as number of generations ago
-        for (var j = 0; (j < _numGenerations); ++j) {
+		//We execute as many times the algorithm as number of generations ago
+		for (var j = 0;
+		(j < _numGenerations); ++j) {
 
-            //We create a population in which we will include children and parents.
+			//We create a population in which we will include children and parents.
 			//The first generation will only be parents
-            auxPop.join(this.population);
-            auxPop.join(childrenPop);
+			auxPop.join(this.population);
+			auxPop.join(childrenPop);
 
-            //We calculate the fronts from the non-dominated ordering
-            var fronts = sorting.operate(auxPop);
+			//We calculate the fronts from the non-dominated ordering
+			var fronts = sorting.operate(auxPop);
 
-            //Once the fronts have been calculated, we will add them to the new population
-            var n = 0;
-			
-            //In this loop as long as the size of the population is not exceeded,
+			//Once the fronts have been calculated, we will add them to the new population
+			var n = 0;
+
+			//In this loop as long as the size of the population is not exceeded,
 			//the fronts are added to the new population.
 			//These are first sorted by the distance of Crowding
-            while (newPop.length() + fronts[n].length <= popSize) {
-                if (newPop.length() == popSize)
-                    break;
-                crowding.operate(fronts[n], this.numberObjectives);
-                var _aPop = new jsEOPopulation();
-                _aPop.setPopulation(fronts[n]);
-                newPop.join(_aPop);
-                ++n;
-            }
+			while (newPop.length() + fronts[n].length <= popSize) {
+				if (newPop.length() == popSize) break;
+				crowding.operate(fronts[n], this.numberObjectives);
+				var _aPop = new jsEOPopulation();
+				_aPop.setPopulation(fronts[n]);
+				newPop.join(_aPop);
+				++n;
+			}
 
-            //Once we do not fit more complete fronts, we do a crowding order.
+			//Once we do not fit more complete fronts, we do a crowding order.
 			//We calculate the crowding distance for the last partial front
-            if (newPop.length() < popSize) {
+			if (newPop.length() < popSize) {
 
-                crowding.operate(fronts[n], this.numberObjectives);
-                this.sortCrowding(fronts[n]);
+				crowding.operate(fronts[n], this.numberObjectives);
+				this.sortCrowding(fronts[n]);
 
-                //This will leave us the population ordered in function of said distance
-                var frontPopulation = new jsEOPopulation();
-                frontPopulation.setPopulation(fronts[n]);
+				//This will leave us the population ordered in function of said distance
+				var frontPopulation = new jsEOPopulation();
+				frontPopulation.setPopulation(fronts[n]);
 
-                //And we will only catch all those who fit in the new population
-                frontPopulation.crop(popSize - newPop.length());
+				//And we will only catch all those who fit in the new population
+				frontPopulation.crop(popSize - newPop.length());
 
-                //We add them to the new population
-                newPop.join(frontPopulation);
-            }
+				//We add them to the new population
+				newPop.join(frontPopulation);
+			}
 
-            //We make the corresponding crosses and mutations after making the selection.
+			//We make the corresponding crosses and mutations after making the selection.
 			//Here we get the children after the selection and apply the crossing and the mutation
-            var childrenPop = this.indivSelector.operate(this.population);
-            for (var i = 0; i < childrenPop.length(); ++i) {
-                var tmpPop = new jsEOPopulation();
-                tmpPop.add(childrenPop.getAt(i)).join(childrenPop);
-                tmpPop = this.operSelector.
-                        operate().
-                        operate(tmpPop).
-                        evaluate(_fitFn, _fitFnParams);
-                childrenPop.setAt(i, tmpPop.getAt(0));
-            }
+			var childrenPop = this.indivSelector.operate(this.population);
+			for (var i = 0; i < childrenPop.length(); ++i) {
+				var tmpPop = new jsEOPopulation();
+				tmpPop.add(childrenPop.getAt(i)).join(childrenPop);
+				tmpPop = this.operSelector.
+				operate().
+				operate(tmpPop).
+				evaluate(_fitFn, _fitFnParams);
+				childrenPop.setAt(i, tmpPop.getAt(0));
+			}
 
-            //Once we have obtained the children, we replace the population
+			//Once we have obtained the children, we replace the population
 			//that we had at the beginning by the new population without adding to the children
-            this.population.setPopulation(newPop.crop(popSize).getPopulation());
-            
-            this.population.sortMO(this.population.getPopulation());
+			this.population.setPopulation(newPop.crop(popSize).getPopulation());
 
-            newPop = new jsEOPopulation();
+			this.population.sortMO(this.population.getPopulation());
 
-            if (typeof this.opSend != 'undefined' && this.opSend != null) {
-                this.opSend.operate(this.population);
-            }
+			newPop = new jsEOPopulation();
 
-            if (typeof this.opGet != 'undefined' && this.opGet != null) {
-                this.opGet.operate(this.population);
-            }
+			if (typeof this.opSend != 'undefined' && this.opSend != null) {
+				this.opSend.operate(this.population);
+			}
 
-            auxPop = new jsEOPopulation();
+			if (typeof this.opGet != 'undefined' && this.opGet != null) {
+				this.opGet.operate(this.population);
+			}
 
-        } //for numGenerations
-    },
-    run: function (_fitFn, _fitFnParams, _numGenerations) {
-        this.privateRun(_fitFn, _fitFnParams, _numGenerations);
-    },
-    sortCrowding: function (_aPop) {
+			auxPop = new jsEOPopulation();
 
-        //This method is the one in charge of ordering the individuals of a front
+		} //for numGenerations
+	},
+	run: function(_fitFn, _fitFnParams, _numGenerations) {
+		this.privateRun(_fitFn, _fitFnParams, _numGenerations);
+	},
+	sortCrowding: function(_aPop) {
+
+		//This method is the one in charge of ordering the individuals of a front
 		//when this does not fit whole in the new population and we can only catch a few
-        var ind1 = 0, ind2 = 0;
-        for (var i = (_aPop.length - 1); i > -1; --i) {
-            for (var j = 1; j < (i + 1); ++j) {
-                ind1 = _aPop[j - 1];
-                ind2 = _aPop[j];
+		var ind1 = 0,
+			ind2 = 0;
+		for (var i = (_aPop.length - 1); i > -1; --i) {
+			for (var j = 1; j < (i + 1); ++j) {
+				ind1 = _aPop[j - 1];
+				ind2 = _aPop[j];
 
-                if (ind1.crowdedComparison(ind2) < 0) {
-                    _aPop[j - 1] = ind2;
-                    _aPop[j] = ind1;
-                }
-            }
-        }
-        return this;
-    }
+				if (ind1.crowdedComparison(ind2) < 0) {
+					_aPop[j - 1] = ind2;
+					_aPop[j] = ind1;
+				}
+			}
+		}
+		return this;
+	}
 });

@@ -20,82 +20,75 @@
 
 
 var jsEOGA = new Class({
-    Extends: jsEOAlgorithm,
-    indivSelector: null,
-    operSelector: null,
-    population: null,
-    initialize: function(_opSend, _opGet) {
-        this.parent(_opSend, _opGet);
-        jsEOUtils.debugln("Initializing a jsEOGA" +
-                " with this.population " + this.population +
-                ", selector of individuals " + this.indivSelector +
-                ", selector of operators " + this.operSelector
-                );
+	Extends: jsEOAlgorithm,
+	indivSelector: null,
+	operSelector: null,
+	population: null,
+	initialize: function(_opSend, _opGet) {
+		this.parent(_opSend, _opGet);
+		jsEOUtils.debugln("Initializing a jsEOGA" + " with this.population " + this.population + ", selector of individuals " + this.indivSelector + ", selector of operators " + this.operSelector);
 
-    },
-    setPopulation: function(_pop) {
-        this.population = _pop;
-        return this;
-    },
-    setOperSelector: function(_op) {
-        this.operSelector = _op;
-        return this;
-    },
-    setIndividSelector: function(_op) {
-        this.indivSelector = _op;
-        return this;
-    },
-    getPopulation: function( ) {
-        return this.population;
-    },
-    getOperSelector: function( ) {
-        return this.operSelector;
-    },
-    getIndividSelector: function( ) {
-        return this.indivSelector;
-    },
-    privateRun: function(_fitFn, _fitFnParams, _numGenerations) {
-        var popSize = this.population.length();
-        this.population.sort();
-        //jsEOUtils.h2("Starting evolution");
-        //jsEOUtils.print("Generation number: <span id='genNum'>0</span>");
-        //jsEOUtils.print(" Best fitness: <span id='bestFit'>0</span>");
-        //jsEOUtils.print(" Average fitness: <span id='aveFit'>" +
-        //        jsEOUtils.averageFitness(this.population) + "</span>");
-        var bestFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)) + 1;
-        var averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
-        for (var j = 0; (j < _numGenerations); ++j) {
-            //jsEOUtils.replace(j, "genNum");
-            //jsEOUtils.replace(bestFit, "bestFit");
-            //jsEOUtils.replace(
-            //        parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)),
-            //        "aveFit");
+	},
+	setPopulation: function(_pop) {
+		this.population = _pop;
+		return this;
+	},
+	setOperSelector: function(_op) {
+		this.operSelector = _op;
+		return this;
+	},
+	setIndividSelector: function(_op) {
+		this.indivSelector = _op;
+		return this;
+	},
+	getPopulation: function() {
+		return this.population;
+	},
+	getOperSelector: function() {
+		return this.operSelector;
+	},
+	getIndividSelector: function() {
+		return this.indivSelector;
+	},
+	privateRun: function(_fitFn, _fitFnParams, _numGenerations) {
+		var popSize = this.population.length();
+		this.population.sort();
+		//jsEOUtils.h2("Starting evolution");
+		//jsEOUtils.print("Generation number: <span id='genNum'>0</span>");
+		//jsEOUtils.print(" Best fitness: <span id='bestFit'>0</span>");
+		//jsEOUtils.print(" Average fitness: <span id='aveFit'>" +
+		//        jsEOUtils.averageFitness(this.population) + "</span>");
+		var bestFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)) + 1;
+		var averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
+		for (var j = 0;
+		(j < _numGenerations); ++j) {
+			//jsEOUtils.replace(j, "genNum");
+			//jsEOUtils.replace(bestFit, "bestFit");
+			//jsEOUtils.replace(
+			//        parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5)),
+			//        "aveFit");
+			var newPop = this.indivSelector.operate(this.population);
+			for (var i = 0; i < newPop.length(); ++i) {
+				var tmpPop = new jsEOPopulation();
+				tmpPop.add(newPop.getAt(i)).join(newPop);
+				tmpPop = this.operSelector.
+				operate().
+				operate(tmpPop).
+				evaluate(_fitFn, _fitFnParams);
+				newPop.setAt(i, tmpPop.getAt(0));
+			}
+			this.population.join(newPop).sort().crop(popSize);
+			if (typeof this.opSend != 'undefined' && this.opSend != null) {
+				this.opSend.operate(this.population);
+			}
+			bestFit = parseFloat(this.population.getAt(0).getFitness().toFixed(5));
+			averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
 
-            var newPop = this.indivSelector.operate(this.population);
-            for (var i = 0; i < newPop.length(); ++i) {
-                var tmpPop = new jsEOPopulation();
-                tmpPop.add(newPop.getAt(i)).join(newPop);
-                tmpPop = this.operSelector.
-                        operate().
-                        operate(tmpPop).
-                        evaluate(_fitFn, _fitFnParams);
-                newPop.setAt(i, tmpPop.getAt(0));
-            }
-            this.population.join(newPop).sort().crop(popSize);
-            if (typeof this.opSend != 'undefined' && this.opSend != null) {
-                this.opSend.operate(this.population);
-            }
-            bestFit = parseFloat(this.population.getAt(0).getFitness().toFixed(5));
-            averFit = parseFloat(jsEOUtils.averageFitness(this.population).toFixed(5));
+			jsEOUtils.recordStats(this.population.getLast().getFitness(), jsEOUtils.averageFitness(this.population), this.population.getAt(0).getFitness());
 
-            jsEOUtils.recordStats(this.population.getLast().getFitness(),
-                    jsEOUtils.averageFitness(this.population),
-                    this.population.getAt(0).getFitness());
-
-        } //for numGenerations
-    },
-    run: function(_fitFn, _fitFnParams, _numGenerations) {
-        this.privateRun(_fitFn, _fitFnParams, _numGenerations);
-    }
+		} //for numGenerations
+	},
+	run: function(_fitFn, _fitFnParams, _numGenerations) {
+		this.privateRun(_fitFn, _fitFnParams, _numGenerations);
+	}
 });
-

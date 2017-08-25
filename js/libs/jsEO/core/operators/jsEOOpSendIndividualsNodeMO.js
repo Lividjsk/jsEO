@@ -18,66 +18,70 @@
  */
 
 var jsEOOpSendIndividualsNodeMO = new Class({
-    Extends: jsEOOperator,
-    numIndividuals: 1,
-    initialize: function(_numIndividuals) {
-        this.parent(1);
-        if (typeof _numIndividuals === 'undefined') {
-            _numIndividuals = 1;
-        }
-        // By the moment, we only store 1 individual
-        _numIndividuals = 1;
-        this.numIndividuals = _numIndividuals
-        jsEOUtils.debugln("Initializing a jsEOOpSendIndividuals " +
-                " with applicationRate " + this.applicationRate +
-                ", numIndividuals " + this.numIndividuals
-                );
+	Extends: jsEOOperator,
+	numIndividuals: 1,
+	initialize: function(_numIndividuals) {
+		this.parent(1);
+		if (typeof _numIndividuals === 'undefined') {
+			_numIndividuals = 1;
+		}
+		// By the moment, we only store 1 individual
+		_numIndividuals = 1;
+		this.numIndividuals = _numIndividuals
+		jsEOUtils.debugln("Initializing a jsEOOpSendIndividuals " + " with applicationRate " + this.applicationRate + ", numIndividuals " + this.numIndividuals);
 
-    },
-    getNumIndividuals: function() {
-        return this.numIndividuals;
-    },
-    /// @pre _auxPop has to be ordered by fitness
-    operate: function(_auxPop) {
-        var tmpPop = new jsEOPopulation();
-        
+	},
+	getNumIndividuals: function() {
+		return this.numIndividuals;
+	},
+	/// @pre _auxPop has to be ordered by fitness
+	operate: function(_auxPop) {
+		var tmpPop = new jsEOPopulation();
 
-        var problemID = jsEOUtils.getProblemId();
-        var solution = [],fitness = [], matrixObj = [];
-        for (var i = 0; i < this.numIndividuals; ++i) {
-            var tmpChr = _auxPop.getAt(i).getChromosome();
-            if (Object.prototype.toString.call(tmpChr) === '[object Array]') {
-                for (var j = 0; j < tmpChr.length; ++j) {
-                    if(Object.prototype.toString.call(tmpChr[j]) === '[object Object]')
-                        solution.push(tmpChr[j].getJSON());
-                    else
-                        solution.push(tmpChr[j]);
-                }
-            } else {
-                solution = tmpChr;
-            }
-	    
-            	fitness = _auxPop.getAt(i).getObjectives();
-     	    }
+
+		var problemID = jsEOUtils.getProblemId();
+		var solution = [],
+			fitness = [],
+			matrixObj = [];
+		for (var i = 0; i < this.numIndividuals; ++i) {
+			var tmpChr = _auxPop.getAt(i).getChromosome();
+			if (Object.prototype.toString.call(tmpChr) === '[object Array]') {
+				for (var j = 0; j < tmpChr.length; ++j) {
+					if (Object.prototype.toString.call(tmpChr[j]) === '[object Object]') solution.push(tmpChr[j].getJSON());
+					else solution.push(tmpChr[j]);
+				}
+			} else {
+				solution = tmpChr;
+			}
+
+			fitness = _auxPop.getAt(i).getObjectives();
+		}
 
 		var id = jsEOUtils.intRandom(1, Number.MAX_SAFE_INTEGER);;
-    	var data2bSend = {"id": id, "Problem" : problemID, "Solution" : JSON.stringify(solution), 
-						  "Objectives" : JSON.stringify(fitness)};
-	
-		try{
+		var data2bSend = {
+			"id": id,
+			"Problem": problemID,
+			"Solution": JSON.stringify(solution),
+			"Objectives": JSON.stringify(fitness)
+		};
+
+		try {
 			new Request({
 				url: jsEOUtils.getSendURL(),
 				method: 'POST',
 				data: data2bSend,
-				onComplete: function(response){
+				onComplete: function(response) {
 					var res = JSON.parse(response);
-					var result = {Solution: JSON.parse(res.Solution), Objectives: JSON.parse(res.Objectives)};
+					var result = {
+						Solution: JSON.parse(res.Solution),
+						Objectives: JSON.parse(res.Objectives)
+					};
 					console.log("Response of the server when sending individual", res.msg);
 				}
 			}).send();
-	}catch(error){
-		console.log("Error sending individual");
+		} catch (error) {
+			console.log("Error sending individual");
+		}
+		return null;
 	}
-        return null;
-    }
 });

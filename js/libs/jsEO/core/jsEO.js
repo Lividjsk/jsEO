@@ -21,45 +21,50 @@
 
 
 var jsEO = new Class({
-    fitness:null
-    , initialize: function(){
-        jsEOUtils.debug( "Initializing a jsEO <br/>");
-    }
-    , copy: function() {
-        var toRet=new jsEO();
-        toRet.fitness=this.fitness;
-        return toRet;
-    }
-    , getFitness: function() {
-        return this.fitness;
-    }
-    , setFitness: function(_fitness) {
-        this.fitness=_fitness;
-        return this;
-    }
-    // comparison for sort
-    , compare: function( _eo ) {
-        return( this.fitness<_eo.fitness?-1:(this.fitness==_eo.fitness?0:1));
-    }
-    // Less than
-    , lt: function( _eo ) {
-        return this.fitness<_eo.fitness;
-    }
-    // Equal to
-    , eq: function( _eo ) {
-       return this.fitness===_eo.fitness; 
-    }
-    // Greater than
-    , gt: function( _eo ) {
-        return ! (this.lt(_eo) || this.eq( _eo ) );
-    }
-    // Less than or equal to
-    , le: function( _eo ) {
-        return !this.gt(_eo);
-    }
-    // Greater than or equal to
-    , ge: function( _eo ) {
-        return !this.lt(_eo);
-    }
+	fitness: null,
+	initialize: function() {
+		jsEOUtils.debug("Initializing a jsEO <br/>");
+	},
+	copy: function() {
+		var toRet = new jsEO();
+		toRet.fitness = this.fitness;
+		return toRet;
+	},
+	getFitness: function() {
+		return this.fitness;
+	},
+	setFitness: function(_fitness) {
+		this.fitness = _fitness;
+		return this;
+	}
+	// comparison for sort
+	,
+	compare: function(_eo) {
+		return (this.fitness < _eo.fitness ? -1 : (this.fitness == _eo.fitness ? 0 : 1));
+	}
+	// Less than
+	,
+	lt: function(_eo) {
+		return this.fitness < _eo.fitness;
+	}
+	// Equal to
+	,
+	eq: function(_eo) {
+		return this.fitness === _eo.fitness;
+	}
+	// Greater than
+	,
+	gt: function(_eo) {
+		return !(this.lt(_eo) || this.eq(_eo));
+	}
+	// Less than or equal to
+	,
+	le: function(_eo) {
+		return !this.gt(_eo);
+	}
+	// Greater than or equal to
+	,
+	ge: function(_eo) {
+		return !this.lt(_eo);
+	}
 });
-

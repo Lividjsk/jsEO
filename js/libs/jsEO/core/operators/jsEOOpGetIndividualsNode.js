@@ -18,56 +18,56 @@
  */
 
 var jsEOOpGetIndividualsNode = new Class({
-    Extends: jsEOOperator,
-    numIndividuals: 1,
-    initialize: function(_appRate) {
-        this.parent(_appRate);
-        if (typeof _numIndividuals === 'undefined' || !_numIndividuals) {
-            _numIndividuals = 1;
-        }
-        this.numIndividuals = 1;
-        jsEOUtils.debugln("Initializing a jsEOOpGetIndividuals " +
-                " with applicationRate " + this.applicationRate +
-                ", numIndividuals " + this.numIndividuals
-                );
+	Extends: jsEOOperator,
+	numIndividuals: 1,
+	initialize: function(_appRate) {
+		this.parent(_appRate);
+		if (typeof _numIndividuals === 'undefined' || !_numIndividuals) {
+			_numIndividuals = 1;
+		}
+		this.numIndividuals = 1;
+		jsEOUtils.debugln("Initializing a jsEOOpGetIndividuals " + " with applicationRate " + this.applicationRate + ", numIndividuals " + this.numIndividuals);
 
-    },
-    getNumIndividuals: function() {
-        return this.numIndividuals;
-    },
-    operate: function(_auxPop) {
-        var toRet = _auxPop;
-        
-        var data2bSend = {"data": jsEOUtils.getProblemId(), "tamIndividual": _auxPop.getAt(0).getChromosome().length};
-        jsEOUtils.debugln("  Sending a GetIndividual request with " + data2bSend);
-        try {
+	},
+	getNumIndividuals: function() {
+		return this.numIndividuals;
+	},
+	operate: function(_auxPop) {
+		var toRet = _auxPop;
+
+		var data2bSend = {
+			"data": jsEOUtils.getProblemId(),
+			"tamIndividual": _auxPop.getAt(0).getChromosome().length
+		};
+		jsEOUtils.debugln("  Sending a GetIndividual request with " + data2bSend);
+		try {
 			new Request.JSON({
 				url: jsEOUtils.getGetURL(),
 				method: 'GET',
 				data: data2bSend,
-				onComplete: function(response){
-					if(!response.Success){
-						console.log("Error: "+response.msg);
+				onComplete: function(response) {
+					if (!response.Success) {
+						console.log("Error: " + response.msg);
 						return;
-					}else{
+					} else {
 						console.log("Server response when requesting individual:", response.msg);
-						if(response.Solution != null){
+						if (response.Solution != null) {
 							var newInd = new jsEOIndividual();
 							newInd.setChromosome(JSON.parse(response.Solution));
 							newInd.setFitness(response.Fitness);
 							toRet.add(newInd);
 							console.log("Successfully incorporated individual to the population");
-						}else{
+						} else {
 							toRet = _auxPop;
 						}
 					}
 				}
 			}).send();
-        } catch (err) {
-            jsEOUtils.debugln("jsEOOpGetIndividual: Error captured! ");
-            return toRet=_auxPop;
-        }
-        
-        return toRet;
-    }
+		} catch (err) {
+			jsEOUtils.debugln("jsEOOpGetIndividual: Error captured! ");
+			return toRet = _auxPop;
+		}
+
+		return toRet;
+	}
 });

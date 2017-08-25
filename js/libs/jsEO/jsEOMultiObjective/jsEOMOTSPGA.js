@@ -18,121 +18,104 @@
  */
 
 var jsEOMOTSPGA = new Class({
-    Extends: jsEOMOGA,
-    verbose: jsEOUtils.getInputParam("verbose", false),
-    configure: jsEOUtils.getInputParam("configure", false),
-    popSize: parseInt(jsEOUtils.getInputParam("popSize", 50)),
-    tournamentSize: parseInt(jsEOUtils.getInputParam("tournamentSize", 2)),
-    xOverRate: parseFloat(jsEOUtils.getInputParam("xOverRate", 0.8)),
-    mutRate: parseFloat(jsEOUtils.getInputParam("mutRate", 0.2)),
-    mutPower: parseFloat(jsEOUtils.getInputParam("mutPower", 0.5)),
-    numGenerations: parseInt(jsEOUtils.getInputParam("numGenerations", 100)),
-    replaceRate: parseFloat(jsEOUtils.getInputParam("replaceRate", 0.3)),
-    getIndividualsRate: jsEOUtils.getInputParam("getIndividualsRate",  0.2),    
-    showing: parseInt(jsEOUtils.getInputParam("showing", 3)),
-    minValue: parseInt(jsEOUtils.getInputParam("minValue", -10)),
-    maxValue: parseInt(jsEOUtils.getInputParam("maxValue", 10)),
-    indSize: parseInt(jsEOUtils.getInputParam("indSize", 2)),
-    positionsTSP: jsEOUtils.getInputParam("positionsTSP", []),
-    numberObjectives: 0,
-    initialize: function(_opSend, _opGet, _numberObjectives) {
-        if( typeof _opGet != 'undefined' ) {
-            _opGet.setApplicationRate( this.getIndividualsRate );
-        }
-        this.parent(_opSend, _opGet, _numberObjectives);
-        this.numberObjectives = _numberObjectives;
-        jsEOUtils.debugln("Initializing a jsEOROGA ");
+	Extends: jsEOMOGA,
+	verbose: jsEOUtils.getInputParam("verbose", false),
+	configure: jsEOUtils.getInputParam("configure", false),
+	popSize: parseInt(jsEOUtils.getInputParam("popSize", 50)),
+	tournamentSize: parseInt(jsEOUtils.getInputParam("tournamentSize", 2)),
+	xOverRate: parseFloat(jsEOUtils.getInputParam("xOverRate", 0.8)),
+	mutRate: parseFloat(jsEOUtils.getInputParam("mutRate", 0.2)),
+	mutPower: parseFloat(jsEOUtils.getInputParam("mutPower", 0.5)),
+	numGenerations: parseInt(jsEOUtils.getInputParam("numGenerations", 100)),
+	replaceRate: parseFloat(jsEOUtils.getInputParam("replaceRate", 0.3)),
+	getIndividualsRate: jsEOUtils.getInputParam("getIndividualsRate", 0.2),
+	showing: parseInt(jsEOUtils.getInputParam("showing", 3)),
+	minValue: parseInt(jsEOUtils.getInputParam("minValue", -10)),
+	maxValue: parseInt(jsEOUtils.getInputParam("maxValue", 10)),
+	indSize: parseInt(jsEOUtils.getInputParam("indSize", 2)),
+	positionsTSP: jsEOUtils.getInputParam("positionsTSP", []),
+	numberObjectives: 0,
+	initialize: function(_opSend, _opGet, _numberObjectives) {
+		if (typeof _opGet != 'undefined') {
+			_opGet.setApplicationRate(this.getIndividualsRate);
+		}
+		this.parent(_opSend, _opGet, _numberObjectives);
+		this.numberObjectives = _numberObjectives;
+		jsEOUtils.debugln("Initializing a jsEOROGA ");
 
-    },
-    doConfigure: function() {
-        var msg = "";
-        jsEOUtils.setOutput("jsEOForm");
-        jsEOUtils.println("<strong>Configuring EOTest</strong><br/>");
-        msg = "<form method='GET' action='./index.html' name='f1'>";
-        msg += "<p>Verbosity: <input type='radio' name='verbose' value='true'>True ";
-        msg += "<input type='radio' name='verbose' value='False'>False</p>";
-        msg += "<p>Individual size: <input type='text' name='indSize' value='" +
-                this.indSize + "' size='4'></p>";
-        msg += "<p>Population size: <input type='text' name='popSize' value='" +
-                this.popSize + "' size='4'></p>";
-        msg += "<p>Tournament size: <input type='text' name='tournamentSize' value='" +
-                this.tournamentSize + "' size='4'></p>";
-        msg += "<p>CrossOver rate: <input type='text' name='xOverRate' value='" +
-                this.xOverRate + "' size='4'></p>";
-        msg += "<p>Mutation rate: <input type='text' name='mutRate' value='" +
-                this.mutRate + "' size='4'></p>";
-        msg += "<p>Bits changed by mutator rate: <input type='text' name='mutPower' value='" +
-                this.mutPower + "' size='4'></p>";
-        msg += "<p>Number of generations: <input type='text' name='numGenerations' value='" +
-                this.numGenerations + "' size='4'></p>";
-        msg += "<p>Replace rate: <input type='text' name='replaceRate' value='" +
-                this.replaceRate + "' size='4'></p>";
-        msg += "<p>'Get Individuals' rate: <input type='text' name='getIndividualsRate' value='" +
-                this.getIndividualsRate + "' size='4'></p>";
-        msg += "<p>Number of individuals to show: <input type='text' name='showing' value='" +
-                this.showing + "' size='4'></p>";
-        msg += "<p>Minimum value for genes: <input type='text' name='minValue' value='" +
-                this.minValue + "' size='4'></p>";
-        msg += "<p>Maximum value for genes: <input type='text' name='maxValue' value='" +
-                this.maxValue + "' size='4'></p>";
-        msg += "<p><input type='submit' value='Send data'>" +
-                "<input type='reset' value='Reset'></p>";
-        msg += "</form>"
-        jsEOUtils.clear();
-        jsEOUtils.println(msg);
-        jsEOUtils.setOutput("jsEOConsole");
-    },
-    run: function(_fitFn) {
-        // Program
-        if (this.configure) {
-            this.doConfigure();
-            return;
-        }
-        this.population = new jsEOPopulation();
-        for (var i = 0; i < this.popSize; ++i) {
-            var myMO = new jsEOMOIndividual();
-            myMO.randomize(this.indSize, this.minValue, this.maxValue).
-                    evaluate(_fitFn);
-            this.population.addIndividual(myMO);
-        }
-        this.population.sort();
+	},
+	doConfigure: function() {
+		var msg = "";
+		jsEOUtils.setOutput("jsEOForm");
+		jsEOUtils.println("<strong>Configuring EOTest</strong><br/>");
+		msg = "<form method='GET' action='./index.html' name='f1'>";
+		msg += "<p>Verbosity: <input type='radio' name='verbose' value='true'>True ";
+		msg += "<input type='radio' name='verbose' value='False'>False</p>";
+		msg += "<p>Individual size: <input type='text' name='indSize' value='" + this.indSize + "' size='4'></p>";
+		msg += "<p>Population size: <input type='text' name='popSize' value='" + this.popSize + "' size='4'></p>";
+		msg += "<p>Tournament size: <input type='text' name='tournamentSize' value='" + this.tournamentSize + "' size='4'></p>";
+		msg += "<p>CrossOver rate: <input type='text' name='xOverRate' value='" + this.xOverRate + "' size='4'></p>";
+		msg += "<p>Mutation rate: <input type='text' name='mutRate' value='" + this.mutRate + "' size='4'></p>";
+		msg += "<p>Bits changed by mutator rate: <input type='text' name='mutPower' value='" + this.mutPower + "' size='4'></p>";
+		msg += "<p>Number of generations: <input type='text' name='numGenerations' value='" + this.numGenerations + "' size='4'></p>";
+		msg += "<p>Replace rate: <input type='text' name='replaceRate' value='" + this.replaceRate + "' size='4'></p>";
+		msg += "<p>'Get Individuals' rate: <input type='text' name='getIndividualsRate' value='" + this.getIndividualsRate + "' size='4'></p>";
+		msg += "<p>Number of individuals to show: <input type='text' name='showing' value='" + this.showing + "' size='4'></p>";
+		msg += "<p>Minimum value for genes: <input type='text' name='minValue' value='" + this.minValue + "' size='4'></p>";
+		msg += "<p>Maximum value for genes: <input type='text' name='maxValue' value='" + this.maxValue + "' size='4'></p>";
+		msg += "<p><input type='submit' value='Send data'>" + "<input type='reset' value='Reset'></p>";
+		msg += "</form>"
+		jsEOUtils.clear();
+		jsEOUtils.println(msg);
+		jsEOUtils.setOutput("jsEOConsole");
+	},
+	run: function(_fitFn) {
+		// Program
+		if (this.configure) {
+			this.doConfigure();
+			return;
+		}
+		this.population = new jsEOPopulation();
+		for (var i = 0; i < this.popSize; ++i) {
+			var myMO = new jsEOMOIndividual();
+			myMO.randomize(this.indSize, this.minValue, this.maxValue).
+			evaluate(_fitFn);
+			this.population.addIndividual(myMO);
+		}
+		this.population.sort();
 
-        this.indivSelector = new jsEOOpSelectorTournamentBinary(this.tournamentSize,
-                1);
+		this.indivSelector = new jsEOOpSelectorTournamentBinary(this.tournamentSize, 1);
 
-        this.operSelector = new jsEOOperatorsWheel();
-        this.operSelector.
-                addOperator(new jsEOMOOpCrossOver(this.xOverRate));
-        this.operSelector.
-                addOperator(new jsEOMOOpMutation(this.mutRate,
-                        this.mutPower,
-                        this.minValue,
-                        this.maxValue));
-        if( this.opGet ) {
-            this.operSelector.addOperator(this.opGet);
-        }
+		this.operSelector = new jsEOOperatorsWheel();
+		this.operSelector.
+		addOperator(new jsEOMOOpCrossOver(this.xOverRate));
+		this.operSelector.
+		addOperator(new jsEOMOOpMutation(this.mutRate, this.mutPower, this.minValue, this.maxValue));
+		if (this.opGet) {
+			this.operSelector.addOperator(this.opGet);
+		}
 
 		jsEOUtils.showLegendMO("legend");
-        jsEOUtils.showPopMOTSP(this.population, "Initial population", this.showing, "ipop");
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "ipop");
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "ipop");
+		jsEOUtils.showPopMOTSP(this.population, "Initial population", this.showing, "ipop");
+		jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "ipop");
+		jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "ipop");
 
 		var startTime = new Date();
-		
-        this.privateRun(_fitFn, this.showing, this.numGenerations );
-		
+
+		this.privateRun(_fitFn, this.showing, this.numGenerations);
+
 		var endTime = new Date();
-		
+
 		jsEOUtils.showTime((endTime - startTime), "time");
 		jsEOUtils.showDescription("TSP_MO", "definition");
-        jsEOUtils.showPopMOTSP(this.population, "Final population", this.showing, "fpop");
-        jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "fpop");
-        jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "fpop");
-		
-		
+		jsEOUtils.showPopMOTSP(this.population, "Final population", this.showing, "fpop");
+		jsEOUtils.println("Average fitness: " + jsEOUtils.averageFitnessMO(this.population, this.numberObjectives), "fpop");
+		jsEOUtils.println("Best fitness: " + jsEOUtils.bestFitnessMinMO(this.population, this.numberObjectives), "fpop");
+
+
 		var popFinal = this.population;
 		jsEOUtils.drawEvolutionFitnessMO(popFinal);
-        jsEOUtils.drawGraphTSP(this.population.getAt(0), this.positionsTSP);
-    }
+		jsEOUtils.drawGraphTSP(this.population.getAt(0), this.positionsTSP);
+	}
 
 });

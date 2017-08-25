@@ -18,59 +18,52 @@
  */
 
 var jsEOOpSelectorTournamentBinary = new Class({
-    Extends: jsEOOperator,
-    tournamentSize: null,
-    numIndividuals: null,
-    initialize: function (_tournamentSize, _numIndividuals) {
-        this.parent(1);
-        if (typeof _tournamentSize === 'undefined') {
-            _tournamentSize = 2;
-        }
-        if (typeof _numIndividuals === 'undefined') {
-            _numIndividuals = 1;
-        }
-        this.tournamentSize = _tournamentSize;
-        this.numIndividuals = _numIndividuals
-        jsEOUtils.debugln("Initializing a jsEOOpSelectorTournament " +
-                " with applicationRate " + this.applicationRate +
-                ", tournamentSize " + this.tournamentSize +
-                ", numIndividuals " + this.numIndividuals
-                );
+	Extends: jsEOOperator,
+	tournamentSize: null,
+	numIndividuals: null,
+	initialize: function(_tournamentSize, _numIndividuals) {
+		this.parent(1);
+		if (typeof _tournamentSize === 'undefined') {
+			_tournamentSize = 2;
+		}
+		if (typeof _numIndividuals === 'undefined') {
+			_numIndividuals = 1;
+		}
+		this.tournamentSize = _tournamentSize;
+		this.numIndividuals = _numIndividuals
+		jsEOUtils.debugln("Initializing a jsEOOpSelectorTournament " + " with applicationRate " + this.applicationRate + ", tournamentSize " + this.tournamentSize + ", numIndividuals " + this.numIndividuals);
 
-    },
-    getTournamentSize: function () {
-        return this.tournamentSize;
-    },
-    getNumIndividuals: function () {
-        return this.numIndividuals;
-    },
-    setTournamentSize: function (_value) {
-        this.tournamentSize = _value;
-        return this;
-    },
-    setNumIndividuals: function (_value) {
-        this.numIndividuals = _value;
-        return this;
-    },
-    operate: function (_auxPop) {
-        var toRet = new jsEOPopulation();
-        var rnd1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
-        var rnd2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+	},
+	getTournamentSize: function() {
+		return this.tournamentSize;
+	},
+	getNumIndividuals: function() {
+		return this.numIndividuals;
+	},
+	setTournamentSize: function(_value) {
+		this.tournamentSize = _value;
+		return this;
+	},
+	setNumIndividuals: function(_value) {
+		this.numIndividuals = _value;
+		return this;
+	},
+	operate: function(_auxPop) {
+		var toRet = new jsEOPopulation();
+		var rnd1 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
+		var rnd2 = jsEOUtils.intRandom(0, _auxPop.length() - 1);
 
 		//Binary Tournament Selection
-		
-        if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) < 0) {
-            toRet.add(_auxPop.getAt(rnd1));
-        } else if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) > 0) {
-            toRet.add(_auxPop.getAt(rnd2));
-        } else if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) === 0) {
-            var ind = jsEOUtils.intRandom(0, 1);
-            if (ind == 0)
-                toRet.add(_auxPop.getAt(rnd1));
-            else
-                toRet.add(_auxPop.getAt(rnd2));
-        }
+		if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) < 0) {
+			toRet.add(_auxPop.getAt(rnd1));
+		} else if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) > 0) {
+			toRet.add(_auxPop.getAt(rnd2));
+		} else if (_auxPop.getAt(rnd1).crowdedComparison(rnd2) === 0) {
+			var ind = jsEOUtils.intRandom(0, 1);
+			if (ind == 0) toRet.add(_auxPop.getAt(rnd1));
+			else toRet.add(_auxPop.getAt(rnd2));
+		}
 
-        return toRet;
-    }
+		return toRet;
+	}
 });

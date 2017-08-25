@@ -19,23 +19,20 @@
  */
 
 var jsEOOperator = new Class({
-    applicationRate: null,
-    initialize: function(_applicationRate) {
-        this.applicationRate = parseFloat( _applicationRate );
-        jsEOUtils.debugln("Initializing a jsEOOperator with applicationRate " +
-                this.applicationRate );
-                
+	applicationRate: null,
+	initialize: function(_applicationRate) {
+		this.applicationRate = parseFloat(_applicationRate);
+		jsEOUtils.debugln("Initializing a jsEOOperator with applicationRate " + this.applicationRate);
 
-    },
-    getApplicationRate: function() {
-        return parseFloat( this.applicationRate );
-    },
-    setApplicationRate: function(_newApplicationRate) {
-        return this.applicationRate = parseFloat( _newApplicationRate );
-    },
-    operate: function( _auxPop ) {
-        return new jsEOPopulation() ;
-    }
+
+	},
+	getApplicationRate: function() {
+		return parseFloat(this.applicationRate);
+	},
+	setApplicationRate: function(_newApplicationRate) {
+		return this.applicationRate = parseFloat(_newApplicationRate);
+	},
+	operate: function(_auxPop) {
+		return new jsEOPopulation();
+	}
 });
-
-

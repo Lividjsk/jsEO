@@ -18,29 +18,26 @@
  */
 
 var jsEOBSOpMutation = new Class({
-    Extends: jsEOOperator,
-    genesRate: null,
-    initialize: function(_applicationRate, _genesRate) {
-        this.parent(_applicationRate);
-        this.genesRate = _genesRate;
-        jsEOUtils.debugln("Initializing a jsEOBSOpBitFlip with " +
-                "applicationRate " + this.applicationRate +
-                " and genesRate " + this.genesRate);
+	Extends: jsEOOperator,
+	genesRate: null,
+	initialize: function(_applicationRate, _genesRate) {
+		this.parent(_applicationRate);
+		this.genesRate = _genesRate;
+		jsEOUtils.debugln("Initializing a jsEOBSOpBitFlip with " + "applicationRate " + this.applicationRate + " and genesRate " + this.genesRate);
 
-    },
-    operate: function(_auxPop) {
-        jsEOUtils.debugln("Applying jsEOBSOpBitFlip");
-        var toRet = new jsEOPopulation();
-        var tmpChr = _auxPop.getAt(0).getChromosome();
-        var newChr = "";
-        jsEOUtils.debugln("  Individual is " + tmpChr);
-        for (var i = 0; i < tmpChr.length; ++i) {
-            newChr += (Math.random() < this.genesRate) ? ((tmpChr[i] == "0") ? "1" : "0") : tmpChr[i];
-        }
-        jsEOUtils.debugln("  Final  " + newChr);
-        toRet.add(new jsEOBSIndividual());
-        toRet.getAt(0).setChromosome(newChr);
-        return toRet;
-    }
+	},
+	operate: function(_auxPop) {
+		jsEOUtils.debugln("Applying jsEOBSOpBitFlip");
+		var toRet = new jsEOPopulation();
+		var tmpChr = _auxPop.getAt(0).getChromosome();
+		var newChr = "";
+		jsEOUtils.debugln("  Individual is " + tmpChr);
+		for (var i = 0; i < tmpChr.length; ++i) {
+			newChr += (Math.random() < this.genesRate) ? ((tmpChr[i] == "0") ? "1" : "0") : tmpChr[i];
+		}
+		jsEOUtils.debugln("  Final  " + newChr);
+		toRet.add(new jsEOBSIndividual());
+		toRet.getAt(0).setChromosome(newChr);
+		return toRet;
+	}
 });
-

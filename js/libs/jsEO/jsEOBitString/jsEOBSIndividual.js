@@ -21,19 +21,19 @@
 
 
 
-var jsEOBSIndividual=new Class( {
-    Extends: jsEOIndividual,
-    initialize: function( _bitString ){
-        this.parent(_bitString); // calls initalize method of jsEOIndividual class
-        jsEOUtils.debug( "Initializating a jsEOBSIndividual ");
-    },
-    randomize: function( _length ) {
-      var chr="";
-      if(!_length) _length=8;
-      for( var i=0; i<_length; ++i ) {
-          chr+=(Math.random()*100<50)?0:1;
-      }
-      this.chromosome=chr;
-      return this;      
-    }
+var jsEOBSIndividual = new Class({
+	Extends: jsEOIndividual,
+	initialize: function(_bitString) {
+		this.parent(_bitString); // calls initalize method of jsEOIndividual class
+		jsEOUtils.debug("Initializating a jsEOBSIndividual ");
+	},
+	randomize: function(_length) {
+		var chr = "";
+		if (!_length) _length = 8;
+		for (var i = 0; i < _length; ++i) {
+			chr += (Math.random() * 100 < 50) ? 0 : 1;
+		}
+		this.chromosome = chr;
+		return this;
+	}
 });

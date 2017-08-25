@@ -21,26 +21,21 @@
 
 
 var jsEOAlgorithm = new Class({
-    opSend: null,
-    opGet: null,
-    initialize: function(  _opSend, _opGet){
-        if( typeof _opSend !='undefined' && _opSend ){
-            this.opSend=_opSend;
-        }
-        if( typeof _opGet !='undefined' && _opGet ){
-            this.opGet=_opGet;
-        }
-        jsEOUtils.debugln( "Initializing a jsEOAlgorithm "+
-                "with "+
-                " Operator for sending individuals "+this.opSend +
-                ", Operator for getting individuals "+this.opGet                
-                );
-    },
-    privateRun: function( _fitFn ) {
-      return null;  
-    },
-    run: function() {
-        return null;
-    }
+	opSend: null,
+	opGet: null,
+	initialize: function(_opSend, _opGet) {
+		if (typeof _opSend != 'undefined' && _opSend) {
+			this.opSend = _opSend;
+		}
+		if (typeof _opGet != 'undefined' && _opGet) {
+			this.opGet = _opGet;
+		}
+		jsEOUtils.debugln("Initializing a jsEOAlgorithm " + "with " + " Operator for sending individuals " + this.opSend + ", Operator for getting individuals " + this.opGet);
+	},
+	privateRun: function(_fitFn) {
+		return null;
+	},
+	run: function() {
+		return null;
+	}
 });
-

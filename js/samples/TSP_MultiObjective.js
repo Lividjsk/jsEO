@@ -25,136 +25,136 @@ var _positions;
 function MatrixDistancesCreation(_numberCities) {
 
 
-    _positions = new Array();
-    var _x = 0, _y = 0;
-    for(var n = 0; n < _numberCities; ++n){
-        _x = jsEOUtils.intRandom(-370, 370);
-        _y = jsEOUtils.intRandom(-370, 370);
-        var obj = { 'x': _x, 'y': _y};
-        _positions.push(obj);
-    }
+	_positions = new Array();
+	var _x = 0,
+		_y = 0;
+	for (var n = 0; n < _numberCities; ++n) {
+		_x = jsEOUtils.intRandom(-370, 370);
+		_y = jsEOUtils.intRandom(-370, 370);
+		var obj = {
+			'x': _x,
+			'y': _y
+		};
+		_positions.push(obj);
+	}
 
-    //We calculate the initial matrix
-    var array = new Array(_numberCities);
-    for (var i = 0; i < _numberCities; ++i) {
-        array[i] = new Array(_numberCities);
-        for (var j = 0; j < _numberCities; ++j) {
-            array[i][j] = 1;
-        }
-    }
+	//We calculate the initial matrix
+	var array = new Array(_numberCities);
+	for (var i = 0; i < _numberCities; ++i) {
+		array[i] = new Array(_numberCities);
+		for (var j = 0; j < _numberCities; ++j) {
+			array[i][j] = 1;
+		}
+	}
 
-    //Now we set the main diagonal to zero
-    for (var n = 0; n < _numberCities; ++n) {
-        for (var m = 0; m < _numberCities; ++m) {
-            if (array[n][m] == 1) {
-                if (n == m)
-                    array[n][m] = 0;
-                else {
-                    array[n][m] = jsEOUtils.intRandom(1, 100);
-                    array[m][n] = array[n][m];
-                }
-            }
-        }
-    }
+	//Now we set the main diagonal to zero
+	for (var n = 0; n < _numberCities; ++n) {
+		for (var m = 0; m < _numberCities; ++m) {
+			if (array[n][m] == 1) {
+				if (n == m) array[n][m] = 0;
+				else {
+					array[n][m] = jsEOUtils.intRandom(1, 100);
+					array[m][n] = array[n][m];
+				}
+			}
+		}
+	}
 
-    return array;
+	return array;
 }
 
 //Calculation of the time matrix
 function MatrixTimesCreation(_numberCities) {
 
 
-    //We calculate the initial matrix
-    var array = new Array(_numberCities);
-    for (var i = 0; i < _numberCities; ++i) {
-        array[i] = new Array(_numberCities);
-        for (var j = 0; j < _numberCities; ++j) {
-            array[i][j] = 1;
-        }
-    }
+	//We calculate the initial matrix
+	var array = new Array(_numberCities);
+	for (var i = 0; i < _numberCities; ++i) {
+		array[i] = new Array(_numberCities);
+		for (var j = 0; j < _numberCities; ++j) {
+			array[i][j] = 1;
+		}
+	}
 
-    //Now we set the main diagonal to zero
-    for (var n = 0; n < _numberCities; ++n) {
-        for (var m = 0; m < _numberCities; ++m) {
-            if (array[n][m] == 1) {
-                if (n == m)
-                    array[n][m] = 0;
-                else {
-                    array[n][m] = jsEOUtils.intRandom(1, 100);
-                    array[m][n] = array[n][m];
-                }
-            }
-        }
-    }
-    return array;
+	//Now we set the main diagonal to zero
+	for (var n = 0; n < _numberCities; ++n) {
+		for (var m = 0; m < _numberCities; ++m) {
+			if (array[n][m] == 1) {
+				if (n == m) array[n][m] = 0;
+				else {
+					array[n][m] = jsEOUtils.intRandom(1, 100);
+					array[m][n] = array[n][m];
+				}
+			}
+		}
+	}
+	return array;
 }
 
 //Fitness Function
 function fitnessFunction(_chr) {
 
-    if (typeof _chr == 'undefined') {
-        return null;
-    }
+	if (typeof _chr == 'undefined') {
+		return null;
+	}
 
-    var objectives = new Array(2);
+	var objectives = new Array(2);
 
-    var fitness = 0;
-    var pos, sig;
-    for (var i = 0; i < _numCities; ++i) {
-        pos = _chr[i];
-        sig = (i < _numCities - 1) ? _chr[i + 1] : _chr[0];
-        fitness += parseInt(_cities[pos][sig]);
-    }
-    
-    objectives[0] = fitness;
-    
-    fitness = 0;
-    for (var i = 0; i < _numCities; ++i) {
-        pos = _chr[i];
-        sig = (i < _numCities - 1) ? _chr[i + 1] : _chr[0];
-        fitness += parseInt(_times[pos][sig]);
-    }
-    
-    objectives[1] = fitness;
-    
-    return objectives;
+	var fitness = 0;
+	var pos, sig;
+	for (var i = 0; i < _numCities; ++i) {
+		pos = _chr[i];
+		sig = (i < _numCities - 1) ? _chr[i + 1] : _chr[0];
+		fitness += parseInt(_cities[pos][sig]);
+	}
+
+	objectives[0] = fitness;
+
+	fitness = 0;
+	for (var i = 0; i < _numCities; ++i) {
+		pos = _chr[i];
+		sig = (i < _numCities - 1) ? _chr[i + 1] : _chr[0];
+		fitness += parseInt(_times[pos][sig]);
+	}
+
+	objectives[1] = fitness;
+
+	return objectives;
 }
 
 function main() {
-    
-    var verbose = jsEOUtils.getInputParam("verbose", false);
-    jsEOUtils.setVerbose(verbose == "true" || verbose == true);
-    jsEOUtils.setProblemId("TSP_MO");
-    
-    //Initialization of variables
+
+	var verbose = jsEOUtils.getInputParam("verbose", false);
+	jsEOUtils.setVerbose(verbose == "true" || verbose == true);
+	jsEOUtils.setProblemId("TSP_MO");
+
+	//Initialization of variables
 	//In this case we retrieve the number of cities indicated for the problem
-    if(cities !== 'undefined')
-    	_numCities = cities;
-	else
-		_numCities = 6;
+	if (cities !== 'undefined') _numCities = cities;
+	else _numCities = 6;
 
 	//Calls to Functions
-    _cities = MatrixDistancesCreation(_numCities);
-    _times = MatrixTimesCreation(_numCities);
+	_cities = MatrixDistancesCreation(_numCities);
+	_times = MatrixTimesCreation(_numCities);
 
-    var myMOGA = new jsEOMOTSPGA(new jsEOOpSendIndividualsNodeMO(), new jsEOOpGetIndividualsNodeMO(), 2);
+	var myMOGA = new jsEOMOTSPGA(new jsEOOpSendIndividualsNodeMO(), new jsEOOpGetIndividualsNodeMO(), 2);
 
-    myMOGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 500));
-    myMOGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
-    myMOGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
-    myMOGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
-    myMOGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
-    myMOGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 5);
-    myMOGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 50));
-    myMOGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
-    myMOGA.showing = parseInt(jsEOUtils.getInputParam("showing", 6));
-    myMOGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
-    myMOGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
-    myMOGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
-    myMOGA.positionsTSP = jsEOUtils.getInputParam("positionsTSP", _positions);
-    jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false));
-	
+	myMOGA.popSize = parseInt(jsEOUtils.getInputParam("popSize", 500));
+	myMOGA.tournamentSize = parseInt(jsEOUtils.getInputParam("tournamentSize", 2));
+	myMOGA.xOverRate = parseFloat(jsEOUtils.getInputParam("xOverRate", 10));
+	myMOGA.mutRate = parseFloat(jsEOUtils.getInputParam("mutRate", 10));
+	myMOGA.mutPower = parseFloat(jsEOUtils.getInputParam("mutPower", 0.6));
+	myMOGA.getIndividualsRate = jsEOUtils.getInputParam("getIndividualsRate", 5);
+	myMOGA.numGenerations = parseInt(jsEOUtils.getInputParam("numGenerations", 50));
+	myMOGA.replaceRate = parseFloat(jsEOUtils.getInputParam("replaceRate", 0.5));
+	myMOGA.showing = parseInt(jsEOUtils.getInputParam("showing", 6));
+	myMOGA.minValue = parseInt(jsEOUtils.getInputParam("minValue", -10));
+	myMOGA.maxValue = parseInt(jsEOUtils.getInputParam("maxValue", 10));
+	myMOGA.indSize = parseInt(jsEOUtils.getInputParam("indSize", _numCities));
+	myMOGA.positionsTSP = jsEOUtils.getInputParam("positionsTSP", _positions);
+	jsEOUtils.setMaximize(jsEOUtils.getInputParam("maximize", false));
+
 	// Running algorithm
-    myMOGA.run(fitnessFunction);
+	myMOGA.run(fitnessFunction);
 
 }
