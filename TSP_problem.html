@@ -69,7 +69,7 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEORepresentationOrder/jsEOROGA.js"></script>
 
         <!-- Including main representation order program -->        
-        <script src="./js/samples/TSP_problem.js?cities"></script>
+        <script src="./js/samples/TSP_problem.js?params"></script>
     </head>
     <body id="body" onLoad="chargeHTML()">
         <script>
@@ -81,14 +81,19 @@ and open the template in the editor.
 		</script>
 		<script>
 			if(typeof(Storage) !== 'undefined'){
-				var cities = localStorage.getItem("Cities");
+				var cities = localStorage.getItem("CitiesTSP");
+				var poblation = localStorage.getItem("PoblationTSP");
+				var crossover = localStorage.getItem("CrossOverTSP");
+				var mutation = localStorage.getItem("MutationTSP");
+				var generations = localStorage.getItem("GenerationsTSP");
+				var params = {"Cities": cities, "Poblation": poblation, "CrossOver": crossover, "Mutation": mutation, "Generations": generations};
 			}else{
 				console.log("No esta soportado el almacenamiento web");
 			}
 		</script>
         <script>
             setTimeout("main();"+
-                    "swal( 'Execution finished!', 'Time execution: ' + $('#time').text() + ' miliseconds', 'success' );", 1000);
+                    "swal( '¡Problema resuelto!', 'Tiempo de ejecucion: ' + $('#time').text() + ' milisegundos', 'success' );", 1000);
         </script>
     </body>
 </html>

@@ -17,40 +17,64 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+* CrossOver Operator for BitString Individuals
+*
+* @class jsEOBSOpCrossOver
+*/
 var jsEOBSOpCrossOver = new Class({
-	Extends: jsEOOperator,
-	initialize: function(_applicationRate, _bitsRate) {
-		this.parent(_applicationRate);
-		this.bitsRate = _bitsRate;
-		jsEOUtils.debugln("Initializing a jsEOBSOpCrossOver with " + "applicationRate " + this.applicationRate);
+    Extends: jsEOOperator,
+    /**
+     * Description Initialization of the operator
+     * @method initialize
+     * @param {Float} _applicationRate Probability for operator application
+     * @param {Float} _bitsRate Probability of crossover
+     * @return null
+     */
+    initialize: function(_applicationRate, _bitsRate) {
+        this.parent(_applicationRate);
+        this.bitsRate = _bitsRate;
+        jsEOUtils.debugln("Initializing a jsEOBSOpCrossOver with " +
+                "applicationRate " + this.applicationRate);
 
-	},
-	operate: function(_auxPop) {
-		jsEOUtils.debugln("Applying jsEOBSOpCrossOver");
-		var toRet = new jsEOPopulation();
-		if (typeof _auxPop == 'undefined') {
-			return toRet;
-		}
-		if (_auxPop.length() <= 0) {
-			toRet.add(_auxPop.getAt(0).copy());
-			return toRet;
-		}
+    },
+    /**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to cross
+     * @return toRet
+     */
+    operate: function(_auxPop) {
+        jsEOUtils.debugln("Applying jsEOBSOpCrossOver");
+        var toRet = new jsEOPopulation();
+        if (typeof _auxPop == 'undefined') {
+            return toRet;
+        }
+        if (_auxPop.length() <= 0) {
+            toRet.add(_auxPop.getAt(0).copy());
+            return toRet;
+        }
 
-		var rnd2 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
-		jsEOUtils.debugln("  rnd2 is " + rnd2 + " while length is " + _auxPop.length() + " and " + typeof _auxPop.pop[0]);
+        var rnd2 = Math.floor(Math.random() * (_auxPop.length() - 1)) + 1;
+        jsEOUtils.debugln("  rnd2 is " + rnd2 +
+                " while length is " + _auxPop.length() +
+                " and " + typeof _auxPop.pop[0]);
 
-		var tmpChr1 = _auxPop.getAt(0).getChromosome();
-		var tmpChr2 = _auxPop.getAt(rnd2).getChromosome();
-		var point1 = Math.floor(Math.random() * tmpChr1.length);
-		var point2 = Math.floor(Math.random() * (tmpChr1.length - point1));
+        var tmpChr1 = _auxPop.getAt(0).getChromosome();
+        var tmpChr2 = _auxPop.getAt(rnd2).getChromosome();
+        var point1 = Math.floor(Math.random() * tmpChr1.length);
+        var point2 = Math.floor(Math.random() * (tmpChr1.length - point1));
 
-		jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
-		jsEOUtils.debugln("  Points are " + point1 + " and " + point2);
+        jsEOUtils.debugln("  Individuals are " + tmpChr1 + " and " + tmpChr2);
+        jsEOUtils.debugln("  Points are " + point1 + " and " + point2);
 
-		var newChr = tmpChr1.substr(0, point1) + tmpChr2.substr(point1, point2) + tmpChr1.substr(point1 + point2, tmpChr1.length);
-		jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
-		toRet.add(new jsEOBSIndividual());
-		toRet.getAt(0).setChromosome(newChr);
-		return toRet;
-	}
+        var newChr = tmpChr1.substr(0, point1) +
+                tmpChr2.substr(point1, point2) +
+                tmpChr1.substr(point1 + point2, tmpChr1.length);
+        jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
+        toRet.add(new jsEOBSIndividual());
+        toRet.getAt(0).setChromosome(newChr);
+        return toRet;
+    }
 });
+

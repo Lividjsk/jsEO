@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>core/jsEOUtils.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/jsEO.html">jsEO</a></li>
+                                <li><a href="../classes/jsEOAlgorithm.html">jsEOAlgorithm</a></li>
+                                <li><a href="../classes/jsEOBSGA.html">jsEOBSGA</a></li>
+                                <li><a href="../classes/jsEOBSIndividual.html">jsEOBSIndividual</a></li>
+                                <li><a href="../classes/jsEOBSOpCrossOver.html">jsEOBSOpCrossOver</a></li>
+                                <li><a href="../classes/jsEOBSOpMutation.html">jsEOBSOpMutation</a></li>
+                                <li><a href="../classes/jsEOFVGA.html">jsEOFVGA</a></li>
+                                <li><a href="../classes/jsEOFVIndividual.html">jsEOFVIndividual</a></li>
+                                <li><a href="../classes/jsEOFVOpMutation.html">jsEOFVOpMutation</a></li>
+                                <li><a href="../classes/jsEOGA.html">jsEOGA</a></li>
+                                <li><a href="../classes/jsEOIndividual.html">jsEOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOCrowdingDistance.html">jsEOMOCrowdingDistance</a></li>
+                                <li><a href="../classes/jsEOMOGA.html">jsEOMOGA</a></li>
+                                <li><a href="../classes/jsEOMOIndividual.html">jsEOMOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOOpMutation.html">jsEOMOOpMutation</a></li>
+                                <li><a href="../classes/jsEOMOOpSortingND.html">jsEOMOOpSortingND</a></li>
+                                <li><a href="../classes/jsEOMOTSPGA.html">jsEOMOTSPGA</a></li>
+                                <li><a href="../classes/jsEOOperator.html">jsEOOperator</a></li>
+                                <li><a href="../classes/jsEOOperatorWheel.html">jsEOOperatorWheel</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividuals.html">jsEOOpGetIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNode.html">jsEOOpGetIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNodeMO.html">jsEOOpGetIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournament.html">jsEOOpSelectorTournament</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournamentBinary.html">jsEOOpSelectorTournamentBinary</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividuals.html">jsEOOpSendIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNode.html">jsEOOpSendIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNodeMO.html">jsEOOpSendIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOPGA.html">jsEOPGA</a></li>
+                                <li><a href="../classes/jsEOPIndividual.html">jsEOPIndividual</a></li>
+                                <li><a href="../classes/jsEOPOpMutation.html">jsEOPOpMutation</a></li>
+                                <li><a href="../classes/jsEOPopulation.html">jsEOPopulation</a></li>
+                                <li><a href="../classes/jsEOPosition.html">jsEOPosition</a></li>
+                                <li><a href="../classes/jsEOROGA.html">jsEOROGA</a></li>
+                                <li><a href="../classes/jsEOROIndividual.html">jsEOROIndividual</a></li>
+                                <li><a href="../classes/jsEOROOpMutation.html">jsEOROOpMutation</a></li>
+                                <li><a href="../classes/jsEOUtils.html">jsEOUtils</a></li>
+                                <li><a href="../classes/jsEOWBGA.html">jsEOWBGA</a></li>
+                                <li><a href="../classes/jsEOWBIndividual.html">jsEOWBIndividual</a></li>
+                                <li><a href="../classes/jsEOWBOpMutation.html">jsEOWBOpMutation</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: core/jsEOUtils.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* 
+ * Copyright (C) 2013 vrivas
+ *
+ * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
+ * Javier Guzmń García: jgg00045@red.ujaen.es
+ * GeNeura Team- http://geneura.ugr.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+* jsEO Utils
+*
+* @class jsEOUtils
+*/
+var jsEOUtils = {
+	/**
+	* Parameter to view debugging
+	* @property verbose
+	* @type {Boolean}
+	* @default false
+	*/
+     verbose: false
+	/**
+	* Bests fitness
+	* @property bestFit
+	* @type {Array}
+	* @default Empty
+	*/
+    , bestFit: []
+	/**
+	* Worsts fitness
+	* @property worstFit
+	* @type {Array}
+	* @default Empty
+	*/
+    , worstFit: []
+	/**
+	* Averages fitness
+	* @property averageFit
+	* @type {Array}
+	* @default Empty
+	*/
+    , averageFit: []
+	/**
+	* Positions to the graph TSP
+	* @property positionsTSP
+	* @type {Array}
+	* @default Empty
+	*/
+    , positionsTSP: []
+	/**
+	* Greedy Solution
+	* @property greedySolution
+	* @type {Array}
+	* @default Empty
+	*/
+	, greedySolution: []
+	/**
+	* Tag HTML for output
+	* @property idOutput
+	* @type {String}
+	* @default &quot;jsEOConsole&quot;
+	*/
+    , idOutput: &quot;jsEOConsole&quot;
+	/**
+	* Tag HTML for graphics
+	* @property idGraphics
+	* @type {String}
+	* @default &quot;jsEOGraphics&quot;
+	*/
+    , idGraphics: &quot;jsEOGraphics&quot;
+	/**
+	* Tag HTML for charts
+	* @property idCHart
+	* @type {String}
+	* @default &quot;myChart&quot;
+	*/
+    , idChart: &quot;myChart&quot;
+	/**
+	* Identifier of problem
+	* @property problemID
+	* @type {String}
+	* @default null
+	*/
+    , problemID: null
+	/**
+	* URL for server to method get
+	* @property getURL
+	* @type {String}
+	*/
+    , getURL: &quot;../receiving&quot;
+	/**
+	* URL for server to method send
+	* @property sendURL
+	* @type {String}
+	*/
+    , sendURL: &quot;../sending&quot;
+	/**
+	* URL for server to save experiments
+	* @property experimentsURL
+	* @type {String}
+	*/
+	, experimentsURL: &quot;../experiments&quot;
+	/**
+	* URL to proxy server
+	* @property proxyURL
+	* @type {String}
+	*/
+    , proxyURL: &quot;&quot;
+	/**
+	* Number of individuals displayed
+	* @property showing
+	* @type {Integer}
+	* @default 3
+	*/
+    , showing: 3
+	/**
+	* Maximization or minimization
+	* @property maximize
+	* @type {Boolean}
+	* @default true
+	*/
+    , maximize: true
+	/**
+	* Graph TSP
+	* @property network
+	* @type {Graphic}
+	* @default 0
+	*/
+    , network: 0
+	/**
+	* Grafic to view fitness
+	* @property chart
+	* @type {Graphic}
+	* @default 0
+	*/
+	, chart: 0
+	,
+    /**
+	 * Modify the output
+	 * @method setOutput
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	setOutput: function (_id) {
+        if (typeof _id != &#x27;undefined&#x27;) {
+            this.idOutput = _id;
+        }
+        return this;
+    }
+    , 
+	/**
+	  * Modify the graphics
+	  * @method setGraphics
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 setGraphics: function (_id) {
+			if (typeof _id != &#x27;undefined&#x27;) {
+				this.idGraphics = _id;
+			}
+			return this;
+		}
+		, 
+	/**
+	  * Print the message in the tag HTML with _id
+	  * @method print
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 print: function (_message, _id) {
+			if (typeof _id == &#x27;undefined&#x27; || !_id) {
+				_id = this.idOutput;
+			}
+			var element = document.getElementById(_id);
+			if (element) {
+				element.innerHTML += _message;
+			}
+			return this;
+		}
+		, 
+	/**
+	  * Replace the content in the tag HTML with one id by a new message
+	  * @method replace
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 replace: function (_message, _id) {
+			this.clear(_id);
+			this.print(_message, _id);
+			return this;
+		}
+		, 
+	/**
+	  * Print with line jump
+	  * @method println
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 println: function (_message, _id) {
+			this.print(_message + &quot;&lt;br/&gt;&quot;, _id);
+			return this;
+		}
+		, 
+	/**
+	  * Print with title tag HTML &lt;h2&gt;
+	  * @method h2
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 h2: function (_message, _id) {
+			this.print(&quot;&lt;h2&gt;&quot; + _message + &quot;&lt;/h2&gt;\n&quot;, _id);
+			return this;
+		}
+		, 
+	/**
+	  * Clear the tag HTML with one id
+	  * @method clear
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 clear: function (_id) {
+			if (typeof _id == &#x27;undefined&#x27; || !_id) {
+				_id = this.idOutput;
+			}
+			var element = document.getElementById(_id);
+			if (element) {
+				element.innerHTML = &quot;&quot;;
+			}
+			return this;
+		}
+		, 
+	/**
+	  * Debugging in one tag HTML 
+	  * @method debug
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 debug: function (_message, _id) {
+			if (!this.verbose)
+				return;
+			if (typeof _id == &#x27;undefined&#x27; || !_id) {
+				_id = this.idOutput;
+			}
+			var element = document.getElementById(_id);
+			if (element) {
+				element.innerHTML += &quot;&lt;pre&gt;&quot; + _message + &quot;&lt;/pre&gt;&quot;;
+			}
+			return this;
+		}
+		, 
+	/**
+	  * Debugging with line jump
+	  * @method debugln
+	  * @param {String} _message
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 debugln: function (_message, _id) {
+			this.debug(_message + &quot;&lt;br/&gt;&quot;, _id);
+			return this;
+		}
+		, 
+	/**
+	  * Remove commas from string
+	  * @method remove_commas
+	  * @param {String} _str
+	  * @return CallExpression
+	  */
+	 remove_commas: function (_str) {
+			if (typeof _str == &#x27;undefined&#x27; || !_str) {
+				return &quot;&quot;;
+			}
+			return _str.replace(/,/g, &#x27;&#x27;);
+		}
+		, 
+	/**
+	  * Set verbose to view debugging
+	  * @method setVerbose
+	  * @param {Boolean} boolean
+	  * @return ThisExpression
+	  */
+	 setVerbose: function (boolean) {
+			this.verbose = boolean;
+			return this;
+		}
+		, 
+	/**
+	  * Get verbose to view debugging
+	  * @method getVerbose
+	  * @return MemberExpression
+	  */
+	 getVerbose: function () {
+			return this.verbose;
+		}
+		, 
+	/**
+	  * Modify maximize to minimization or the other way
+	  * @method setMaximize
+	  * @param {Boolean} boolean
+	  * @return ThisExpression
+	  */
+	 setMaximize: function (boolean) {
+			this.maximize = boolean;
+			return this;
+		}
+		, 
+	/**
+	  * Get value of maximize
+	  * @method getMaximize
+	  * @return MemberExpression
+	  */
+	 getMaximize: function () {
+			return this.maximize;
+		}
+		, 
+	/**
+	  * Get the solution greedy
+	  * @method getGreedy
+	  * @return MemberExpression
+	  */
+	 getGreedy: function() {
+			return this.greedySolution;
+		}
+		, 
+	/**
+	  * Modify the solution greedy
+	  * @method setGreedy
+	  * @param {} _greedy
+	  * @return null
+	  */
+	 setGreedy: function(_greedy) {
+			this.greedySolution = _greedy;
+		}
+		, 
+	/**
+	  * Modify the problem identifier
+	  * @method setProblemId
+	  * @param {String} _id
+	  * @return ThisExpression
+	  */
+	 setProblemId: function (_id) {
+			this.problemID = this.remove_commas(_id);
+			return this;
+		}
+		, 
+	/**
+	  * Get the problem identifier
+	  * @method getProblemId
+	  * @return CallExpression
+	  */
+	 getProblemId: function () {
+			return this.remove_commas(this.problemID);
+		}
+		, 
+	/**
+	  * Modify the URL for method get in the server
+	  * @method setGetURL
+	  * @param {String} _url
+	  * @return ThisExpression
+	  */
+	 setGetURL: function (_url) {
+			this.getURL = _url;
+			return this;
+		}
+		, 
+	/**
+	  * Get the URL for method get in the server
+	  * @method getGetURL
+	  * @return MemberExpression
+	  */
+	 getGetURL: function () {
+			return this.getURL;
+		}
+		, 
+	/**
+	  * Modify URL to method send in the server
+	  * @method setSendURL
+	  * @param {String} _url
+	  * @return ThisExpression
+	  */
+	 setSendURL: function (_url) {
+			this.sendURL = _url;
+			return this;
+		}
+		, 
+	/**
+	  * Get URL to method send in the server
+	  * @method getSendURL
+	  * @return MemberExpression
+	  */
+	 getSendURL: function () {
+			return this.sendURL;
+		}
+		, 
+	/**
+	  * Get URL to method to save experiments in the server
+	  * @method getExperimentsURL
+	  * @return MemberExpression
+	  */
+	 getExperimentsURL: function (){
+			return this.experimentsURL;	
+		}
+		, 
+	/**
+	  * Set URL to method to save experiments in the server
+	  * @method setExperimentsURL
+	  * @param {} _url
+	  * @return ThisExpression
+	  */
+	 setExperimentsURL: function (_url){
+			this.experimentsURL = _url;
+			return this;
+		}
+		, 
+	/**
+	  * Set the proxy URL
+	  * @method setProxyURL
+	  * @param {String} _url
+	  * @return ThisExpression
+	  */
+	 setProxyURL: function (_url) {
+			this.proxyURL = _url;
+			return this;
+		}
+		, 
+	/**
+	  * Get the proxy URL
+	  * @method getProxyURL
+	  * @return MemberExpression
+	  */
+	 getProxyURL: function () {
+			return this.proxyURL;
+		}
+		, 
+	/**
+	  * Set value to display individuals
+	  * @method setShowing
+	  * @param {Integer} _val
+	  * @return ThisExpression
+	  */
+	 setShowing: function (_val) {
+			this.showing = (_val &gt;= 0) ? _val : this.showing;
+			return this;
+		}
+		, 
+	/**
+	  * Get value to display individuals
+	  * @method getShowing
+	  * @return MemberExpression
+	  */
+	 getShowing: function () {
+			return this.showing;
+    	}
+	,
+    /**
+	 * Show population in table with HTML
+	 * @method showPop
+	 * @param {jsEOPopulation} _aPop
+	 * @param {String} _message
+	 * @param {Integer} _numIndiv
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	showPop: function (_aPop, _message, _numIndiv, _id) {
+
+			if (typeof _aPop == &#x27;undefined&#x27;) {
+				return this;
+			}
+
+			// Fixing the value of _numIndiv in case of problems
+			_numIndiv = (typeof _numIndiv == &#x27;undefined&#x27;) ? this.showing : _numIndiv;
+			_numIndiv = (_numIndiv &lt; 0 || _numIndiv &gt; _aPop.length()) ? _aPop.length() : _numIndiv;
+
+			var tb = &quot;&quot;;
+			tb += &quot;&lt;div class=&#x27;card&#x27;&gt;&quot;+
+					&quot;&lt;div class=&#x27;card-header text-center&#x27;&gt;&quot;+
+					&quot;&lt;h2&gt;&quot; + _message + &quot;&lt;/h2&gt;&quot; +
+					&quot;&lt;h6&gt;&quot; + &quot;Mostrando los 5 mejores individuos&quot; + &quot;&lt;/h6&gt;&quot; + &quot;&lt;/div&gt;&quot;+
+					&quot;&lt;div class=&#x27;card-block&#x27;&gt;&quot;;
+			tb += &quot;&lt;table class=&#x27;tb_indiv&#x27; cols=&#x27;3&#x27; border=&#x27;0&#x27;&gt;\n&lt;tr&gt;\n&quot; +
+					&quot;&lt;th&gt;Cromosoma&lt;/th&gt;\n &quot; +
+					&quot;&lt;th&gt;Fitness&lt;/th&gt;\n &quot; +
+					&quot;&lt;/tr&gt;\n &quot;;
+			for (var i = 0; i &lt; _numIndiv; ++i) {
+				var chr = _aPop.getAt(i).getChromosome().toString();
+				tb += &quot;&lt;tr&gt;\n &quot; +
+						&quot;&lt;td&gt;&lt;span title=&#x27;&quot; + chr + &quot;&#x27;&gt;&quot; +
+						((chr.length &lt;= 10) ? chr : (chr.substr(0, 10) + &quot;...&quot;)) + &quot;&lt;/span&gt;&lt;/td&gt;\n&quot; +
+						&quot;&lt;td&gt;&quot; + _aPop.getAt(i).getFitness() + &quot;&lt;/td&gt;\n&quot; +
+						&quot;&lt;/tr&gt;\n &quot;;
+
+			}
+			tb += &quot;&lt;/table&gt;\n&quot;;
+			tb += &quot;&lt;/div&gt;&quot;+ &quot;&lt;/div&gt;&quot;;
+			this.print(tb, _id);
+
+			return this;
+	}
+	, 
+	/**
+	 * Show population Multiobjective for TSP in table with HTML
+	 * @method showPopMOTSP
+	 * @param {jsEOPopulation} _aPop
+	 * @param {String} _message
+	 * @param {Integer} _numIndiv
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	showPopMOTSP: function (_aPop, _message, _numIndiv, _id) {
+        
+        if (typeof _aPop == &#x27;undefined&#x27;) {
+            return this;
+        }
+
+        // Fixing the value of _numIndiv in case of problems
+        _numIndiv = (typeof _numIndiv == &#x27;undefined&#x27;) ? this.showing : _numIndiv;
+        _numIndiv = (_numIndiv &lt; 0 || _numIndiv &gt; _aPop.length()) ? _aPop.length() : _numIndiv;
+
+        var tb = &quot;&quot;;
+		tb += &quot;&lt;div class=&#x27;card&#x27;&gt;&quot;+
+				&quot;&lt;div class=&#x27;card-header text-center&#x27;&gt;&quot;+
+				&quot;&lt;h2&gt;&quot; + _message + &quot;&lt;/h2&gt;&quot; +
+			    &quot;&lt;h6&gt;&quot; + &quot;Mostrando los 5 mejores individuos&quot; + &quot;&lt;/h6&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+		tb += &quot;&lt;div class=&#x27;card-block&#x27;&gt;&quot;;
+        tb += &quot;&lt;table class=&#x27;tb_indiv&#x27; cols=&#x27;4&#x27; border=&#x27;0&#x27;&gt;\n&lt;tr&gt;\n&quot; +
+                &quot;&lt;th class=&#x27;chr&#x27;&gt;Cromosoma&lt;/th&gt;\n &quot; +
+                &quot;&lt;th class=&#x27;fit&#x27;&gt;Distancia&lt;/th&gt;\n &quot; +
+                &quot;&lt;th class=&#x27;fit&#x27;&gt;Tiempo&lt;/th&gt;\n &quot; +
+				&quot;&lt;th class=&#x27;front&#x27; style=&#x27;text-align: center&#x27;&gt;Frente&lt;/th&gt;\n &quot; +
+                &quot;&lt;/tr&gt;\n &quot;;
+        for (var i = 0; i &lt; _numIndiv; ++i) {
+            var chr = _aPop.getAt(i).getChromosome().toString();
+            tb += &quot;&lt;tr&gt;\n &quot; +
+                    &quot;&lt;td class=&#x27;chr&#x27;&gt;&lt;span title=&#x27;&quot; + chr + &quot;&#x27;&gt;&quot; +
+                    ((chr.length &lt;= 50) ? chr : (chr.substr(0) + &quot;...&quot;)) + &quot;&lt;/span&gt;&lt;/td&gt;\n&quot; +
+                    &quot;&lt;td class=&#x27;chr&#x27;&gt;&quot; + _aPop.getAt(i).getFitnessAt(0) + &quot;&lt;/td&gt;\n&quot; +
+                    &quot;&lt;td class=&#x27;chr&#x27;&gt;&quot; + _aPop.getAt(i).getFitnessAt(1) + &quot;&lt;/td&gt;\n&quot; +
+					&quot;&lt;td class=&#x27;chr&#x27;&gt;&quot; + ((_aPop.getAt(i).getRank() == 0)?&quot;Frente de Pareto&quot;:_aPop.getAt(i).getRank()) + &quot;&lt;/td&gt;\n&quot; +
+                    &quot;&lt;/tr&gt;\n &quot;;
+        }
+        tb += &quot;&lt;/table&gt;\n&quot;;
+		tb += &quot;&lt;/div&gt;&quot;+ &quot;&lt;/div&gt;&quot;;
+        this.print(tb, _id);
+
+        return this;
+    }
+    , 
+	/**
+	 * Show population for N-Queens problem in table with HTML
+	 * @method showPopQueens
+	 * @param {jsEOPopulation} _aPop
+	 * @param {String} _message
+	 * @param {Integer} _numIndiv
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	showPopQueens: function (_aPop, _message, _numIndiv, _id) {
+        
+        if (typeof _aPop == &#x27;undefined&#x27;) {
+            return this;
+        }
+
+        // Fixing the value of _numIndiv in case of problems
+        _numIndiv = (typeof _numIndiv == &#x27;undefined&#x27;) ? this.showing : _numIndiv;
+        _numIndiv = (_numIndiv &lt; 0 || _numIndiv &gt; _aPop.length()) ? _aPop.length() : _numIndiv;
+
+        var tb = &quot;&quot;;
+		tb += &quot;&lt;div class=&#x27;card&#x27;&gt;&quot;+
+				&quot;&lt;div class=&#x27;card-header text-center&#x27;&gt;&quot;+
+				&quot;&lt;h2&gt;&quot; + _message + &quot;&lt;/h2&gt;&quot; +
+				&quot;&lt;h6&gt;&quot; + &quot;Mostrando los 5 mejores individuos&quot; + &quot;&lt;/h6&gt;&quot; + &quot;&lt;/div&gt;&quot;+
+				&quot;&lt;div class=&#x27;card-block&#x27;&gt;&quot;;
+        tb += &quot;&lt;table class=&#x27;tb_indiv&#x27; cols=&#x27;3&#x27; border=&#x27;0&#x27;&gt;\n&lt;tr&gt;\n&quot; +
+                &quot;&lt;th class=&#x27;chr&#x27;&gt;Cromosoma&lt;/th&gt;\n &quot; +
+                &quot;&lt;th class=&#x27;fit&#x27;&gt;Fitness&lt;/th&gt;\n &quot; +
+                &quot;&lt;/tr&gt;\n &quot;;
+        for (var i = 0; i &lt; _numIndiv; ++i) {
+            var chr = _aPop.getAt(i).show();
+            tb += &quot;&lt;tr&gt;\n &quot; +
+                    &quot;&lt;td class=&#x27;chr&#x27;&gt;&lt;span title=&#x27;&quot; + chr + &quot;&#x27;&gt;&quot; +
+                    ((chr.length &lt;= 50) ? chr : (chr.substr(0) + &quot;...&quot;)) + &quot;&lt;/span&gt;&lt;/td&gt;\n&quot; +
+                    &quot;&lt;td class=&#x27;chr&#x27;&gt;&quot; + _aPop.getAt(i).getFitness() + &quot;&lt;/td&gt;\n&quot; +
+                    &quot;&lt;/tr&gt;\n &quot;;
+
+        }
+        tb += &quot;&lt;/table&gt;\n&quot;;
+		tb += &quot;&lt;/div&gt;&quot;+ &quot;&lt;/div&gt;&quot;;
+        this.print(tb, _id);
+
+        return this;
+    }
+    , 
+		/**
+	 * Average of fitnnes of the population
+	 * @method averageFitness
+	 * @param {jsEOPopulation} _aPop
+	 * @return BinaryExpression
+	 */
+	averageFitness: function (_aPop) {
+		
+		//Function to calculate the average fitness of a population
+        
+		var toRet = 0;
+        if (typeof _aPop == &#x27;undefined&#x27; || _aPop.length() &lt;= 0) {
+            return toRet;
+        }
+        for (var i = 0; i &lt; _aPop.length(); ++i)
+            toRet += _aPop.getAt(i).getFitness();
+        return (toRet / _aPop.length());
+		
+    }
+     ,
+	/**
+	 * Average of fitness of the population multiobjective
+	 * @method averageFitnessMO
+	 * @param {jsEOPopulation} _aPop
+	 * @param {Array} _objectives
+	 * @return toRet
+	 */
+	averageFitnessMO: function (_aPop, _objectives) {
+		
+		//Function to calculate the average fitness of a population multiobjective
+        
+		var toRet = &quot;&quot;;
+
+        if (typeof _aPop == &#x27;undefined&#x27; || _aPop.length() &lt;= 0) {
+            return toRet;
+        }
+
+        var _aux = 0;
+        for (var j = 0; j &lt; _objectives; ++j) {
+            if (j &gt; 0)
+                toRet += &quot; | &quot;;
+            for (var i = 0; i &lt; _aPop.length(); ++i) {
+                _aux += _aPop.getAt(i).getFitnessAt(j);
+            }
+            toRet += (_aux / _aPop.length());
+        }
+        return toRet;
+		
+    }
+     ,
+	/**
+	 * The best minimizing fitness of the population
+	 * @method bestFitnessMin
+	 * @param {jsEOPopulation} _aPop
+	 * @return toRet
+	 */
+	bestFitnessMin: function (_aPop) {
+		
+		//Function to calculate the best fitness of one population with the criterion of minimization
+		
+        var toRet = 9999999;
+        if (typeof _aPop == &#x27;undefined&#x27; || _aPop.length() &lt;= 0) {
+            return toRet;
+        }
+        for (var i = 0; i &lt; _aPop.length(); ++i) {
+            if (_aPop.getAt(i).getFitness() &lt; toRet)
+                toRet = _aPop.getAt(i).getFitness();
+        }
+        return toRet;
+		
+    }
+     ,
+	/**
+	 * The best minimizing fitness of the population multiobjective
+	 * @method bestFitnessMinMO
+	 * @param {jsEOPopulation} _aPop
+	 * @param {Array} _objectives
+	 * @return toRet
+	 */
+	bestFitnessMinMO: function (_aPop, _objectives) {
+
+		//Function to calculate the best fitness of one population multiobjective with the criterion of minimization
+		
+        var toRet = &quot;&quot;;
+
+        if (typeof _aPop == &#x27;undefined&#x27; || _aPop.length() &lt;= 0) {
+            return toRet;
+        }
+
+        for (var j = 0; j &lt; _objectives; ++j) {
+			var min = 9999999;
+            if (j &gt; 0)
+                toRet += &quot; | &quot;;
+            for (var i = 0; i &lt; _aPop.length(); ++i) {
+                if (_aPop.getAt(i).getFitnessAt(j) &lt; min)
+                    min = _aPop.getAt(i).getFitnessAt(j);
+            }
+            
+            toRet += min;
+        }
+        
+        return toRet;
+    }
+     ,
+	/**
+	 * The best maximizing fitness of the population
+	 * @method bestFitnessMax
+	 * @param {jsEOPopulation} _aPop
+	 * @return toRet
+	 */
+	bestFitnessMax: function (_aPop) {
+		
+		//Function to calculate the best fitness with the criterion of maximization
+		
+        var toRet = 0;
+        if (typeof _aPop == &#x27;undefined&#x27; || _aPop.length() &lt;= 0) {
+            return toRet;
+        }
+        for (i = 0; i &lt; _aPop.length(); ++i) {
+            if (_aPop.getAt(i).getFitness() &gt; toRet)
+                toRet = _aPop.getAt(i).getFitness();
+        }
+        return toRet;
+    }
+     ,
+	/**
+	 * Get input param
+	 * @method getInputParam
+	 * @param {String} _param
+	 * @param {Value} _default
+	 * @return ConditionalExpression
+	 */
+	getInputParam: function (_param, _default) {
+        var str = location.search.toLowerCase();
+        var pos = str.indexOf((_param + &quot;=&quot;).toLowerCase());
+        return (pos &lt; 0) ? _default : str.substring(str.indexOf(&quot;=&quot;, pos) + 1,
+                (str.indexOf(&quot;&amp;&quot;, pos) &gt;= 0) ? str.indexOf(&quot;&amp;&quot;, pos) : str.length);
+    }
+     ,
+	/**
+	 * Clear the bests fitness
+	 * @method clearBestFitness
+	 * @return ThisExpression
+	 */
+	clearBestFitness: function () {
+        bestFitness.length = 0;
+        return this;
+    }
+    ,
+	/**
+	 * Clear the worsts fitness
+	 * @method clearWorstFitness
+	 * @return ThisExpression
+	 */
+	clearWorstFitness: function () {
+        worstFitness.length = 0;
+        return this;
+    }
+     ,
+	/**
+	 * Clear the averages fitness
+	 * @method clearAverageFitness
+	 * @return ThisExpression
+	 */
+	clearAverageFitness: function () {
+        averageFitness.length = 0;
+        return this;
+    }
+     ,
+	/**
+	 * Clear stats
+	 * @method clearStats
+	 * @return ThisExpression
+	 */
+	clearStats: function () {
+        this.clearAverageFitness();
+        this.clearBestFitness();
+        this.clearWorstFitness();
+        return this;
+    }
+     ,
+	/**
+	 * Record best fitness
+	 * @method recordBestFitness
+	 * @param {Integer} _value
+	 * @return ThisExpression
+	 */
+	recordBestFitness: function (_value) {
+        this.bestFit.push(_value);
+        return this;
+    }
+     ,
+	/**
+	 * Record worst fitness
+	 * @method recordWorstFitness
+	 * @param {Integer} _value
+	 * @return ThisExpression
+	 */
+	recordWorstFitness: function (_value) {
+        this.worstFit.push(_value);
+        return this;
+    }
+     ,
+	/**
+	 * Record average fitness
+	 * @method recordAverageFitness
+	 * @param {Integer} _value
+	 * @return ThisExpression
+	 */
+	recordAverageFitness: function (_value) {
+        this.averageFit.push(_value);
+        return this;
+    }
+     ,
+	/**
+	 * Record stats
+	 * @method recordStats
+	 * @param {Array} _worst
+	 * @param {Array} _average
+	 * @param {Array} _best
+	 * @return ThisExpression
+	 */
+	recordStats: function (_worst, _average, _best) {
+        this.recordWorstFitness(_worst);
+        this.recordAverageFitness(_average);
+        this.recordBestFitness(_best);
+        return this;
+    }
+     ,
+	/**
+	 * Draw graphic with best fitness
+	 * @method drawBestFitness
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawBestFitness: function (_id) {
+        if (typeof _id == &#x27;undefined&#x27; || !_id) {
+            _id = this.idGraphics;
+        }
+        google.load(&quot;visualization&quot;, &quot;1&quot;, {packages: [&quot;corechart&quot;]});
+        google.setOnLoadCallback(function () {
+            var data = new google.visualization.DataTable();
+            data.addColumn(&#x27;number&#x27;, &#x27;Generation&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Fitness&#x27;);
+            for (var i = 0; i &lt; jsEOUtils.bestFit.length; ++i) {
+                data.addRow([i, jsEOUtils.bestFit[i]]);
+            }
+
+            var options = {
+                title: &#x27;Evolution of Best Fitness&#x27;
+            };
+            var chart = new google.visualization.LineChart(document.getElementById(_id));
+            chart.draw(data, options);
+        });
+        return this;
+    }
+     ,
+	/**
+	 * Draw graphic with worst fitness
+	 * @method drawWorstFitness
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawWorstFitness: function (_id) {
+        if (typeof _id == &#x27;undefined&#x27; || !_id) {
+            _id = this.idGraphics;
+        }
+        google.load(&quot;visualization&quot;, &quot;1&quot;, {packages: [&quot;corechart&quot;]});
+        google.setOnLoadCallback(function () {
+            var data = new google.visualization.DataTable();
+            data.addColumn(&#x27;number&#x27;, &#x27;Generation&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Fitness&#x27;);
+            for (var i = 0; i &lt; jsEOUtils.worstFit.length; ++i) {
+                data.addRow([i, jsEOUtils.worstFit[i]]);
+            }
+
+            var options = {
+                title: &#x27;Evolution of Worst Fitness&#x27;
+            };
+            var chart = new google.visualization.LineChart(document.getElementById(_id));
+            chart.draw(data, options);
+        });
+        return this;
+    }
+     ,
+	/**
+	 * Draw graph for TSP
+	 * @method drawGraphTSP
+	 * @param {jsEOIndividual} _aIndividual
+	 * @param {Array} _positions
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawGraphTSP: function (_aIndividual, _positions, _id) {
+
+        if (typeof _id === &#x27;undefined&#x27; || !_id) {
+            _id = &quot;jsEOTSP&quot;;
+        }
+
+        if (typeof _aIndividual == &#x27;undefined&#x27;) {
+            return this;
+        }
+
+        var container = document.getElementById(_id);
+
+        var chromosome = _aIndividual.getChromosome();
+
+        var tam = chromosome.length;
+
+        //We create a vector to insert the cities
+        var auxNodes = [];
+
+        var x = 0, y = 0;
+
+        //We insert the cities into the vector
+        for (var i = 0; i &lt; chromosome.length; ++i) {
+            auxNodes.push({id: i, label: &#x27;Ciudad &#x27; + i, x: _positions[i].x * 5, y: _positions[i].y * 5});
+        }
+
+        //We create the set of nodes from the vector with the cities
+        var nodes = new vis.DataSet(auxNodes);
+
+        //We create a vector to insert the axes
+        var auxEdges = [];
+
+        var count = 0;
+        //We connect all the cities with each other
+        for (var i = 0; i &lt; chromosome.length; ++i) {
+            for (var j = 0; j &lt; chromosome.length; ++j) {
+                if (i != j &amp;&amp; i &lt; j)
+                    auxEdges.push({from: i, to: j});
+            }
+        }
+
+		//We draw red color the minimum path obtained with jsEO
+        var a = 0;
+        while (count &lt; tam - 1) {
+            if (auxEdges[a].from == chromosome[count] &amp;&amp; auxEdges[a].to == chromosome[count + 1] ||
+                    auxEdges[a].from == chromosome[count + 1] &amp;&amp; auxEdges[a].to == chromosome[count]) {
+                auxEdges[a].color = &#x27;red&#x27;;
+                count++;
+                a = 0;
+            } else
+                a++;
+        }
+
+        auxEdges[chromosome[tam - 1] - 1].color = &#x27;red&#x27;;
+		
+		if(this.greedySolution.length != 0){
+		//Now we do the same but with greedy solution.
+		//In this case we will paint it green.
+		//We will only paint it in case there is a greedy solution available
+		var a = 0, count = 0;
+        while (count &lt; tam - 1) {
+            if (auxEdges[a].from == this.greedySolution[0][count] &amp;&amp; auxEdges[a].to == this.greedySolution[0][count + 1] ||
+                    auxEdges[a].from == this.greedySolution[0][count + 1] &amp;&amp; auxEdges[a].to == this.greedySolution[0][count]) {
+                auxEdges[a].color = &#x27;green&#x27;;
+                count++;
+                a = 0;
+            } else
+                a++;
+        }
+
+        auxEdges[this.greedySolution[0][tam - 1] - 1].color = &#x27;green&#x27;;
+		}
+
+        var edges = new vis.DataSet(auxEdges);
+
+		//We add the axes and the nodes
+        var data = {nodes: nodes, edges: edges};
+
+        var options = {
+            layout: {
+                randomSeed: jsEOUtils.intRandom(1, 100000),
+                improvedLayout: false
+            }
+        }
+
+		//And finally we create the graph
+        this.network = new vis.Network(container, data, options);
+
+        return this;
+    }
+     ,
+	/**
+	 * Draw chessboard to problem n-queens
+	 * @method drawChessBoard
+	 * @param {jsEOIndividual} _aIndividual
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawChessBoard: function (_aIndividual, _id) {
+        if (typeof _id === &#x27;undefined&#x27; || !_id) {
+            _id = this.idGraphics;
+        }
+
+        if (typeof _aIndividual == &#x27;undefined&#x27;) {
+            return this;
+        }
+
+        var chromosome = _aIndividual.getChromosome();
+
+        var figQueen = &quot;♔&quot;;
+
+        //Creation of the Chessboard
+        var table = document.getElementById(&quot;tablero&quot;);
+        table.className = &quot;table-chess&quot;;
+        for (f = 0; f &lt; chromosome.length; ++f) {
+            var fila = table.insertRow(table.rows.length);
+            fila.className = &quot;tr-chess&quot;;
+            for (c = 0; c &lt; chromosome.length; ++c) {
+                var celda = fila.insertCell(fila.cells.length);
+                celda.className = &quot;td-chess&quot;;
+            }
+        }
+
+        for (c = 0; c &lt; chromosome.length; ++c) {
+            table.rows[chromosome[c].getX()].cells[chromosome[c].getY()].innerHTML = &quot;&lt;span class=negras&gt;&quot; + figQueen + &quot;&lt;/span&gt;&quot;;
+        }
+
+        return this;
+    }
+     ,
+	/**
+	 * Draw graphic with the average fitness
+	 * @method drawAverageFitness
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawAverageFitness: function (_id) {
+        if (typeof _id === &#x27;undefined&#x27; || !_id) {
+            _id = this.idGraphics;
+        }
+        google.load(&quot;visualization&quot;, &quot;1&quot;, {packages: [&quot;corechart&quot;]});
+        google.setOnLoadCallback(function () {
+            var data = new google.visualization.DataTable();
+            data.addColumn(&#x27;number&#x27;, &#x27;Generation&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Fitness&#x27;);
+            for (var i = 0; i &lt; jsEOUtils.averageFit.length; ++i) {
+                data.addRow([i, jsEOUtils.averageFit[i]]);
+            }
+
+            var options = {
+                title: &#x27;Evolution of Average Fitness&#x27;
+            };
+            var chart = new google.visualization.LineChart(document.getElementById(_id));
+            chart.draw(data, options);
+        });
+        return this;
+    }
+	,
+	/**
+	 * Draw graphic with fitness
+	 * @method drawFitness
+	 * @param {jsEOPopulation} _aPopInitial
+	 * @param {jsEOPopulation} _aPopFinal
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawFitness: function (_aPopInitial, _aPopFinal, _id){
+		if(typeof _id === &#x27;undefined&#x27; || !_id){
+			_id = &quot;lines&quot;;
+		}
+		
+		//Creating graph for representing solutions with jsEO
+		var ctx = document.getElementById(_id).getContext(&quot;2d&quot;);
+		
+		var fitnessInit = [], fitnessFin = [], fitnessGreedy = [];
+		
+		for(var i = 0; i &lt; _aPopInitial.length; ++i){
+			fitnessInit.push(_aPopInitial[i]);
+			fitnessFin.push(_aPopFinal[i]);
+			fitnessGreedy.push(this.greedySolution[1]);
+		}
+		
+		var blue = &quot;rgba(151,187,205,1)&quot;;
+		var red = &quot;rgba(255, 99, 132, 1)&quot;;
+		var green = &quot;rgb(75, 192, 192)&quot;;
+		var data = {};
+		
+		if(this.greedySolution.length != 0){
+		
+		data = {
+				labels: _aPopInitial.map(function (e, i){
+					return &quot;Individuo &quot; + (i+1);
+				}),
+				datasets: [
+					{
+						label: &quot;Fitness Población Inicial&quot;,
+						fill: false,
+						backgroundColor: red,
+						borderColor: red,
+						pointBackgroundColor: red,
+						pointHoverBackgroundColor: red,
+						pointHoverBorderColor: red,
+						pointRadius: 5,
+						data: fitnessInit
+					},
+					{
+						label: &quot;Fitness Población Final&quot;,
+						fill: false,
+						backgroundColor: blue,
+						borderColor: blue,
+						pointBackgroundColor: blue,
+						pointHoverBackgroundColor: blue,
+						pointHoverBorderColor: blue,
+						pointRadius: 5,
+						data: fitnessFin
+					},
+					{
+						label: &quot;Solución Algoritmo Greedy&quot;,
+						fill: false,
+						backgroundColor: green,
+						borderColor: green,
+						pointBackgroundColor: green,
+						pointHoverBackgroundColor: green,
+						pointHoverBorderColor: green,
+						pointRadius: 5,
+						data: fitnessGreedy
+					}
+				]
+			};
+		}else{
+			data = {
+				labels: _aPopInitial.map(function (e, i){
+					return &quot;Individuo &quot; + i;
+				}),
+				datasets: [
+					{
+						label: &quot;Fitness Población Inicial&quot;,
+						fill: false,
+						backgroundColor: red,
+						borderColor: red,
+						pointBackgroundColor: red,
+						pointHoverBackgroundColor: red,
+						pointHoverBorderColor: red,
+						pointRadius: 5,
+						data: fitnessInit
+					},
+					{
+						label: &quot;Fitness Población Final&quot;,
+						fill: false,
+						backgroundColor: blue,
+						borderColor: blue,
+						pointBackgroundColor: blue,
+						pointHoverBackgroundColor: blue,
+						pointHoverBorderColor: blue,
+						pointRadius: 5,
+						data: fitnessFin
+					}
+				]
+			};
+		}
+		
+		var myLineChart = new Chart(ctx, {
+					type: &#x27;line&#x27;,
+					data: data,
+					options: {
+						pointDot: true
+						, scaleSteps: 10
+						, scaleShowLabels: true
+						, responsive: true
+						, animation: false
+					}
+        });
+		this.chart = myLineChart;
+        return this;
+		
+	}
+	 ,
+	/**
+	 * Show description for problem
+	 * @method showDescription
+	 * @param {String} _problem
+	 * @param {String} _id
+	 * @return null
+	 */
+	showDescription: function (_problem, _id){
+		
+		//Function that shows the description of each problem. To view a new problem, add the description here
+		
+		var p = &quot;&quot;;
+		
+		switch(_problem){
+			case &#x27;TSP&#x27;:
+				p += &quot;&lt;div class=&#x27;row text-center&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; + 
+					 &quot;&lt;h1&gt;&quot; + &quot;jsEO Testeando Problema: TSP&quot; + &quot;&lt;/h1&gt;&quot;+
+					 &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				p += &quot;&lt;div id=&#x27;subtitle&#x27; class=&#x27;row text-justify&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; +
+					 &quot;&lt;h5&gt;&quot; + &quot;Estamos tratando de resolver el TSP(Problema del Viajante de Comercio),&quot;+
+					&quot;donde tenemos que encontrar un camino que atraviese todas las ciudades&quot; +
+					&quot;sin pasar por ninguna de ellas de nuevo y regresar a la ciudad donde comenzamos.&quot; +
+					&quot;En este caso, la mejor solución será aquella que tenga la menor distancia.&quot;;
+				p += &quot;&lt;/h5&gt;&quot; + &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				break;
+			case &#x27;NQueens&#x27;:
+				p += &quot;&lt;div class=&#x27;row text-center&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; + 
+					 &quot;&lt;h1&gt;&quot; + &quot;jsEO Testeando Problema: Problema de las N-Reinas&quot; + &quot;&lt;/h1&gt;&quot;+
+					 &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				p += &quot;&lt;div id=&#x27;subtitle&#x27; class=&#x27;row text-justify&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; +
+					 &quot;&lt;h5&gt;&quot; + &quot;Estamos tratando de resolver el problema de las N-Reinas.&quot; +
+					&quot;Este intenta colocar en un tablero de tamaño NxN, N-Reinas de manera que no se coman entre sí,&quot; +
+					&quot;es decir, ni horizontalmente, ni verticalmente ni diagonalmente.&quot; +
+					&quot;En este caso, la mejor solución será aquella en la que menos reinas se coman entre sí.&quot;;
+				p += &quot;&lt;/h5&gt;&quot; + &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				break;
+			case &#x27;TSP_MO&#x27;:
+				p += &quot;&lt;div class=&#x27;row text-center&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; + 
+					 &quot;&lt;h1&gt;&quot; + &quot;jsEO Testeando Problema: TSP Multiobjetivo&quot; + &quot;&lt;/h1&gt;&quot;+
+					 &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				p += &quot;&lt;div id=&#x27;subtitle&#x27; class=&#x27;row text-justify&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; +
+					 &quot;&lt;h5&gt;&quot; + &quot;En este caso trataremos de resolver el problema del TSP,&quot;+
+					&quot;pero utilizando un algoritmo multiobjetivo. En este caso, el algoritmo multiobjetivo&quot; +
+					&quot;tendrá 2 parámetros, el principal, que seguirá siendo la distancia y el tiempo,&quot;+
+					&quot;de modo que no sólo se pretende recorrer todas las ciudades y volver al origen en la&quot; +
+					&quot;menor distancia posible, sino que, hay que hacerlo también en el menor tiempo posible.&quot;;
+				p += &quot;&lt;/h5&gt;&quot; + &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				break;
+			case &#x27;Bit&#x27;:
+				p += &quot;&lt;div class=&#x27;row text-center&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; + 
+					 &quot;&lt;h1&gt;&quot; + &quot;jsEO Testeando Problema: Funcion de Royal Road 256&quot; + &quot;&lt;/h1&gt;&quot;+
+					 &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				p += &quot;&lt;div id=&#x27;subtitle&#x27; class=&#x27;row text-justify&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; +
+					 &quot;&lt;h5&gt;&quot; + &quot;Estamos tratando de encontrar cadenas de bits con una longitud de 256, con&quot; + 
+                &quot;el número máximo de secuencias de &#x27;0000&#x27; y / o &#x27;1111&#x27;. (El &quot; +
+                &quot;máximo global es 253, correspondiente a la cadena compuesta por sólo &#x27;1s&#x27;&quot; +
+                &quot;o solo &#x27;0s&#x27;).&quot;;
+            	p += &quot;&lt;/h5&gt;&quot; + &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				break;
+			case &#x27;Float&#x27;:
+				p += &quot;&lt;div class=&#x27;row text-center&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; + 
+					 &quot;&lt;h1&gt;&quot; + &quot;jsEO Testeando Problema: Ecuacion con 128 Terminos&quot; + &quot;&lt;/h1&gt;&quot;+
+					 &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				p += &quot;&lt;div id=&#x27;subtitle&#x27; class=&#x27;row text-justify&#x27;&gt;&quot; + &quot;&lt;div class=&#x27;col-12&#x27;&gt;&quot; +
+					 &quot;&lt;h5&gt;&quot; + &quot;Estamos tratando de resolver la siguiente ecuación:&quot;+ &quot;&lt;br&gt;&quot;;
+                p += &quot;(x&lt;sub&gt;0&lt;/sub&gt; -7.156) + (x&lt;sub&gt;1&lt;/sub&gt; +2.229) +&quot; +
+                &quot;(x&lt;sub&gt;2&lt;/sub&gt; -5.535) + (x&lt;sub&gt;3&lt;/sub&gt; -4.618) +&quot; +
+                &quot;(x&lt;sub&gt;4&lt;/sub&gt; +6.902) + (x&lt;sub&gt;5&lt;/sub&gt; -3.912) +&quot; +
+                &quot;(x&lt;sub&gt;6&lt;/sub&gt; +7.246) + (x&lt;sub&gt;7&lt;/sub&gt; -9.204) +&quot; +
+                &quot;(x&lt;sub&gt;8&lt;/sub&gt; +8.919) + (x&lt;sub&gt;9&lt;/sub&gt; +5.979) +&quot; +
+                &quot;(x&lt;sub&gt;10&lt;/sub&gt; +9.348) + (x&lt;sub&gt;11&lt;/sub&gt; +9.444) +&quot; +
+                &quot;(x&lt;sub&gt;12&lt;/sub&gt; +8.353) + (x&lt;sub&gt;13&lt;/sub&gt; +5.018) +&quot; +
+                &quot;(x&lt;sub&gt;14&lt;/sub&gt; +4.606) + (x&lt;sub&gt;15&lt;/sub&gt; +0.961) +&quot; +
+                &quot;(x&lt;sub&gt;16&lt;/sub&gt; +7.225) + (x&lt;sub&gt;17&lt;/sub&gt; +1.903) +&quot; +
+                &quot;(x&lt;sub&gt;18&lt;/sub&gt; +1.452) + (x&lt;sub&gt;19&lt;/sub&gt; -5.583) +&quot; +
+                &quot;(x&lt;sub&gt;20&lt;/sub&gt; -9.210) + (x&lt;sub&gt;21&lt;/sub&gt; +4.003) + (x&lt;sub&gt;22&lt;/sub&gt; -2.308) + (x&lt;sub&gt;23&lt;/sub&gt; -9.555) + (x&lt;sub&gt;24&lt;/sub&gt; +5.903) + (x&lt;sub&gt;25&lt;/sub&gt; -3.676) + (x&lt;sub&gt;26&lt;/sub&gt; -9.837) + (x&lt;sub&gt;27&lt;/sub&gt; -5.272) + (x&lt;sub&gt;28&lt;/sub&gt; +3.882) + (x&lt;sub&gt;29&lt;/sub&gt; -5.365) + (x&lt;sub&gt;30&lt;/sub&gt; +8.509) + (x&lt;sub&gt;31&lt;/sub&gt; -8.524) + (x&lt;sub&gt;32&lt;/sub&gt; +5.927) + (x&lt;sub&gt;33&lt;/sub&gt; -5.617) + (x&lt;sub&gt;34&lt;/sub&gt; +8.877) + (x&lt;sub&gt;35&lt;/sub&gt; +6.647) + (x&lt;sub&gt;36&lt;/sub&gt; +6.081) + (x&lt;sub&gt;37&lt;/sub&gt; +0.921) + (x&lt;sub&gt;38&lt;/sub&gt; +5.566) + (x&lt;sub&gt;39&lt;/sub&gt; -7.609) + (x&lt;sub&gt;40&lt;/sub&gt; -0.804) + (x&lt;sub&gt;41&lt;/sub&gt; -8.849) + (x&lt;sub&gt;42&lt;/sub&gt; +6.493) + (x&lt;sub&gt;43&lt;/sub&gt; -3.435) + (x&lt;sub&gt;44&lt;/sub&gt; +9.561) + (x&lt;sub&gt;45&lt;/sub&gt; +1.836) + (x&lt;sub&gt;46&lt;/sub&gt; -8.239) + (x&lt;sub&gt;47&lt;/sub&gt; +4.165) + (x&lt;sub&gt;48&lt;/sub&gt; -0.434) + (x&lt;sub&gt;49&lt;/sub&gt; +5.654) + (x&lt;sub&gt;50&lt;/sub&gt; -6.245) + (x&lt;sub&gt;51&lt;/sub&gt; -8.889) + (x&lt;sub&gt;52&lt;/sub&gt; -2.784) + (x&lt;sub&gt;53&lt;/sub&gt; +2.473) + (x&lt;sub&gt;54&lt;/sub&gt; +1.843) + (x&lt;sub&gt;55&lt;/sub&gt; -4.917) + (x&lt;sub&gt;56&lt;/sub&gt; -3.704) + (x&lt;sub&gt;57&lt;/sub&gt; +0.405) + (x&lt;sub&gt;58&lt;/sub&gt; +5.132) + (x&lt;sub&gt;59&lt;/sub&gt; +2.956) + (x&lt;sub&gt;60&lt;/sub&gt; -6.344) + (x&lt;sub&gt;61&lt;/sub&gt; +8.843) + (x&lt;sub&gt;62&lt;/sub&gt; +2.651) + (x&lt;sub&gt;63&lt;/sub&gt; -0.127) + (x&lt;sub&gt;64&lt;/sub&gt; -5.662) + (x&lt;sub&gt;65&lt;/sub&gt; -5.994) + (x&lt;sub&gt;66&lt;/sub&gt; -8.043) + (x&lt;sub&gt;67&lt;/sub&gt; +1.111) + (x&lt;sub&gt;68&lt;/sub&gt; -2.832) + (x&lt;sub&gt;69&lt;/sub&gt; -3.571) + (x&lt;sub&gt;70&lt;/sub&gt; -5.677) + (x&lt;sub&gt;71&lt;/sub&gt; -5.370) + (x&lt;sub&gt;72&lt;/sub&gt; -9.045) + (x&lt;sub&gt;73&lt;/sub&gt; -0.591) + (x&lt;sub&gt;74&lt;/sub&gt; +7.523) + (x&lt;sub&gt;75&lt;/sub&gt; -0.441) + (x&lt;sub&gt;76&lt;/sub&gt; +4.587) + (x&lt;sub&gt;77&lt;/sub&gt; +7.550) + (x&lt;sub&gt;78&lt;/sub&gt; -4.303) + (x&lt;sub&gt;79&lt;/sub&gt; -6.137) + (x&lt;sub&gt;80&lt;/sub&gt; +3.080) + (x&lt;sub&gt;81&lt;/sub&gt; +5.412) + (x&lt;sub&gt;82&lt;/sub&gt; +9.824) + (x&lt;sub&gt;83&lt;/sub&gt; +3.046) + (x&lt;sub&gt;84&lt;/sub&gt; +6.025) + (x&lt;sub&gt;85&lt;/sub&gt; -2.371) + (x&lt;sub&gt;86&lt;/sub&gt; +2.083) + (x&lt;sub&gt;87&lt;/sub&gt; -9.011) + (x&lt;sub&gt;88&lt;/sub&gt; +4.910) + (x&lt;sub&gt;89&lt;/sub&gt; +3.966) + (x&lt;sub&gt;90&lt;/sub&gt; -7.329) + (x&lt;sub&gt;91&lt;/sub&gt; -6.136) + (x&lt;sub&gt;92&lt;/sub&gt; -8.572) + (x&lt;sub&gt;93&lt;/sub&gt; -4.568) + (x&lt;sub&gt;94&lt;/sub&gt; +8.636) + (x&lt;sub&gt;95&lt;/sub&gt; +8.604) + (x&lt;sub&gt;96&lt;/sub&gt; +0.157) + (x&lt;sub&gt;97&lt;/sub&gt; -9.133) + (x&lt;sub&gt;98&lt;/sub&gt; +0.860) + (x&lt;sub&gt;99&lt;/sub&gt; +8.441) + (x&lt;sub&gt;100&lt;/sub&gt; -4.106) + (x&lt;sub&gt;101&lt;/sub&gt; +7.366) + (x&lt;sub&gt;102&lt;/sub&gt; -2.493) + (x&lt;sub&gt;103&lt;/sub&gt; +9.860) + (x&lt;sub&gt;104&lt;/sub&gt; -1.570) + (x&lt;sub&gt;105&lt;/sub&gt; -7.574) +&quot; +
+                &quot;(x&lt;sub&gt;106&lt;/sub&gt; -9.881) + (x&lt;sub&gt;107&lt;/sub&gt; -2.417) +&quot; +
+                &quot;(x&lt;sub&gt;108&lt;/sub&gt; -4.276) + (x&lt;sub&gt;109&lt;/sub&gt; +0.906) +&quot; +
+                &quot;(x&lt;sub&gt;110&lt;/sub&gt; -8.008) + (x&lt;sub&gt;111&lt;/sub&gt; +7.272) +&quot; +
+                &quot;(x&lt;sub&gt;112&lt;/sub&gt; -9.818) + (x&lt;sub&gt;113&lt;/sub&gt; -4.328) +&quot; +
+                &quot;(x&lt;sub&gt;114&lt;/sub&gt; -2.490) + (x&lt;sub&gt;115&lt;/sub&gt; +9.182) +&quot; +
+                &quot;(x&lt;sub&gt;116&lt;/sub&gt; -7.859) + (x&lt;sub&gt;117&lt;/sub&gt; +7.229) +&quot; +
+                &quot;(x&lt;sub&gt;118&lt;/sub&gt; +5.884) + (x&lt;sub&gt;119&lt;/sub&gt; -9.712) +&quot; +
+                &quot;(x&lt;sub&gt;120&lt;/sub&gt; -0.302) + (x&lt;sub&gt;121&lt;/sub&gt; +4.695) +&quot; +
+                &quot;(x&lt;sub&gt;122&lt;/sub&gt; -6.982) + (x&lt;sub&gt;123&lt;/sub&gt; -2.770) +&quot; +
+                &quot;(x&lt;sub&gt;124&lt;/sub&gt; +4.645) + (x&lt;sub&gt;125&lt;/sub&gt; +8.147) +&quot; +
+                &quot;(x&lt;sub&gt;126&lt;/sub&gt; +1.214) + (x&lt;sub&gt;127&lt;/sub&gt; -2.052) = 0&quot;; 
+            	p += &quot;&lt;/h5&gt;&quot; + &quot;&lt;/div&gt;&quot; + &quot;&lt;/div&gt;&quot;;
+				break;
+		}	
+		this.print(p, _id);
+	}
+	,
+	/**
+	 * Show time execution
+	 * @method showTime
+	 * @param {Number} _time
+	 * @param {String} _id
+	 * @return null
+	 */
+	showTime: function (_time, _id){
+		
+		//Function that shows the time of execution of the problem
+		this.print(_time, _id);
+	}
+	,
+	/**
+	 * Show legend for graph TSP
+	 * @method showLegend
+	 * @param {String} _id
+	 * @return null
+	 */
+	showLegend: function(_id){
+		
+		//Function that shows the legend for the graph
+		var span = &quot;&lt;ul class=&#x27;list-group&#x27;&gt;&quot; +
+   					&quot;&lt;li class=&#x27;list-group-item list-group-item-danger&#x27;&gt;&quot; + &quot;Camino mínimo Algoritmo Genético jsEOTSP&quot; + &quot;&lt;/li&gt;&quot;+
+					&quot;&lt;li class=&#x27;list-group-item list-group-item-success&#x27;&gt;&quot; + &quot;Camino mínimo Algoritmo Greedy&quot; + &quot;&lt;/li&gt;&quot;+
+					&quot;&lt;li class=&#x27;list-group-item list-group-item-info&#x27;&gt;&quot; + &quot;Caminos no incluidos en la solución óptima&quot; + &quot;&lt;/li&gt;&quot;+
+					&quot;&lt;/ul&gt;&quot;;
+		this.print(span, &quot;legend&quot;);
+		
+	}
+	,
+	/**
+	 * Show legend for graph TSP Multiobjective
+	 * @method showLegendMO
+	 * @param {String} _id
+	 * @return null
+	 */
+	showLegendMO: function (_id){
+		
+		//Function that shows the legend for the graph of the multiobjective problem
+		var span = &quot;&lt;ul class=&#x27;list-group&#x27;&gt;&quot; +
+   					&quot;&lt;li class=&#x27;list-group-item list-group-item-danger&#x27;&gt;&quot; + &quot;Camino mínimo Algoritmo Genético jsEOTSP&quot; + &quot;&lt;/li&gt;&quot;+
+					&quot;&lt;li class=&#x27;list-group-item list-group-item-info&#x27;&gt;&quot; + &quot;Caminos no incluidos en la solución óptima&quot; + &quot;&lt;/li&gt;&quot;+
+					&quot;&lt;/ul&gt;&quot;;
+		this.print(span, &quot;legend&quot;);
+		
+	}
+	, 
+	/**
+	 * Draw the greedy solution
+	 * @method drawGreedySolution
+	 * @param {String} _message
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawGreedySolution: function (_message, _id){
+		
+		if(typeof _id === &#x27;undefined&#x27; || !_id){
+			_id = this.idOutput;
+		}
+		
+		//Function that shows us what would be the greedy solution to the TSP
+		
+		var tb = &quot;&quot;;
+		tb += &quot;&lt;div class=&#x27;card&#x27;&gt;&quot;+
+				&quot;&lt;div class=&#x27;card-header text-center&#x27;&gt;&quot;+
+				&quot;&lt;h2&gt;&quot; + _message + &quot;&lt;/h2&gt;&quot; +
+				&quot;&lt;h6&gt;&quot; + &quot;Mostrando Solución Greedy&quot; + &quot;&lt;/h6&gt;&quot; + &quot;&lt;/div&gt;&quot;+
+				&quot;&lt;div class=&#x27;card-block&#x27;&gt;&quot;;
+        tb += &quot;&lt;table class=&#x27;tb_indiv&#x27; cols=&#x27;3&#x27; border=&#x27;0&#x27;&gt;\n&lt;tr&gt;\n&quot; +
+                &quot;&lt;th&gt;Cromosoma&lt;/th&gt;\n &quot; +
+                &quot;&lt;th&gt;Fitness&lt;/th&gt;\n &quot; +
+                &quot;&lt;/tr&gt;\n &quot;;
+        var chr = this.greedySolution[0].toString();
+        tb += &quot;&lt;tr&gt;\n &quot; +
+                &quot;&lt;td&gt;&lt;span title=&#x27;&quot; + chr + &quot;&#x27;&gt;&quot; +
+                ((chr.length &lt;= 50) ? chr : (chr.substr(0) + &quot;...&quot;)) + &quot;&lt;/span&gt;&lt;/td&gt;\n&quot; +
+                &quot;&lt;td&gt;&quot; + this.greedySolution[1] + &quot;&lt;/td&gt;\n&quot; +
+                &quot;&lt;/tr&gt;\n &quot;;
+        tb += &quot;&lt;/table&gt;\n&quot;;
+		tb += &quot;&lt;/div&gt;&quot;+ &quot;&lt;/div&gt;&quot;;
+		
+        this.print(tb, _id);
+
+        return this;
+	}
+	, 
+	/**
+	 * Draw fitness for Multiobjectives
+	 * @method drawFitnessMO
+	 * @param {jsEOPopulation} _aPop
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawFitnessMO: function (_aPop, _id){
+		if(typeof _id === &#x27;undefined&#x27; || !_id){
+			_id = &quot;lines&quot;;
+		}
+		
+		//Creating graph for representing solutions with jsEO for multiobjective problems
+		
+		var ctx = document.getElementById(_id);
+		
+		var fronts = new Array(5);
+		
+		for(var i = 0; i &lt; 5; ++i){
+			fronts[i] = 0;
+			for(var j = 0; j &lt; _aPop.pop.length; ++j){
+				if(_aPop.getAt(j).getRank() == i)
+					++fronts[i];
+			}
+		}
+		
+		var data = {
+				labels: [&quot;Frente de Pareto&quot;, &quot;Frente Uno&quot;, &quot;Frente Dos&quot;, &quot;Frente Tres&quot;, &quot;Frene Cuatro&quot;],
+				datasets: [
+					{
+						label: &quot;Fronts&quot;,
+						data: fronts,
+						backgroundColor: [&quot;#ff6384&quot;, &quot;#ff9f40&quot;, &quot;#ffcd56&quot;, &quot;#4bc0c0&quot;, &quot;#36a2eb&quot;]
+					}]
+		};
+		
+		var myPieChart = new Chart(ctx, {
+				type: &#x27;pie&#x27;,
+				data: data,
+				options: {
+					title: {
+						display: true,
+						fontsize: 14,
+						text: &#x27;Frentes de individuos TSP MultiObjetivo&#x27;
+					}
+					, legend: {
+						display: true,
+						position: &#x27;bottom&#x27;,
+						labels: {
+							generateLabels: function (chart) {
+								var data = chart.data;
+								if (data.labels.length &amp;&amp; data.datasets.length) {
+									return data.labels.map(function (label, i) {
+										var meta = chart.getDatasetMeta(0);
+										var ds = data.datasets[0];
+										var arc = meta.data[i];
+										var custom = arc &amp;&amp; arc.custom || {};
+										var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+										var arcOpts = chart.options.elements.arc;
+									var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i,arcOpts.backgroundColor);
+										var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+										var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+
+										// We get the value of the current label
+										var value = chart.config.data.datasets[arc._datasetIndex].data[arc._index];
+
+										return {
+											// Instead of &#x60;text: label,&#x60;
+											// We add the value to the string
+											text: label,
+											fillStyle: fill,
+											strokeStyle: stroke,
+											lineWidth: bw,
+											hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+											index: i
+										};
+									});
+								} else {
+									return [];
+								}
+							}
+						}
+					}
+				}
+			});
+
+		this.chart = myPieChart;
+        return this;
+		
+	}
+    , 
+	/**
+	 * Draw average fitness 
+	 * @method drawAverageFitness2
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawAverageFitness2: function (_id) {
+        if (typeof _id === &#x27;undefined&#x27; || !_id) {
+            _id = this.idChart;
+        }
+        var ctx = document.getElementById(_id).getContext(&quot;2d&quot;);
+        var data = {
+            labels: jsEOUtils.averageFit.map(function (e, i) {
+                return i;
+            }),
+            datasets: [
+                {
+                    label: &quot;Average Fitness&quot;,
+                    fillColor: &quot;rgba(220,220,220,0.2)&quot;,
+                    strokeColor: &quot;rgba(220,220,220,1)&quot;,
+                    pointColor: &quot;rgba(220,220,220,1)&quot;,
+                    pointStrokeColor: &quot;#fff&quot;,
+                    pointHighlightFill: &quot;#fff&quot;,
+                    pointHighlightStroke: &quot;rgba(220,220,220,1)&quot;,
+                    data: jsEOUtils.averageFit
+                }
+            ]
+        };
+        var myLineChart = new Chart(ctx).Line(data
+                , {
+                    pointDot: false
+                    , scaleSteps: 10
+                    , scaleShowLabels: true
+                    , responsive: true
+                    , animation: false
+                }
+        );
+        return this;
+    }
+    , 
+	/**
+	 * Draw stats
+	 * @method drawStats
+	 * @param {String} _message
+	 * @param {String} _id
+	 * @return ThisExpression
+	 */
+	drawStats: function (_message, _id) {
+        if (typeof _id === &#x27;undefined&#x27; || !_id) {
+            _id = this.idGraphics;
+        }
+        this.h2(_message, _id);
+        google.load(&quot;visualization&quot;, &quot;1&quot;, {packages: [&quot;corechart&quot;]});
+        google.setOnLoadCallback(function () {
+            var data = new google.visualization.DataTable();
+            data.addColumn(&#x27;number&#x27;, &#x27;Generation&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Worst Fitness&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Average Fitness&#x27;);
+            data.addColumn(&#x27;number&#x27;, &#x27;Best Fitness&#x27;);
+            for (var i = 0; i &lt; jsEOUtils.bestFit.length; ++i) {
+                data.addRow([i, jsEOUtils.worstFit[i],
+                    jsEOUtils.averageFit[i],
+                    jsEOUtils.bestFit[i]]);
+            }
+
+            var options = {
+                title: &#x27;Evolution of Fitness&#x27;
+            };
+            var chart = new google.visualization.LineChart(document.getElementById(_id));
+            chart.draw(data, options);
+        });
+        return this;
+    }
+	,
+	saveInformation: function (problemID, poblation, numberGen, time){
+		
+		var data2bSend = {&quot;Problem&quot; : problemID, &quot;Poblation&quot;: poblation, &quot;NumberGen&quot;: numberGen, &quot;Time&quot;: time};
+		try{
+			new Request({
+				url: jsEOUtils.getExperimentsURL()
+				, method: &#x27;POST&#x27;
+				, data: data2bSend
+				, onComplete: function (response){
+					var res = JSON.parse(response);
+					var result = {Solution: JSON.parse(res.Solution), Fitness: res.Fitness};
+					console.log(&quot;Respuesta del servidor al enviar el individuo: &quot;, res.msg);
+				}
+			}).send();
+		}catch(error){
+			console.log(&quot;Error al enviar el individuo: &quot;, error);
+		}
+		return this;
+	}
+    , 
+	/**
+	 * Method to check if there are 2 equal positions in an array
+	 * @method exists
+	 * @param {Array} array1
+	 * @param {Array} array2
+	 * @return result
+	 */
+	exists: function (array1, array2) {
+
+        var result = -1;
+
+        for (var i = 0; i &lt; array1.length; ++i) {
+            for (var j = 0; j &lt; array2.length; ++j) {
+                if (array1[i].x == array2[j].x &amp;&amp; array1[i].y == array2[j].y) {
+                    result = j;
+                }
+            }
+        }
+        return result;
+    }
+    , 
+	/**
+	 * Method that returns 1 random number in a given range
+	 * @method intRandom
+	 * @param {Integer} min
+	 * @param {Integer} max
+	 * @return BinaryExpression
+	 */
+	intRandom: function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+     ,
+	/**
+	 * Method that returns 1 random number in a given range
+	 * @method intRandom2
+	 * @param {Integer} min
+	 * @param {Integer} max
+	 * @return BinaryExpression
+	 */
+	intRandom2: function (min, max) {
+        return Math.round(Math.random() * (max - min + 1)) + min;
+    }
+     ,
+	/**
+	 * Method that return one number aleatory in a given range
+	 * @method random
+	 * @param {Integer} min
+	 * @param {Integer} max
+	 * @return BinaryExpression
+	 */
+	random: function (min, max) {
+        return (Math.random() * (max - min)) + min;
+    }
+    ,
+	/**
+	 * Calculate the distance between two arrays
+	 * @method distance
+	 * @param {Array} a
+	 * @param {Array} b
+	 * @return CallExpression
+	 */
+	distance: function (a, b) {
+        if (typeof a === &#x27;undefined&#x27;)
+            throw new TypeError(&quot;Distance can&#x27;t be computed: &quot;
+                    + &quot;first parameter doen&#x27;t exist &quot;);
+        if (typeof b === &#x27;undefined&#x27;)
+            throw new TypeError(&quot;Distance can&#x27;t be computed: &quot;
+                    + &quot;second parameter doen&#x27;t exist &quot;);
+        if (a.length != b.length)
+            throw new RangeError(&quot;Distance can&#x27;t be computed: &quot;
+                    + &quot;points have different lengths; &quot;
+                    + a.length + &quot; vs &quot; + b.length);
+
+        // Turning parameters into array to apply .map
+        a = (a.length) ? a : [a];
+        b = (b.length) ? b : [b];
+        return Math.sqrt(
+                a.map(function (e, i) {
+                    return e - b[i];
+                })
+                .map(function (e) {
+                    return Math.pow(e, 2);
+                })
+                .reduce(function (a, b) {
+                    return a + b;
+                }, 0)
+                );
+    }
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

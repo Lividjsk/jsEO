@@ -25,10 +25,10 @@ and open the template in the editor.
     <body>
 		<div id="header" class="row">
 			<div class="col-4">
-				<img src="./images/ujaen.png" alt="Ujaen" width="100" height="75">
+				<img src="./images/logo.png" alt="Ujaen" width="100" height="75">
 			</div>
 			<div id="autors" class="col-4 text-center container">
-				<h6>Víctor Manuel Rivas Santos / Javier Guzmán García</h6>
+				<h6> Víctor Manuel Rivas Santos / Javier Guzmán García</h6>
 			</div>
 			<div class="col-4 text-right">
 				<img src="./images/Logo_EPS.png" alt="EPS" width="100" height="75">
@@ -39,98 +39,264 @@ and open the template in the editor.
 				<div class="col-12">
 					<div id="title" class="jumbotron">
             			<h1>Trabajo de Fin de Grado</h1>
-						<h2>jsEO 2: Uso y ampliacion de una biblioteca de Algoritmos Bioinspirados escrita en Javascript</h2>
-            			<p>jsEO es una biblioteca de codigo abierto la cual nos permite desarrollar Algoritmos Geneticos haciendo uso de individuos, poblaciones, 									operadores, etc. para resolver problemas planteados. Y todo esto en Javascript!!</p>
+						<h2>jsEO 2: Uso y ampliación de una biblioteca de Algoritmos Bioinspirados escrita en Javascript</h2>
+						<p>jsEO (<a href="https://github.com/Lividjsk/jsEO" target="_blank"><font color="#f9fbfc">github/jsEO</font></a>) es una biblioteca de código abierto la cual nos permite desarrollar Algoritmos Genéticos haciendo uso de individuos, poblaciones, operadores, etc. para resolver problemas planteados. Y todo esto en Javascript!!</p>
           			</div>
 					<div class="row">
 						<div class="col-md-4 col-xs-6">
-						  <h2>Equation with 128 Terms</h2>
-<pre>
-Solution: Bit string
-Selection Operator: Tournament Selection
-Crossing Operator: Multipoint Crossing
-Mutation Operator: Bit Mutation
-Criteria: Maximization
-</pre>
-						  <p><a id="details" class="btn btn-secondary" href="javascript:chargeHTML('eq_128_terms.html','Equal 128 Terms Problem')" role="button">View details »</a></p>
-						</div><!--/span-->
-						<div class="col-md-4 col-xs-6">
-						  <h2>256 Royal Road Function</h2>
-<pre>
-Solution: Floats array
-Selection Operator: Tournament Selection
-Crossing Operator: Multipoint Crossing
-Mutation Operator: Gene Mutation
-Criteria: Maximization
-</pre>
-						  <p><a id="details" class="btn btn-secondary" href="javascript:chargeHTML('256_royal_road.html','256 Royal Road Problem')" role="button">View details »</a></p>
-						</div><!--/span-->
-						<div class="col-md-4 col-xs-6">
-						  <h2>Algorithm MultiObjective for TSP</h2>
-<pre>
-Solution: Integer Array
-Selection Operator: Binary Tournament 
-Selection
-Crossing Operator: Basic Crossing
-Mutation Operator: Exchange Mutation
-Other operators:
-      Sorting Not Dominated
-Criteria: Minimization
-</pre>
+						  <h2>TSP (Problema del Viajante de Comercio)</h2>
+							<p class="text-left">
+							Solución: Array de enteros 	<br>
+							Tamaño de la poblacion
+							<select id="poblationTSP">
+							  <option value="500">500</option>
+							  <option value="750" selected>750</option>
+							  <option value="1000">1000</option>
+							  <option value="1500">1500</option>
+							</select> 
+							<br>
+							Operador de Selección: Selección por <br> torneo
+							<br>
+							Operador de cruce: Cruce básico
+							<select id="crossTSP">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75" selected>0.75</option>
+							  <option value="1">1</option>
+							</select> 
+							<br>
+							Operador de mutación: Mutación por <br> intercambio
+							<select id="mutationTSP">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75">0.75</option>
+							  <option value="1" selected>1</option>
+							</select> 
+							<br>
+							Numero de generaciones 
+							<select id="generationsTSP">
+							  <option value="20">20</option>
+							  <option value="30">30</option>
+							  <option value="40" selected>40</option>
+							  <option value="50">50</option>
+							</select>
+							<br>
+							Criterio: Minimización
+							</p>
 						  <p>
-							  <label> Cities: </label>
+							   <label> Ciudades: </label>
+							   <select id="cities">
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="8">8</option>
+								  <option value="12" selected>12</option>
+							   </select> 
+							  <a id="details" class="btn btn-secondary" href="javascript:TSP('TSP_problem.html', 'TSP Problem')" role="button">Ver detalles »</a>
+						  </p>
+						</div><!--/span-->
+						<div class="col-md-4 col-xs-6">
+						  <h2>Algoritmo Multiobjetivo para el TSP</h2>
+							<p>
+							Solución: Array de enteros <br>
+							Tamaño de la poblacion
+							<select id="poblationTSPMO">
+							  <option value="500">500</option>
+							  <option value="750" selected>750</option>
+							  <option value="1000">1000</option>
+							  <option value="1500">1500</option>
+							</select> 
+							<br>
+							Operador de Selección: Selección por <br>
+							torneo binario <br>
+							Operador de Cruce: Cruce básico
+							<select id="crossTSPMO">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75" selected>0.75</option>
+							  <option value="1">1</option>
+							</select> 
+							<br>
+							Operador de Mutación: Mutación por <br>
+							intercambio
+							<select id="mutationTSPMO">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75">0.75</option>
+							  <option value="1" selected>1</option>
+							</select> 
+							<br>
+							Otros operadores: <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ordenamiento no Dominado <br>
+							Numero de generaciones 
+							<select id="generationsTSPMO">
+							  <option value="20">20</option>
+							  <option value="30">30</option>
+							  <option value="40" selected>40</option>
+							  <option value="50">50</option>
+							</select>
+							<br>
+							Criterio: Minimización
+							</p>
+						  <p>
+							  <label> Ciudades: </label>
 							   <select id="citiesMO">
 								  <option value="5">5</option>
+								  <option value="6" selected>6</option>
 								  <option value="7">7</option>
 								  <option value="8">8</option>
-								  <option value="10">10</option>
 							   </select> 
-							  <a id="details" class="btn btn-secondary" href="javascript:TSPMO('TSP_MultiObjective.html', 'TSP_MO Problem')" role="button">View details 							»</a>
+							  <a id="details" class="btn btn-secondary" href="javascript:TSPMO('TSP_MultiObjective.html', 'TSP_MO Problem')" role="button">Ver detalles 							»</a>
 							</p>
 						</div><!--/span-->
 						<div class="col-md-4 col-xs-6">
-						  <h2>Problem of the N-Queens</h2>
-<pre>
-Solution: Array of permutations
-Selection Operator: Tournament Selection
-Crossing Operator: OX (Order)
-Mutation Operator: Exchange
-Criteria: Maximization
-</pre>
+						  <h2>Algoritmo para el problema de las N-Reinas</h2>
+							<p>
+							Solución: Array de permutaciones <br>
+							Tamaño de la poblacion
+							<select id="poblationQueens">
+							  <option value="500">500</option>
+							  <option value="750" selected>750</option>
+							  <option value="1000">1000</option>
+							  <option value="1500">1500</option>
+							</select> 
+							<br>
+							Operador de Selección: Selección por <br>
+							torneo <br>
+							Operador de Cruce: Cruce OX(u orden) 
+							<select id="crossQueens">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75" selected>0.75</option>
+							  <option value="1">1</option>
+							</select> 
+							<br>
+							Operador de Mutación: Mutación por <br>
+							intercambio
+							<select id="mutationQueens">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75">0.75</option>
+							  <option value="1" selected>1</option>
+							</select> 
+							<br>
+							Numero de generaciones 
+							<select id="generationsQueens">
+							  <option value="20">20</option>
+							  <option value="50">50</option>
+							  <option value="100" selected>100</option>
+							  <option value="250">250</option>
+							</select>
+							<br>
+							Criterio: Maximización
+							</p>
 						  <p>
-							 <label> Queens: </label>
+							 <label> Reinas: </label>
 							 	<select id="queens">
 								  <option value="4">4</option>
 								  <option value="5">5</option>
 								  <option value="6">6</option>
-								  <option value="8">8</option>
+								  <option value="8" selected>8</option>
 							   	</select> 
-							 <a id="details" class="btn btn-secondary" href="javascript:NQueens('NQueens_Problem.html', 'NQueens Problem')" role="button">View details
+							 <a id="details" class="btn btn-secondary" href="javascript:NQueens('NQueens_Problem.html', 'NQueens Problem')" role="button">Ver detalles
 							»</a>
 						 </p>
+						</div><!--/span-->
+						<div class="col-md-4 col-xs-6">
+						  <h2>Algoritmo para ecuacion con 128 Terminos</h2>
+							<p>
+							Solución: Array de numeros decimales <br>
+							Tamaño de la poblacion
+							<select id="poblationFloat">
+							  <option value="500">500</option>
+							  <option value="750" selected>750</option>
+							  <option value="1000">1000</option>
+							  <option value="1500">1500</option>
+							</select> 
+							<br>
+							Operador de Selección: Selección por <br>
+							torneo <br>
+							Operador de Cruce: Cruce Multipunto
+							<select id="crossFloat">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75" selected>0.75</option>
+							  <option value="1">1</option>
+							</select> 
+							<br>
+							Operador de Mutación: Mutación de bit
+							<select id="mutationFloat">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75">0.75</option>
+							  <option value="1" selected>1</option>
+							</select> 
+							<br>
+							Numero de generaciones 
+							<select id="generationsFloat">
+							  <option value="20">20</option>
+							  <option value="30">30</option>
+							  <option value="40" selected>40</option>
+							  <option value="50">50</option>
+							</select>
+							<br>
+							Criterio: Maximización 
+							</p>
+						  <p><a id="details" class="btn btn-secondary" href="javascript:FloatVector('eq_128_terms.html','Equal 128 Terms Problem')" role="button">Ver detalles»</a></p>
 						</div><!--/span-->
 						<div class="col-md-4 col-xs-6">
 						  <!-- Div vacio para hacer relleno -->
 						</div><!--/span-->
 						<div class="col-md-4 col-xs-6">
-						  <h2>TSP(Travelling Salesman Problem)</h2>
-<pre>
-Solution: Integer Array
-Selection Operator: Tournament Selection
-Crossing Operator: Basic Crossing
-Mutation Operator: Exchange
-Criteria: Minimization
-</pre>
-						  <p>
-							   <label> Cities: </label>
-							   <select id="cities">
-								  <option value="5">5</option>
-								  <option value="7">7</option>
-								  <option value="8">8</option>
-								  <option value="8">10</option>
-							   </select> 
-							  <a id="details" class="btn btn-secondary" href="javascript:TSP('TSP_problem.html', 'TSP Problem')" role="button">View details »</a>
-						  </p>
+						  <h2>Funcion  de Royal Road 256</h2>
+							<p>
+							Solución: Cadena de bits <br>
+							Tamaño de la poblacion
+							<select id="poblationBit">
+							  <option value="500">500</option>
+							  <option value="750" selected>750</option>
+							  <option value="1000">1000</option>
+							  <option value="1500">1500</option>
+							</select> 
+							<br>
+							Operador de Selección: Selección por <br>
+							torneo <br>
+							Operador de Cruce: Cruce Multipunto
+							<select id="crossBit">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75" selected>0.75</option>
+							  <option value="1">1</option>
+							</select> 
+							<br>
+							Operador de Mutación: Mutación de gen
+							<select id="mutationBit">
+							  <option value="0">0</option>
+							  <option value="0.25">0.25</option>
+							  <option value="0.5">0.5</option>
+							  <option value="0.75">0.75</option>
+							  <option value="1" selected>1</option>
+							</select> 
+							<br>
+							Numero de generaciones 
+							<select id="generationsBit">
+							  <option value="20">20</option>
+							  <option value="30">30</option>
+							  <option value="40" selected>40</option>
+							  <option value="50">50</option>
+							</select>
+							<br>
+							Criterio: Maximización
+							</p>
+						  <p><a id="details" class="btn btn-secondary" href="javascript:BitString('256_royal_road.html','256 Royal Road Problem')" role="button">Ver detalles»</a></p>
 						</div><!--/span-->
 				  	</div>
 				</div>
@@ -145,7 +311,19 @@ Criteria: Minimization
 				if(typeof(Storage) !== 'undefined'){
 					var index = document.getElementById("cities").selectedIndex;
 					var options = document.getElementById("cities").options;
-					localStorage.setItem("Cities", options[index].value);
+					localStorage.setItem("CitiesTSP", options[index].value);
+					var index = document.getElementById("poblationTSP").selectedIndex;
+					var options = document.getElementById("poblationTSP").options;
+					localStorage.setItem("PoblationTSP", options[index].value);
+					var index = document.getElementById("crossTSP").selectedIndex;
+					var options = document.getElementById("crossTSP").options;
+					localStorage.setItem("CrossOverTSP", options[index].value);
+					var index = document.getElementById("mutationTSP").selectedIndex;
+					var options = document.getElementById("mutationTSP").options;
+					localStorage.setItem("MutationTSP", options[index].value);
+					var index = document.getElementById("generationsTSP").selectedIndex;
+					var options = document.getElementById("generationsTSP").options;
+					localStorage.setItem("GenerationsTSP", options[index].value);
 					chargeHTML(url, title);
 				}else{
 					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
@@ -158,6 +336,18 @@ Criteria: Minimization
 					var index = document.getElementById("citiesMO").selectedIndex;
 					var options = document.getElementById("citiesMO").options;
 					localStorage.setItem("CitiesMO", options[index].value);
+					var index = document.getElementById("poblationTSPMO").selectedIndex;
+					var options = document.getElementById("poblationTSPMO").options;
+					localStorage.setItem("PoblationMO", options[index].value);
+					var index = document.getElementById("crossTSPMO").selectedIndex;
+					var options = document.getElementById("crossTSPMO").options;
+					localStorage.setItem("CrossOverMO", options[index].value);
+					var index = document.getElementById("mutationTSPMO").selectedIndex;
+					var options = document.getElementById("mutationTSPMO").options;
+					localStorage.setItem("MutationMO", options[index].value);
+					var index = document.getElementById("generationsTSPMO").selectedIndex;
+					var options = document.getElementById("generationsTSPMO").options;
+					localStorage.setItem("GenerationsMO", options[index].value);
 					chargeHTML(url, title);
 				}else{
 					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
@@ -170,12 +360,67 @@ Criteria: Minimization
 					var index = document.getElementById("queens").selectedIndex;
 					var options = document.getElementById("queens").options;
 					localStorage.setItem("Queens", options[index].value);
+					var index = document.getElementById("poblationQueens").selectedIndex;
+					var options = document.getElementById("poblationQueens").options;
+					localStorage.setItem("PoblationQueens", options[index].value);
+					var index = document.getElementById("crossQueens").selectedIndex;
+					var options = document.getElementById("crossQueens").options;
+					localStorage.setItem("CrossOverQueens", options[index].value);
+					var index = document.getElementById("mutationQueens").selectedIndex;
+					var options = document.getElementById("mutationQueens").options;
+					localStorage.setItem("MutationQueens", options[index].value);
+					var index = document.getElementById("generationsQueens").selectedIndex;
+					var options = document.getElementById("generationsQueens").options;
+					localStorage.setItem("GenerationsQueens", options[index].value);
 					chargeHTML(url, title);
 				}else{
 					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
 					chargeHTML(url, title);
 				}
 			}
+			
+			function BitString(url, title){
+				if(typeof(Storage) !== 'undefined'){
+					var index = document.getElementById("poblationBit").selectedIndex;
+					var options = document.getElementById("poblationBit").options;
+					localStorage.setItem("PoblationBit", options[index].value);
+					var index = document.getElementById("crossBit").selectedIndex;
+					var options = document.getElementById("crossBit").options;
+					localStorage.setItem("CrossOverBit", options[index].value);
+					var index = document.getElementById("mutationBit").selectedIndex;
+					var options = document.getElementById("mutationBit").options;
+					localStorage.setItem("MutationBit", options[index].value);
+					var index = document.getElementById("generationsBit").selectedIndex;
+					var options = document.getElementById("generationsBit").options;
+					localStorage.setItem("GenerationsBit", options[index].value);
+					chargeHTML(url, title);
+				}else{
+					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
+					chargeHTML(url, title);
+				}
+			}
+			
+			function FloatVector(url, title){
+				if(typeof(Storage) !== 'undefined'){
+					var index = document.getElementById("poblationFloat").selectedIndex;
+					var options = document.getElementById("poblationFloat").options;
+					localStorage.setItem("PoblationFloat", options[index].value);
+					var index = document.getElementById("crossFloat").selectedIndex;
+					var options = document.getElementById("crossFloat").options;
+					localStorage.setItem("CrossOverFloat", options[index].value);
+					var index = document.getElementById("mutationFloat").selectedIndex;
+					var options = document.getElementById("mutationFloat").options;
+					localStorage.setItem("MutationFloat", options[index].value);
+					var index = document.getElementById("generationsFloat").selectedIndex;
+					var options = document.getElementById("generationsFloat").options;
+					localStorage.setItem("GenerationsFloat", options[index].value);
+					chargeHTML(url, title);
+				}else{
+					console.log("No esta soportado el almacenamiento web. Se ejecutara el ejemplo por defecto");
+					chargeHTML(url, title);
+				}
+			}
+			
 			
 			function chargeHTML(url, title, content){
 				window.open(url, title);

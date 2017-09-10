@@ -20,33 +20,57 @@
 
 
 
-
+/**
+* Individual for FloatVector
+*
+* @class jsEOFVIndividual
+*/
 var jsEOFVIndividual = new Class({
-	Extends: jsEOIndividual,
-	initialize: function(_floats) {
-		this.parent(_floats); // calls initalize method of jsEOIndividual class
-		jsEOUtils.debug("Initializating a jsEOFVIndividual ");
-	},
-	randomize: function(_length, _min, _max) {
-		var chr = new Array();
-		if (typeof _length == 'undefined') {
-			_length = 8;
-		}
-		if (typeof _min == 'undefined') {
-			_min = 0;
-		}
-		if (typeof _max == 'undefined') {
-			_max = 1;
-		}
+    Extends: jsEOIndividual,
+    /**
+     * Initialization of the individual
+     * @method initialize
+     * @param {Array} _floats
+     * @return null
+     */
+    initialize: function(_floats) {
+        this.parent(_floats); // calls initalize method of jsEOIndividual class
+        jsEOUtils.debug("Initializating a jsEOFVIndividual ");
+    },
+    /**
+     * Creating an individual randomly
+     * @method randomize
+     * @param {Integer} _length Individual size
+     * @param {Integer} _min Individual minimum size
+     * @param {Integer} _max Individual maximum size
+     * @return This individual
+     */
+    randomize: function(_length, _min, _max) {
+        var chr = new Array();
+        if (typeof _length == 'undefined') {
+            _length = 8;
+        }
+        if (typeof _min == 'undefined') {
+            _min = 0;
+        }
+        if (typeof _max == 'undefined') {
+            _max = 1;
+        }
 
-		for (var i = 0; i < _length; ++i) {
-			chr.push(Math.random() * (_max - _min) + _min);
-		}
-		this.setChromosome(chr);
-		return this;
-	},
-	evaluate: function(_fitFn) {
-		this.setFitness(_fitFn(this.chromosome));
-		return this;
-	}
+        for (var i = 0; i < _length; ++i) {
+            chr.push(Math.random() * (_max - _min) + _min);
+        }
+        this.setChromosome(chr);
+        return this;
+    },
+    /**
+     * Individual assessment
+     * @method evaluate
+     * @param {Integer} _fitFn
+     * @return This fitness
+     */
+    evaluate: function(_fitFn) {
+        this.setFitness(_fitFn(this.chromosome));
+        return this;
+    }
 });

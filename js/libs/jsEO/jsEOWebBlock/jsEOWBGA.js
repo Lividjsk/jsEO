@@ -18,22 +18,105 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+/**
+* Algorithm for Web Block
+*
+* @class jsEOWBGA
+*/
 var jsEOWBGA = new Class({
     Extends: jsEOGA,
+    /**
+	* Parameter to view debugging
+	* @property verbose
+	* @type {Boolean}
+	* @default false
+	*/
     verbose: jsEOUtils.getInputParam("verbose", false),
+	/**
+	* Parameter to view the configuration
+	* @property configure
+	* @type {Boolean}
+	* @default false
+	*/
     configure: jsEOUtils.getInputParam("configure", false),
-    popSize: parseInt(jsEOUtils.getInputParam("popSize", 50)),
-    tournamentSize: parseInt(jsEOUtils.getInputParam("tournamentSize", 2)),
-    xOverRate: parseFloat(jsEOUtils.getInputParam("xOverRate", 0.8)),
-    mutRate: parseFloat(jsEOUtils.getInputParam("mutRate", 0.2)),
-    mutPower: parseFloat(jsEOUtils.getInputParam("mutPower", 0.5)),
-    numGenerations: parseInt(jsEOUtils.getInputParam("numGenerations", 100)),
-    replaceRate: parseFloat(jsEOUtils.getInputParam("replaceRate", 0.3)),
-    getIndividualsRate: jsEOUtils.getInputParam("getIndividualsRate",  0.2),    
-    showing: parseInt(jsEOUtils.getInputParam("showing", 3)),
-    minValue: parseInt(jsEOUtils.getInputParam("minValue", -10)),
-    maxValue: parseInt(jsEOUtils.getInputParam("maxValue", 10)),
-    indSize: parseInt(jsEOUtils.getInputParam("indSize", 2)),
+	/**
+	* Individual size
+	* @property popSize
+	* @type {Integer}
+	* @default 100
+	*/
+    popSize: jsEOUtils.getInputParam("popSize", 50),
+	/**
+	* Tournament Size
+	* @property tournament Size
+	* @type {Integer}
+	* @default 2
+	*/
+    tournamentSize: jsEOUtils.getInputParam("tournamentSize", 2),
+	/**
+	* Application Rate for cross-over
+	* @property xOverRate
+	* @type {Float}
+	* @default 0.8
+	*/
+    xOverRate: jsEOUtils.getInputParam("xOverRate", 0.8),
+	/**
+	* Application Rate for mutation
+	* @property mutRate
+	* @type {Float}
+	* @default 0.2
+	*/
+    mutRate: jsEOUtils.getInputParam("mutRate", 0.2),
+	/**
+	* Mutation power
+	* @property mutPower
+	* @type {Float}
+	* @default 0.5
+	*/
+    mutPower: jsEOUtils.getInputParam("mutPower", 0.5),
+	/**
+	* Number of generations
+	* @property numGenerations
+	* @type {Integer}
+	* @default 500
+	*/
+    numGenerations: jsEOUtils.getInputParam("numGenerations", 100),
+	/**
+	* Replace Rate
+	* @property replaceRate
+	* @type {Float}
+	* @default 0.5
+	*/
+    replaceRate: jsEOUtils.getInputParam("replaceRate", 0.5),
+	/**
+	* Individuals Rate
+	* @property getIndividualsRate
+	* @type {Float}
+	* @default 0.2
+	*/
+    getIndividualsRate: jsEOUtils.getInputParam("getIndividualsRate",  0.2),
+	/**
+	* Number of individuals displayed
+	* @property showing
+	* @type {Integer}
+	* @default 3
+	*/
+    showing: jsEOUtils.getInputParam("showing", 3),
+	/**
+	* Individual Size
+	* @property indSize
+	* @type {Integer}
+	* @default 2
+	*/
+    indSize: jsEOUtils.getInputParam("indSize", 256),
+    /**
+     * Initialization of the algorithm
+     * @method initialize
+     * @param {jsEOOperator} _opSend
+     * @param {jsEOOperator} _opGet
+     * @return This algorithm
+     */
     initialize: function(_opSend, _opGet) {
         if( typeof _opGet != 'undefined' ) {
             _opGet.setApplicationRate( this.getIndividualsRate );
@@ -42,6 +125,11 @@ var jsEOWBGA = new Class({
         jsEOUtils.debugln("Initializing a jsEOWBGA ");
 
     },
+    /**
+     * Method for view the configure
+     * @method doConfigure
+     * @return This configure
+     */
     doConfigure: function() {
         var msg = "";
         jsEOUtils.setOutput("jsEOForm");
@@ -76,6 +164,12 @@ var jsEOWBGA = new Class({
         jsEOUtils.println(msg);
         jsEOUtils.setOutput("jsEOConsole");
     },
+    /**
+     * Method executing the algorithm
+     * @method run
+     * @param {Integer} _fitFn
+     * @return null
+     */
     run: function(_fitFn) {
         // Program
         if (this.configure) {

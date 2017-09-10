@@ -18,21 +18,58 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+* jsEOOperator
+*
+* @class jsEOOperator
+*/
 var jsEOOperator = new Class({
-	applicationRate: null,
-	initialize: function(_applicationRate) {
-		this.applicationRate = parseFloat(_applicationRate);
-		jsEOUtils.debugln("Initializing a jsEOOperator with applicationRate " + this.applicationRate);
+	/**
+	* Application Rate for the operator
+	* @property applicationRate
+	* @type {Integer}
+	* @default null
+	*/
+    applicationRate: null,
+    /**
+     * Description Initialization of the operator
+     * @method initialize
+     * @param {Float} _applicationRate Probability for operator application
+     * @return null
+     */
+    initialize: function(_applicationRate) {
+        this.applicationRate = parseFloat( _applicationRate );
+        jsEOUtils.debugln("Initializing a jsEOOperator with applicationRate " +
+                this.applicationRate );
+                
 
-
-	},
-	getApplicationRate: function() {
-		return parseFloat(this.applicationRate);
-	},
-	setApplicationRate: function(_newApplicationRate) {
-		return this.applicationRate = parseFloat(_newApplicationRate);
-	},
-	operate: function(_auxPop) {
-		return new jsEOPopulation();
-	}
+    },
+    /**
+     * Get the application rate for the operator
+     * @method getApplicationRate
+     * @return CallExpression
+     */
+    getApplicationRate: function() {
+        return parseFloat( this.applicationRate );
+    },
+    /**
+     * Set the application rate for the operator
+     * @method setApplicationRate
+     * @param {Integer} _newApplicationRate
+     * @return This new application rate
+     */
+    setApplicationRate: function(_newApplicationRate) {
+        return this.applicationRate = parseFloat( _newApplicationRate );
+    },
+    /**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to operate
+     * @return toRet Population with the new individual (s)
+     */
+    operate: function( _auxPop ) {
+        return new jsEOPopulation() ;
+    }
 });
+
+

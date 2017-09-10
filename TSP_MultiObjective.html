@@ -72,7 +72,7 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEOMultiObjective/jsEOMOTSPGA.js"></script>
 
         <!-- Including main representation order program -->        
-        <script src="./js/samples/TSP_MultiObjective.js?cities"></script>
+        <script src="./js/samples/TSP_MultiObjective.js?params"></script>
     </head>
     <body id="body" onLoad="chargeHTML()">
         <script>
@@ -85,13 +85,18 @@ and open the template in the editor.
 		<script>
 			if(typeof(Storage) !== 'undefined'){
 				var cities = localStorage.getItem("CitiesMO");
+				var poblation = localStorage.getItem("PoblationMO");
+				var crossover = localStorage.getItem("CrossOverMO");
+				var mutation = localStorage.getItem("MutationMO");
+				var generations = localStorage.getItem("GenerationsMO");
+				var params = {"Cities": cities, "Poblation": poblation, "CrossOver": crossover, "Mutation": mutation, "Generations": generations};
 			}else{
 				console.log("No esta soportado el almacenamiento web");
 			}
 		</script>
         <script>
             setTimeout("main();"+
-                    "swal( 'Execution finished!', 'Time execution: ' + $('#time').text() + ' miliseconds', 'success' );", 1000);
+                    "swal( '¡Problema resuelto!', 'Tiempo de ejecucion: ' + $('#time').text() + ' milisegundos', 'success' );", 1000);
         </script>
     </body>
 </html>

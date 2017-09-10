@@ -20,20 +20,37 @@
 
 
 
-
-var jsEOBSIndividual = new Class({
-	Extends: jsEOIndividual,
-	initialize: function(_bitString) {
-		this.parent(_bitString); // calls initalize method of jsEOIndividual class
-		jsEOUtils.debug("Initializating a jsEOBSIndividual ");
-	},
-	randomize: function(_length) {
-		var chr = "";
-		if (!_length) _length = 8;
-		for (var i = 0; i < _length; ++i) {
-			chr += (Math.random() * 100 < 50) ? 0 : 1;
-		}
-		this.chromosome = chr;
-		return this;
-	}
+/**
+* Individual for BitString
+*
+* @class jsEOBSIndividual
+*/
+var jsEOBSIndividual=new Class( {
+    Extends: jsEOIndividual,
+	
+    /**
+     * Initialization of the individual
+     * @method initialize
+     * @param {String} _bitString
+     * @return null
+     */
+    initialize: function( _bitString ){
+        this.parent(_bitString); // calls initalize method of jsEOIndividual class
+        jsEOUtils.debug( "Initializating a jsEOBSIndividual ");
+    },
+    /**
+     * Creating an individual randomly
+     * @method randomize
+     * @param {} _length
+     * @return This individual
+     */
+    randomize: function( _length ) {
+      var chr="";
+      if(!_length) _length=8;
+      for( var i=0; i<_length; ++i ) {
+          chr+=(Math.random()*100<50)?0:1;
+      }
+      this.chromosome=chr;
+      return this;      
+    }
 });

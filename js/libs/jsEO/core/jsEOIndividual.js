@@ -19,32 +19,76 @@
  */
 
 
-
-
+/**
+* jsEO Individual
+*
+* @class jsEOIndividual
+*/
 var jsEOIndividual = new Class({
-	Extends: jsEO,
-	chromosome: null,
-	initialize: function(_chromosome) {
-		this.parent();
-		this.chromosome = _chromosome || null;
-		jsEOUtils.debug("Initialising a jsEOIndividual with chromosome " + this.chromosome + "<br/>");
+    Extends: jsEO
+	/**
+	* Chromosome
+	* @property chromosome
+	* @type {Various}
+	* @default null
+	*/
+    , chromosome: null, 
+	/**
+     * Initialization of the individual
+     * @method initialize
+     * @param {Various} _chromosome
+     * @return null
+     */
+	 initialize: function (_chromosome) {
+        this.parent();
+        this.chromosome = _chromosome || null;
+        jsEOUtils.debug("Initialising a jsEOIndividual with chromosome " + this.chromosome +
+                "<br/>");
 
-	},
-	copy: function() {
-		var toRet = new jsEOIndividual();
-		toRet.fitness = (this.fitness.copy) ? this.fitness.copy() : this.fitness;
-		toRet.chromosome = (this.chromosome.copy) ? this.chromosome.copy() : this.chromosome;
-		return toRet;
-	},
-	getChromosome: function() {
-		return this.chromosome;
-	},
-	setChromosome: function(_chromosome) {
-		this.chromosome = _chromosome;
-		return this;
-	},
-	evaluate: function(_fitFn, _params) {
-		this.setFitness(_fitFn(this.chromosome, _params));
-		return this;
-	}
+    }
+    , 
+	/**
+	  * Copy the chromosome
+	  * @method copy
+	  * @return toRet
+	  */
+	 copy: function () {
+        var toRet = new jsEOIndividual();
+        toRet.fitness = (this.fitness.copy) ? this.fitness.copy() : this.fitness;
+        toRet.chromosome = (this.chromosome.copy) ? this.chromosome.copy() : this.chromosome;
+        return toRet;
+    }
+    , 
+	/**
+	  * Method get for the chromosome
+	  * @method getChromosome
+	  * @return This chromosome
+	  */
+	 getChromosome: function () {
+        return this.chromosome;
+    }
+    , 
+	/**
+	  * Method set for the chromosome
+	  * @method setChromosome
+	  * @param {Various} _chromosome
+	  * @return This chromosome modify
+	  */
+	 setChromosome: function (_chromosome) {
+        this.chromosome = _chromosome;
+        return this;
+    }
+    , 
+	/**
+	  * Individual assessment
+	  * @method evaluate
+	  * @param {Integer} _fitFn
+	  * @param {Array} _params
+	  * @return This fitness
+	  */
+	 evaluate: function (_fitFn, _params) {
+        this.setFitness(_fitFn(this.chromosome, _params));
+        return this;
+    }
 });
+

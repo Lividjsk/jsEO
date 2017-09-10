@@ -25,6 +25,12 @@ and open the template in the editor.
 		
 		<!-- Including SweetAlert -->
 		<script src="./js/libs/sweetalert/sweetalert.min.js" ></script>
+		
+		<!-- Including Chart JS -->
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.bundle.min.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.js"></script>
+		<script type="text/javascript" src="./js/libs/chartjs/Chart.min.js"></script>
 
         <!-- Including Google's JS API -->
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -58,7 +64,7 @@ and open the template in the editor.
         <script src="./js/libs/jsEO/jsEOFloatVector/jsEOFVGA.js"></script>
 
         <!-- Including main vector of float program -->        
-        <script src="./js/samples/eq_128_terms_problem.js"></script>
+        <script src="./js/samples/eq_128_terms_problem.js?params"></script>
     </head>
     <body id="body" onLoad="chargeHTML()">
 		<script>
@@ -68,10 +74,21 @@ and open the template in the editor.
 				});	
 			}
 		</script>
+		<script>
+			if(typeof(Storage) !== 'undefined'){
+				var poblation = localStorage.getItem("PoblationFloat");
+				var crossover = localStorage.getItem("CrossOverFloat");
+				var mutation = localStorage.getItem("MutationFloat");
+				var generations = localStorage.getItem("GenerationsFloat");
+				var params = {"Poblation": poblation, "CrossOver": crossover, "Mutation": mutation, "Generations": generations};
+			}else{
+				console.log("No esta soportado el almacenamiento web");
+			}
+		</script>
         <script>
 			
 			setTimeout("main();"+
-                    "swal( 'Execution finished!', 'Time execution: ' + $('#time').text() + ' miliseconds', 'success' );", 1000);
+                    "swal( '¡Problema resuelto!', 'Tiempo de ejecucion: ' + $('#time').text() + ' milisegundos', 'success' );", 1000);
 		
         </script>
     </body>

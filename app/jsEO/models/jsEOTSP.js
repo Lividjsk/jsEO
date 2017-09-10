@@ -25,6 +25,6 @@ var jsEOTSPSchema = new Schema({
 	_id: {type: Number},
 	Solution: {type: Array},
 	Fitness: {type: Number}
-}, {collection: 'TSP'});
+}, {upsert: true, collection: 'TSP'});
 
 module.exports = mongoose.model('jsEOTSP', jsEOTSPSchema);

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jsEOFloatVector/jsEOFVGA.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/jsEO.html">jsEO</a></li>
+                                <li><a href="../classes/jsEOAlgorithm.html">jsEOAlgorithm</a></li>
+                                <li><a href="../classes/jsEOBSGA.html">jsEOBSGA</a></li>
+                                <li><a href="../classes/jsEOBSIndividual.html">jsEOBSIndividual</a></li>
+                                <li><a href="../classes/jsEOBSOpCrossOver.html">jsEOBSOpCrossOver</a></li>
+                                <li><a href="../classes/jsEOBSOpMutation.html">jsEOBSOpMutation</a></li>
+                                <li><a href="../classes/jsEOFVGA.html">jsEOFVGA</a></li>
+                                <li><a href="../classes/jsEOFVIndividual.html">jsEOFVIndividual</a></li>
+                                <li><a href="../classes/jsEOFVOpMutation.html">jsEOFVOpMutation</a></li>
+                                <li><a href="../classes/jsEOGA.html">jsEOGA</a></li>
+                                <li><a href="../classes/jsEOIndividual.html">jsEOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOCrowdingDistance.html">jsEOMOCrowdingDistance</a></li>
+                                <li><a href="../classes/jsEOMOGA.html">jsEOMOGA</a></li>
+                                <li><a href="../classes/jsEOMOIndividual.html">jsEOMOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOOpMutation.html">jsEOMOOpMutation</a></li>
+                                <li><a href="../classes/jsEOMOOpSortingND.html">jsEOMOOpSortingND</a></li>
+                                <li><a href="../classes/jsEOMOTSPGA.html">jsEOMOTSPGA</a></li>
+                                <li><a href="../classes/jsEOOperator.html">jsEOOperator</a></li>
+                                <li><a href="../classes/jsEOOperatorWheel.html">jsEOOperatorWheel</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividuals.html">jsEOOpGetIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNode.html">jsEOOpGetIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNodeMO.html">jsEOOpGetIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournament.html">jsEOOpSelectorTournament</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournamentBinary.html">jsEOOpSelectorTournamentBinary</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividuals.html">jsEOOpSendIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNode.html">jsEOOpSendIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNodeMO.html">jsEOOpSendIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOPGA.html">jsEOPGA</a></li>
+                                <li><a href="../classes/jsEOPIndividual.html">jsEOPIndividual</a></li>
+                                <li><a href="../classes/jsEOPOpMutation.html">jsEOPOpMutation</a></li>
+                                <li><a href="../classes/jsEOPopulation.html">jsEOPopulation</a></li>
+                                <li><a href="../classes/jsEOPosition.html">jsEOPosition</a></li>
+                                <li><a href="../classes/jsEOROGA.html">jsEOROGA</a></li>
+                                <li><a href="../classes/jsEOROIndividual.html">jsEOROIndividual</a></li>
+                                <li><a href="../classes/jsEOROOpMutation.html">jsEOROOpMutation</a></li>
+                                <li><a href="../classes/jsEOUtils.html">jsEOUtils</a></li>
+                                <li><a href="../classes/jsEOWBGA.html">jsEOWBGA</a></li>
+                                <li><a href="../classes/jsEOWBIndividual.html">jsEOWBIndividual</a></li>
+                                <li><a href="../classes/jsEOWBOpMutation.html">jsEOWBOpMutation</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: jsEOFloatVector/jsEOFVGA.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* 
+ * Copyright (C) 2013 vrivas
+ *
+ * Víctor M. Rivas Santos: vrivas@ujaen.es - http://vrivas.es
+ * GeNeura Team- http://geneura.ugr.es
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+
+/**
+* Algorithm for Float Vector
+*
+* @class jsEOFVGA
+*/
+var jsEOFVGA = new Class({
+    Extends: jsEOGA,
+    /**
+	* Parameter to view debugging
+	* @property verbose
+	* @type {Boolean}
+	* @default false
+	*/
+    verbose: jsEOUtils.getInputParam(&quot;verbose&quot;, false),
+	/**
+	* Parameter to view the configuration
+	* @property configure
+	* @type {Boolean}
+	* @default false
+	*/
+    configure: jsEOUtils.getInputParam(&quot;configure&quot;, false),
+	/**
+	* Individual size
+	* @property popSize
+	* @type {Integer}
+	* @default 50
+	*/
+    popSize: jsEOUtils.getInputParam(&quot;popSize&quot;, 50),
+	/**
+	* Tournament Size
+	* @property tournament Size
+	* @type {Integer}
+	* @default 2
+	*/
+    tournamentSize: jsEOUtils.getInputParam(&quot;tournamentSize&quot;, 2),
+	/**
+	* Application Rate for cross-over
+	* @property xOverRate
+	* @type {Float}
+	* @default 0.8
+	*/
+    xOverRate: jsEOUtils.getInputParam(&quot;xOverRate&quot;, 0.8),
+	/**
+	* Application Rate for mutation
+	* @property mutRate
+	* @type {Float}
+	* @default 0.2
+	*/
+    mutRate: jsEOUtils.getInputParam(&quot;mutRate&quot;, 0.2),
+	/**
+	* Mutation power
+	* @property mutPower
+	* @type {Float}
+	* @default 0.5
+	*/
+    mutPower: jsEOUtils.getInputParam(&quot;mutPower&quot;, 0.5),
+	/**
+	* Number of generations
+	* @property numGenerations
+	* @type {Integer}
+	* @default 100
+	*/
+    numGenerations: jsEOUtils.getInputParam(&quot;numGenerations&quot;, 100),
+	/**
+	* Replace Rate
+	* @property replaceRate
+	* @type {Float}
+	* @default 0.5
+	*/
+    replaceRate: jsEOUtils.getInputParam(&quot;replaceRate&quot;, 0.5),
+	/**
+	* Individuals Rate
+	* @property getIndividualsRate
+	* @type {Float}
+	* @default 0.2
+	*/
+    getIndividualsRate: jsEOUtils.getInputParam(&quot;getIndividualsRate&quot;,  0.2),
+	/**
+	* Number of individuals displayed
+	* @property showing
+	* @type {Integer}
+	* @default 3
+	*/
+    showing: jsEOUtils.getInputParam(&quot;showing&quot;, 3),
+	/**
+	* Minimun value possible
+	* @property minValue
+	* @type {Integer}
+	* @default -10
+	*/
+    minValue: parseInt(jsEOUtils.getInputParam(&quot;minValue&quot;, -10)),
+	/**
+	* Maximun value possible
+	* @property maxValue
+	* @type {Integer}
+	* @default 10
+	*/
+    maxValue: parseInt(jsEOUtils.getInputParam(&quot;maxValue&quot;, 10)),
+	/**
+	* Individual Size
+	* @property indSize
+	* @type {Integer}
+	* @default 2
+	*/
+    indSize: parseInt(jsEOUtils.getInputParam(&quot;indSize&quot;, 2)),
+    /**
+     * Initialization of the algorithm
+     * @method initialize
+     * @param {jsEOOperator} _opSend
+     * @param {jsEOOperator} _opGet
+     * @return This algorithm
+     */
+    initialize: function(_opSend, _opGet) {
+        if( typeof _opGet != &#x27;undefined&#x27; ) {
+            _opGet.setApplicationRate( this.getIndividualsRate );
+        }
+        this.parent(_opSend, _opGet);
+        jsEOUtils.debugln(&quot;Initializing a jsEOFVGA &quot;);
+
+    },
+    /**
+     * Method for view the configure
+     * @method doConfigure
+     * @return This configure
+     */
+    doConfigure: function() {
+        var msg = &quot;&quot;;
+        jsEOUtils.setOutput(&quot;jsEOForm&quot;);
+        jsEOUtils.println(&quot;&lt;strong&gt;Configuring EOTest&lt;/strong&gt;&lt;br/&gt;&quot;);
+        msg = &quot;&lt;form method=&#x27;GET&#x27; action=&#x27;./index.html&#x27; name=&#x27;f1&#x27;&gt;&quot;;
+        msg += &quot;&lt;p&gt;Verbosity: &lt;input type=&#x27;radio&#x27; name=&#x27;verbose&#x27; value=&#x27;true&#x27;&gt;True &quot;;
+        msg += &quot;&lt;input type=&#x27;radio&#x27; name=&#x27;verbose&#x27; value=&#x27;False&#x27;&gt;False&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Individual size: &lt;input type=&#x27;text&#x27; name=&#x27;indSize&#x27; value=&#x27;&quot; +
+                this.indSize + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Population size: &lt;input type=&#x27;text&#x27; name=&#x27;popSize&#x27; value=&#x27;&quot; +
+                this.popSize + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Tournament size: &lt;input type=&#x27;text&#x27; name=&#x27;tournamentSize&#x27; value=&#x27;&quot; +
+                this.tournamentSize + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;CrossOver rate: &lt;input type=&#x27;text&#x27; name=&#x27;xOverRate&#x27; value=&#x27;&quot; +
+                this.xOverRate + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Mutation rate: &lt;input type=&#x27;text&#x27; name=&#x27;mutRate&#x27; value=&#x27;&quot; +
+                this.mutRate + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Bits changed by mutator rate: &lt;input type=&#x27;text&#x27; name=&#x27;mutPower&#x27; value=&#x27;&quot; +
+                this.mutPower + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Number of generations: &lt;input type=&#x27;text&#x27; name=&#x27;numGenerations&#x27; value=&#x27;&quot; +
+                this.numGenerations + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Replace rate: &lt;input type=&#x27;text&#x27; name=&#x27;replaceRate&#x27; value=&#x27;&quot; +
+                this.replaceRate + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;&#x27;Get Individuals&#x27; rate: &lt;input type=&#x27;text&#x27; name=&#x27;getIndividualsRate&#x27; value=&#x27;&quot; +
+                this.getIndividualsRate + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Number of individuals to show: &lt;input type=&#x27;text&#x27; name=&#x27;showing&#x27; value=&#x27;&quot; +
+                this.showing + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Minimum value for genes: &lt;input type=&#x27;text&#x27; name=&#x27;minValue&#x27; value=&#x27;&quot; +
+                this.minValue + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;Maximum value for genes: &lt;input type=&#x27;text&#x27; name=&#x27;maxValue&#x27; value=&#x27;&quot; +
+                this.maxValue + &quot;&#x27; size=&#x27;4&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;p&gt;&lt;input type=&#x27;submit&#x27; value=&#x27;Send data&#x27;&gt;&quot; +
+                &quot;&lt;input type=&#x27;reset&#x27; value=&#x27;Reset&#x27;&gt;&lt;/p&gt;&quot;;
+        msg += &quot;&lt;/form&gt;&quot;
+        jsEOUtils.clear();
+        jsEOUtils.println(msg);
+        jsEOUtils.setOutput(&quot;jsEOConsole&quot;);
+    },
+    /**
+     * Method executing the algorithm
+     * @method run
+     * @param {Integer} _fitFn Fitness of the individual
+     * @return null
+     */
+    run: function(_fitFn) {
+        // Program
+        if (this.configure) {
+            this.doConfigure();
+            return;
+        }
+        this.population = new jsEOPopulation();
+        for (var i = 0; i &lt; this.popSize; ++i) {
+            var myFV = new jsEOFVIndividual();
+            myFV.randomize(this.indSize, this.minValue, this.maxValue).
+                    evaluate(_fitFn);
+            this.population.addIndividual(myFV);
+        }
+        this.population.sort();
+
+        this.indivSelector = new jsEOOpSelectorTournament(this.tournamentSize,
+                Math.floor(this.popSize * this.replaceRate));
+
+        this.operSelector = new jsEOOperatorsWheel();
+        this.operSelector.
+                addOperator(new jsEOFVOpCrossOver(this.xOverRate));
+        this.operSelector.
+                addOperator(new jsEOFVOpMutation(this.mutRate,
+                        this.mutPower,
+                        this.minValue,
+                        this.maxValue));
+        if( this.opGet ) {
+            this.operSelector.addOperator(this.opGet);
+        }
+
+        jsEOUtils.showPop(this.population, &quot;Población Inicial&quot;, this.showing, &quot;ipop&quot;);
+        jsEOUtils.println(&quot;Fitness Medio: &quot; + jsEOUtils.averageFitness(this.population), &quot;ipop&quot;);
+		jsEOUtils.println(&quot;Mejor Fitness: &quot; + jsEOUtils.bestFitnessMax(this.population), &quot;ipop&quot;);
+		
+		var popInit = [];
+		
+		for(var a = 0; a &lt; this.showing; ++a){
+		 	popInit.push(this.population.getAt(a).getFitness());
+		}
+
+		var startTime = new Date();
+		
+        this.privateRun(_fitFn, this.showing, this.numGenerations);
+
+		var endTime = new Date();
+		
+		var popFin = [];
+		
+		for(var a = 0; a &lt; this.showing; ++a){
+		 	popFin.push(this.population.getAt(a).getFitness());
+		}
+		
+		jsEOUtils.saveInformation(&quot;TSP&quot;, this.popSize, this.numGenerations, (endTime-startTime));
+		jsEOUtils.drawFitness(popInit, popFin);
+		jsEOUtils.showTime((endTime-startTime), &quot;time&quot;)
+		jsEOUtils.showDescription(&quot;Float&quot;, &quot;title&quot;);
+        jsEOUtils.showPop(this.population, &quot;Población Final&quot;, this.showing, &quot;fpop&quot;);
+        jsEOUtils.println(&quot;Fitness Medio: &quot; + jsEOUtils.averageFitness(this.population), &quot;fpop&quot;);
+		jsEOUtils.println(&quot;Mejor Fitness: &quot; + jsEOUtils.bestFitnessMax(this.population), &quot;fpop&quot;);
+    }
+
+});
+ 
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -17,31 +17,74 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var jsEOFVOpMutation = new Class({
-	Extends: jsEOOperator,
-	genesRate: null,
-	min: null,
-	max: null,
-	initialize: function(_applicationRate, _genesRate, _min, _max) {
-		this.parent(_applicationRate);
-		this.genesRate = _genesRate;
-		this.min = _min;
-		this.max = _max;
-		jsEOUtils.debugln("Initializing a jsEOFVMutation " + " with applicationRate " + this.applicationRate + ", genesRate " + this.genesRate + ", min " + this.min + ", max " + this.max);
 
-	},
-	operate: function(_auxPop) {
-		jsEOUtils.debugln("Applying jsEOBSOpBitFlip");
-		var toRet = new jsEOPopulation();
-		var tmpChr = _auxPop.getAt(0).getChromosome();
-		var newChr = [];
-		jsEOUtils.debugln("  Individual is " + tmpChr);
-		for (var i = 0; i < tmpChr.length; ++i) {
-			newChr.push((Math.random() < this.genesRate) ? (Math.random() * (this.max - this.min) + this.min) : tmpChr[i]);
-		}
-		jsEOUtils.debugln("  Final  " + newChr);
-		toRet.add(new jsEOFVIndividual());
-		toRet.getAt(0).setChromosome(newChr);
-		return toRet;
-	}
+/**
+* Mutation Operator for FloatVector Individuals
+*
+* @class jsEOFVOpMutation
+*/
+var jsEOFVOpMutation = new Class({
+    Extends: jsEOOperator,
+    /**
+	* Probability of mutation
+	* @property genesRate
+	* @type {Float}
+	* @default null
+	*/
+    genesRate: null,
+	/**
+	* @property min
+	* @type {Float}
+	* @default null
+	*/
+    min: null,
+	/**
+	* @property max
+	* @type {Float}
+	* @default null
+	*/
+    max: null,
+    /**
+     * Description Initialization of the operator
+     * @method initialize
+     * @param {Float} _applicationRate Probability for operator application
+     * @param {Float} _genesRate Probability of mutation
+     * @param {Integer} _min Minimum possible value
+     * @param {Integer} _max Maximum possible value
+     * @return null
+     */
+    initialize: function(_applicationRate, _genesRate, _min, _max) {
+        this.parent(_applicationRate);
+        this.genesRate = _genesRate;
+        this.min = _min;
+        this.max = _max;
+        jsEOUtils.debugln("Initializing a jsEOFVMutation " +
+                " with applicationRate " + this.applicationRate +
+                ", genesRate " + this.genesRate +
+                ", min " + this.min +
+                ", max " + this.max
+                );
+
+    },
+    /**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to mutate
+     * @return toRet Population with the new individual (s)
+     */
+    operate: function(_auxPop) {
+        jsEOUtils.debugln("Applying jsEOBSOpBitFlip");
+        var toRet = new jsEOPopulation();
+        var tmpChr = _auxPop.getAt(0).getChromosome();
+        var newChr = [];
+        jsEOUtils.debugln("  Individual is " + tmpChr);
+        for (var i = 0; i < tmpChr.length; ++i) {
+            newChr.push( (Math.random() < this.genesRate) ? (Math.random()*(this.max-this.min)+this.min) : tmpChr[i]);
+        }
+        jsEOUtils.debugln("  Final  " + newChr);
+        toRet.add(new jsEOFVIndividual());
+        toRet.getAt(0).setChromosome(newChr);
+        return toRet;
+    }
 });
+

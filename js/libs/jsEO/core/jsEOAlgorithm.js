@@ -19,23 +19,51 @@
  */
 
 
-
+/**
+* jsEO Algorithm
+*
+* @class jsEOAlgorithm
+*/
 var jsEOAlgorithm = new Class({
-	opSend: null,
-	opGet: null,
-	initialize: function(_opSend, _opGet) {
-		if (typeof _opSend != 'undefined' && _opSend) {
-			this.opSend = _opSend;
-		}
-		if (typeof _opGet != 'undefined' && _opGet) {
-			this.opGet = _opGet;
-		}
-		jsEOUtils.debugln("Initializing a jsEOAlgorithm " + "with " + " Operator for sending individuals " + this.opSend + ", Operator for getting individuals " + this.opGet);
-	},
-	privateRun: function(_fitFn) {
-		return null;
-	},
-	run: function() {
-		return null;
-	}
+	/**
+	* Operator to send individual to server
+	* @property opSend
+	* @type {jsEOOperator}
+	* @default null
+	*/
+    opSend: null,
+	/**
+	* Operator to get individual from server
+	* @property opGet
+	* @type {jsEOOperator}
+	* @default null
+	*/
+    opGet: null,
+    /**
+     * Initialization of the algorithm
+     * @method initialize
+     * @param {jsEOOperator} _opSend
+     * @param {jsEOOperator} _opGet
+     * @return This algorithm
+     */
+    initialize: function(  _opSend, _opGet){
+        if( typeof _opSend !='undefined' && _opSend ){
+            this.opSend=_opSend;
+        }
+        if( typeof _opGet !='undefined' && _opGet ){
+            this.opGet=_opGet;
+        }
+        jsEOUtils.debugln( "Initializing a jsEOAlgorithm "+
+                "with "+
+                " Operator for sending individuals "+this.opSend +
+                ", Operator for getting individuals "+this.opGet                
+                );
+    },
+    privateRun: function( _fitFn ) {
+      return null;  
+    },
+    run: function() {
+        return null;
+    }
 });
+

@@ -18,71 +18,93 @@
  */
 
 
+/**
+* CrossOver Operator for Representation Order Individuals
+*
+* @class jsEOROOpMutation
+*/
 var jsEOROOpCrossOver = new Class({
-	Extends: jsEOOperator,
-	initialize: function(_applicationRate, _bitsRate) {
-		this.parent(_applicationRate);
-		this.bitsRate = _bitsRate;
-		jsEOUtils.debugln("Initializing a jsEOROOpCrossOver with " + "applicationRate " + this.applicationRate);
+    Extends: jsEOOperator,
+    /**
+     * Description Initialization of the operator
+     * @method initialize
+     * @param {Float} _applicationRate Probability for operator application
+     * @param {Float} _bitsRate Probability of crossover
+     * @return null
+     */
+    initialize: function (_applicationRate, _bitsRate) {
+        this.parent(_applicationRate);
+        this.bitsRate = _bitsRate;
+        jsEOUtils.debugln("Initializing a jsEOROOpCrossOver with " +
+                "applicationRate " + this.applicationRate);
 
-	},
-	operate: function(_auxPop) {
-		jsEOUtils.debugln("Applying jsEOROOpCrossOver");
-		var toRet = new jsEOPopulation();
+    },
+    /**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to cross
+     * @return toRet Population with the new individual (s)
+     */
+    operate: function (_auxPop) {
+        jsEOUtils.debugln("Applying jsEOROOpCrossOver");
+        var toRet = new jsEOPopulation();
+		
+        //If the population type is not defined, a new population is returned
+        if (typeof _auxPop == 'undefined') {
+            return toRet;
+        }
 
-		//If the population type is not defined, a new population is returned
-		if (typeof _auxPop == 'undefined') {
-			return toRet;
-		}
-
-		if (_auxPop.length() <= 0) {
-			toRet.add(_auxPop.getAt(0).copy());
-			return toRet;
-		}
+        if (_auxPop.length() <= 0) {
+            toRet.add(_auxPop.getAt(0).copy());
+            return toRet;
+        }
 
 		//Basic CrossOver
-		var rnd2 = jsEOUtils.intRandom(1, _auxPop.length() - 1);
+		
+        var rnd2 = jsEOUtils.intRandom(1, _auxPop.length() - 1);
+		
+        var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
+		
+        var tmpChr2 = _auxPop.getAt(rnd2).getChromosome().slice();
 
-		var tmpChr1 = _auxPop.getAt(0).getChromosome().slice();
+        var point1 = Math.floor(tmpChr1.length / 2);
 
-		var tmpChr2 = _auxPop.getAt(rnd2).getChromosome().slice();
-
-		var point1 = Math.floor(tmpChr1.length / 2);
-
-		//The cut-off point is chosen, which will go from position 2 to that point,
+        //The cut-off point is chosen, which will go from position 2 to that point,
 		//which will always be half the size
-		var newChr = [];
-		var auxChr = [];
-		var orderChr = tmpChr2.slice();
 
-		//The subsequence of the first parent is copied to an auxiliary individual
-		for (var i = 1; i <= point1; ++i) {
-			auxChr.push(tmpChr1[i]);
-		}
+        var newChr = [];
+        var auxChr = [];
+        var orderChr = tmpChr2.slice();
 
-		//Once the subsequence is copied, the elements that have been copied
+        //The subsequence of the first parent is copied to an auxiliary individual
+        for (var i = 1; i <= point1; ++i) {
+            auxChr.push(tmpChr1[i]);
+        }
+
+        //Once the subsequence is copied, the elements that have been copied
 		//and copied in the corresponding orderand more similar to that of the second parent
-		for (var i = 0; i < auxChr.length; ++i) {
-			var index = orderChr.indexOf(auxChr[i]);
-			if (index != -1) {
-				orderChr.splice(index, 1);
-			}
-		}
-		orderChr.splice(0, 1);
+        for (var i = 0; i < auxChr.length; ++i) {
+            var index = orderChr.indexOf(auxChr[i]);
+            if (index != -1) {
+                orderChr.splice(index, 1);
+            }
+        }
+        orderChr.splice(0, 1);
+        
+        newChr.push(0);
 
-		newChr.push(0);
+        for (var j = 0; j < auxChr.length; ++j) {
+            newChr.push(auxChr[j]);
+        }
 
-		for (var j = 0; j < auxChr.length; ++j) {
-			newChr.push(auxChr[j]);
-		}
-
-		for (var n = 0; n < orderChr.length; ++n) {
-			newChr.push(orderChr[n]);
-		}
-
-		jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
-		toRet.add(new jsEOROIndividual());
-		toRet.getAt(0).setChromosome(newChr);
-		return toRet;
-	}
+        for (var n = 0; n < orderChr.length; ++n) {
+            newChr.push(orderChr[n]);
+        }
+        
+        jsEOUtils.debugln("  Inicio es " + tmpChr1 + " Final  " + newChr);
+        toRet.add(new jsEOROIndividual());
+        toRet.getAt(0).setChromosome(newChr);
+        return toRet;
+    }
 });
+

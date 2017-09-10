@@ -22,12 +22,24 @@ var divGA = new Array();
 var news = new Array();
 var colors=new Array( "#00FF00", "#BFFF00", "#FFBF00", "#FF4000", "#FF0000")
 var numDivs = 0;
+/**
+ * Description
+ * @method createDivs
+ * @return 
+ */
 function createDivs() {
     var w = parseInt(Math.random() * 300) + 100;
     var myRequest = new Request({
         url: jsEOUtils.getProxyURL() + "?rss=http://feeds.bbci.co.uk/news/rss.xml",
         method: 'get',
         async: false,
+        /**
+         * Description
+         * @method onSuccess
+         * @param {} responseText
+         * @param {} responseXML
+         * @return 
+         */
         onSuccess: function(responseText, responseXML) {            
             items = responseXML.getElementsByTagName('item');
             news=new Array();
@@ -55,6 +67,11 @@ function createDivs() {
                 divGA[i].c = divGr[i].c;
             }
         },
+        /**
+         * Description
+         * @method onFailure
+         * @return 
+         */
         onFailure: function() {
             alert("error ");
         }
@@ -64,6 +81,11 @@ function createDivs() {
 
 
 }
+/**
+ * Description
+ * @method writeSizes
+ * @return 
+ */
 function writeSizes() {
     var theDiv = document.getElementById("forSizes");
     for (var i = 0; i < divs.length; ++i) {
@@ -79,6 +101,14 @@ function writeSizes() {
     theDiv.innerHTML += "<hr>Width: " + vWidth + " " + "Height: " + vHeight + "<br/>";
 }
 
+/**
+ * Description
+ * @method showDivsH
+ * @param {} _divs
+ * @param {} _label
+ * @param {} _divId
+ * @return 
+ */
 function showDivsH(_divs, _label, _divId) {
     var theDiv = document.getElementById("forSizes");
     var vWidth = document.documentElement.clientWidth;
@@ -118,6 +148,16 @@ function showDivsH(_divs, _label, _divId) {
 }
 
 
+/**
+ * Description
+ * @method showDivsV
+ * @param {} _divs
+ * @param {} _label
+ * @param {} _divId
+ * @param {} _borderColor
+ * @param {} _paint
+ * @return 
+ */
 function showDivsV(_divs, _label, _divId, _borderColor, _paint) {
     if (!_borderColor) {
         _borderColor = "#fff";
@@ -166,6 +206,11 @@ function showDivsV(_divs, _label, _divId, _borderColor, _paint) {
 }
 
 
+/**
+ * Description
+ * @method greedyH
+ * @return 
+ */
 function greedyH() {
     var vWidth = document.documentElement.clientWidth;
     var vHeight = document.documentElement.clientHeight;
@@ -191,6 +236,11 @@ function greedyH() {
 
     }
 }
+/**
+ * Description
+ * @method greedyV
+ * @return 
+ */
 function greedyV() {
     var theDiv = document.getElementById("forSizes");
     var vWidth = document.documentElement.clientWidth;
@@ -219,6 +269,12 @@ function greedyV() {
 
 }
 
+/**
+ * Description
+ * @method fitnessFunctionV
+ * @param {} _chr
+ * @return AssignmentExpression
+ */
 function fitnessFunctionV(_chr) {
     if (typeof _chr == 'undefined' || !_chr) {
         return null;
@@ -255,6 +311,12 @@ function fitnessFunctionV(_chr) {
     return toRet = i;
 }
 
+/**
+ * Description
+ * @method fitnessFunctionH
+ * @param {} _chr
+ * @return AssignmentExpression
+ */
 function fitnessFunctionH(_chr) {
     if (typeof _chr == 'undefined' || !_chr) {
         return null;
@@ -290,6 +352,11 @@ function fitnessFunctionH(_chr) {
     return toRet = i;
 }
 
+/**
+ * Description
+ * @method main
+ * @return 
+ */
 function main() {
     var verbose = jsEOUtils.getInputParam("verbose", false);
     jsEOUtils.setVerbose(verbose == "true" || verbose == true);

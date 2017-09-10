@@ -22,441 +22,486 @@ var mongoose = require('mongoose'),
 	jsEONQ = require('./models/jsEONQueens'),
 	jsEOBit = require('./models/jsEOBitString'),
 	jsEOFloat = require('./models/jsEOFloatVector'),
+	jsEOExperiments = require('./models/jsEOExperiments'),
 	jsEOMO = require('./models/jsEOMO');
 
-exports.sending = function(req, res) {
-
+/**
+ * Description POST method that is called to receive individuals
+ * @method sending
+ * @param {JSON} req Consultation sent by the client
+ * @param {JSON} res Server response
+ * @return res 
+ */
+exports.sending = function(req, res){
+	
 	allowCORS(res);
 	var obj = req.body;
-
-	console.log("Data received on the server to insert", JSON.stringify(obj));
-	switch (obj.Problem) {
-	case 'TSP':
-		var newjseo = new jsEOTSP({
-			_id: obj.id,
-			Solution: obj.Solution,
-			Fitness: obj.Fitness
-		});
-
-		newjseo.save(function(err, data) {
-			if (err) {
-				console.log("Insertion error", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Insertion error",
-					Problem: obj.data
-				});
-			} else {
-				console.log("Data saved", data);
-				var result = {
-					Solution: data.Solution[0],
-					Fitness: data.Fitness,
-					Success: true,
-					msg: "Insertion made with success",
-					Problem: 'TSP'
-				};
-				res.send(result);
+	
+	console.log("Datos recibidos en el servidor para insertar", JSON.stringify(obj));
+	switch(obj.Problem){
+		case 'TSP':
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '5':
+					id=1;
+					break;
+				case '6':
+					id=2;
+					break;
+				case '8':
+					id=3;
+					break;
+				case '12':
+					id=4;
+					break;
 			}
-		});
-		break;
-	case 'NQueens':
-		var newjseo = new jsEONQ({
-			_id: obj.id,
-			Solution: obj.Solution,
-			Fitness: obj.Fitness
-		});
-
-		newjseo.save(function(err, data) {
-			if (err) {
-				console.log("Insertion error", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Insertion error",
-					Problem: obj.data
-				});
-			} else {
-				console.log("Data saved", data);
-				var result = {
-					Solution: data.Solution[0],
-					Fitness: data.Fitness,
-					Success: true,
-					msg: "Insertion made with success",
-					Problem: 'NQueens'
-				};
-				res.send(result);
+			
+			jsEOTSP.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+				}else{
+					if(individual != null){
+						var obj1 = JSON.parse(obj.Fitness);
+						var obj2 = JSON.parse(individual.Fitness);
+						if(obj1 < obj2){
+							individual.Solution = obj.Solution;
+							individual.Fitness = obj.Fitness;
+								individual.save(function(err, data){
+									if(err) console.log(err);
+									else{console.log("Datos para actualizar", data);
+										var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Actualizacion realizada con exito", Problem: obj.Problem};
+										res.send(result);
+									}
+								});
+						}else{
+							var result = {Solution: null, Fitness: null, Success: false, msg: "Actualizacion fallida", Problem: obj.Problem};
+							res.send(result);
+						}
+					}else{
+						var newjseo = new jsEOTSP({
+							_id : id,
+							Solution: obj.Solution,
+							Fitness: obj.Fitness
+						});
+						newjseo.save(function(err, data){
+							if(err) res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+							else{
+								console.log("Datos guardados", data);
+								var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Primera insercion realizada con exito", Problem: obj.Problem};
+								res.send(result);
+							}
+						});
+					}
+				}
+			});
+			break;
+		case 'NQueens':
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '4':
+					id=1;
+					break;
+				case '5':
+					id=2;
+					break;
+				case '6':
+					id=3;
+					break;
+				case '8':
+					id=4;
+					break;
 			}
-		});
-		break;
-	case 'BitString':
-		var newjseo = new jsEOBit({
-			_id: obj.id,
-			Solution: obj.Solution,
-			Fitness: obj.Fitness
-		});
-
-		newjseo.save(function(err, data) {
-			if (err) {
-				console.log("Insertion error", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Insertion error",
-					Problem: obj.data
-				});
-			} else {
-				console.log("Data saved", data);
-				var result = {
-					Solution: data.Solution[0],
-					Fitness: data.Fitness,
-					Success: true,
-					msg: "Insertion made with success",
-					Problem: 'NQueens'
-				};
-				res.send(result);
+			
+			jsEONQ.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+				}else{
+					if(individual != null){
+						if(obj.Fitness > individual.Fitness){
+							individual.Solution = obj.Solution;
+							individual.Fitness = obj.Fitness;
+							individual.save(function(err, data){
+								console.log("Datos guardados", data);
+								var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Actualizacion realizada con exito", Problem: obj.Problem};
+								res.send(result);
+							});
+						}
+					}else{
+						var newjseo = new jsEONQ({
+							_id : id,
+							Solution: obj.Solution,
+							Fitness: obj.Fitness
+						});
+						newjseo.save(function(err, data){
+							console.log("Datos guardados", data);
+							var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Primera insercion realizada con exito", Problem: obj.Problem};
+							res.send(result);
+						});
+					}
+				}
+			});
+			break;
+		case 'BitString':
+			var id = 1;
+			jsEOBit.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+				}else{
+					if(individual != null){
+						if(obj.Fitness > individual.Fitness){
+							individual.Solution = obj.Solution;
+							individual.Fitness = obj.Fitness;
+								individual.save(function(err, data){
+									console.log("Datos guardados", data);
+									var result = {Solution: data.Solution[0], Fitness: data.Fitness, Success: true, msg: "Actualizacion realizada con exito", Problem: obj.Problem};
+									res.send(result);
+								});
+						}
+					}else{
+						var newjseo = new jsEOBit({
+							_id : id,
+							Solution: obj.Solution,
+							Fitness: obj.Fitness
+						});
+						newjseo.save(function(err, data){
+							console.log("Datos guardados", data);
+							var result = {Solution: data.Solution[0], Fitness: data.Fitness, Success: true, msg: "Primera insercion realizada con exito", Problem: obj.Problem};
+							res.send(result);
+						});
+					}
+				}
+			});
+			break;
+		case 'FloatVector':
+			var id = 1;
+			jsEOFloat.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+				}else{
+					if(individual != null){
+						if(obj.Fitness > individual.Fitness){
+							individual.Solution = obj.Solution;
+							individual.Fitness = obj.Fitness;
+								individual.save(function(err, data){
+									console.log("Datos guardados", data);
+									var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Actualizacion realizada con exito", Problem: obj.Problem};
+									res.send(result);
+								});
+						}
+					}else{
+						var newjseo = new jsEOFloat({
+							_id : id,
+							Solution: obj.Solution,
+							Fitness: obj.Fitness
+						});
+						newjseo.save(function(err, data){
+							console.log("Datos guardados", data);
+							var result = {Solution: data.Solution, Fitness: data.Fitness, Success: true, msg: "Primera insercion realizada con exito", Problem: obj.Problem};
+							res.send(result);
+						});
+					}
+				}
+			});
+			break;
+		case 'TSP_MO':
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '5':
+					id=1;
+					break;
+				case '6':
+					id=2;
+					break;
+				case '7':
+					id=3;
+					break;
+				case '8':
+					id=4;
+					break;
 			}
-		});
-		break;
-	case 'FloatVector':
-		var newjseo = new jsEOFloat({
-			_id: obj.id,
-			Solution: obj.Solution,
-			Fitness: obj.Fitness
-		});
-
-		newjseo.save(function(err, data) {
-			if (err) {
-				console.log("Insertion error", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Insertion error",
-					Problem: obj.data
-				});
-			} else {
-				console.log("Data saved", data);
-				var result = {
-					Solution: data.Solution[0],
-					Fitness: data.Fitness,
-					Success: true,
-					msg: "Insertion made with success",
-					Problem: 'NQueens'
-				};
-				res.send(result);
-			}
-		});
-		break;
-	case 'TSP_MO':
-		var newjseo = new jsEOMO({
-			_id: obj.id,
-			Solution: obj.Solution,
-			Objectives: obj.Objectives
-		});
-
-		newjseo.save(function(err, data) {
-			if (err) {
-				console.log("Insertion error", err);
-				res.send({
-					Solution: "",
-					Objectives: "",
-					Success: false,
-					msg: "Insertion error",
-					Problem: obj.data
-				});
-			} else {
-				console.log("Data saved", data);
-				var result = {
-					Solution: data.Solution[0],
-					Objectives: data.Objectives,
-					Success: true,
-					msg: "Insertion made with success",
-					Problem: 'TSP_MO'
-				};
-				res.send(result);
-			}
-		});
-		break;
+			jsEOMO.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Solution: null, Fitness: null, Success:false, msg:"Error en la insercion", Problem: obj.data});
+				}else{
+					if(individual != null){
+						var obj1 = JSON.parse(obj.Objectives);
+						var obj2 = JSON.parse(individual.Objectives);
+						if(obj1[0] < obj2[0] || obj1[1] < obj2[1]){
+							individual.Solution = obj.Solution;
+							individual.Objectives = obj.Objectives;
+								individual.save(function(err, data){
+									console.log("Datos guardados", data);
+									var result = {Solution: data.Solution, Objectives: data.Objectives, Success: true, msg: "Actualizacion realizada con exito", Problem: obj.Problem};
+									res.send(result);
+								});
+						}else{
+							var result = {Solution: null, Objectives: null, Success: false, msg: "Actualizacion fallida", Problem: obj.Problem};
+									res.send(result);
+						}
+					}else{
+						var newjseo = new jsEOMO({
+							_id : id,
+							Solution: obj.Solution,
+							Objectives: obj.Objectives
+						});
+						newjseo.save(function(err, data){
+							console.log("Datos guardados", data);
+							var result = {Solution: data.Solution, Objectives: data.Objectives, Success: true, msg: "Primera insercion realizada con exito", Problem: obj.Problem};
+							res.send(result);
+						});
+					}
+				}
+			});
+			break;
 	}
-
+	
 }
 
-exports.receiving = function(req, res) {
-
+/**
+ * Description GET method that is called to request the best individual of the population
+ * @method receiving
+ * @param {JSON} req Consultation sent by the client
+ * @param {JSON} res Server response
+ * @return res 
+ */
+exports.receiving = function(req, res){
+	
 	allowCORS(res);
-
+	
 	var obj = req.query;
-
+	
 	var tam = obj.tamIndividual;
-	console.log("Received request of individual for:", obj);
-
-	switch (obj.data) {
-	case 'TSP':
-		jsEOTSP.findOne().sort({
-			Fitness: 1
-		}).exec(function(err, data) {
-			if (err) {
-				console.log("Error in the query", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Error in the query",
-					Problem: obj.data
-				});
-			} else {
-				if (data != null) {
-					console.log("Success consultation", data);
-					if (JSON.parse(data.Solution.length) === tam) {
-						res.send({
-							Solution: data.Solution,
-							Fitness: data.Fitness,
-							Success: true,
-							msg: "Obtained Individual of the BBDD",
-							Problem: obj.data
-						});
-					} else {
-						res.send({
-							Solution: null,
-							Fitness: "",
-							Success: false,
-							msg: "Obtained individual from the BBDD but does not match the requested. Error.",
-							Problem: obj.data
-						});
-					}
-				} else {
-					res.send({
-						Solution: null,
-						Fitness: "",
-						Success: false,
-						msg: "No individuals even in the BBDD",
-						Problem: obj.data
-					});
-				}
+	console.log("Recibida peticion de individuo para :", obj.data);
+	
+	switch(obj.data){
+		case 'TSP':
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '5':
+					id=1;
+					break;
+				case '6':
+					id=2;
+					break;
+				case '8':
+					id=3;
+					break;
+				case '12':
+					id=4;
+					break;
 			}
-		});
-		break;
-	case 'NQueens':
-		jsEONQ.findOne().exec(function(err, data) {
-			if (err) {
-				console.log("Error in the query", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Error in the query",
-					Problem: obj.data
-				});
-			} else {
-				if (data != null) {
-					console.log("Success consultation", data);
-					if (JSON.parse(data.Solution.length) === tam) {
-						res.send({
-							Solution: data.Solution,
-							Fitness: data.Fitness,
-							Success: true,
-							msg: "Obtained Individual of the BBDD",
-							Problem: obj.data
-						});
-					} else {
-						res.send({
-							Solution: null,
-							Fitness: "",
-							Success: false,
-							msg: "Obtained individual from the BBDD but does not match the requested. Error.",
-							Problem: obj.data
-						});
+			jsEOTSP.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la consulta", err);
+					res.send({Solution: "", Fitness: "", Success: false, msg: "Error en la consulta", Problem: obj.data});
+				}else 
+				{
+					if(individual !== null){
+							var result = {Solution: individual.Solution, Fitness: individual.Fitness, Success: true, msg: "Obtenido individuo de la BBDD", Problem: obj.data};
+							res.send(result);
+					}else{
+						res.send({Solution: null, Fitness: null, Success: false, msg: "No hay individuos de este tipo aun en la BBDD", Problem: obj.data});
 					}
-				} else {
-					res.send({
-						Solution: null,
-						Fitness: "",
-						Success: false,
-						msg: "No individuals even in the BBDD",
-						Problem: obj.data
-					});
 				}
+			});
+			break;
+		case 'NQueens':
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '4':
+					id=1;
+					break;
+				case '5':
+					id=2;
+					break;
+				case '6':
+					id=3;
+					break;
+				case '8':
+					id=4;
+					break;
 			}
-		});
-		break;
-	case 'BitString':
-		jsEOBit.findOne().exec(function(err, data) {
-			if (err) {
-				console.log("Error in the query", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Error in the query",
-					Problem: obj.data
-				});
-			} else {
-				if (data != null) {
-					console.log("Success consultation", data);
-					if (JSON.parse(data.Solution.length) === tam) {
-						res.send({
-							Solution: data.Solution,
-							Fitness: data.Fitness,
-							Success: true,
-							msg: "Obtained Individual of the BBDD",
-							Problem: obj.data
-						});
-					} else {
-						res.send({
-							Solution: null,
-							Fitness: "",
-							Success: false,
-							msg: "Obtained individual from the BBDD but does not match the requested. Error.",
-							Problem: obj.data
-						});
+			jsEONQ.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la consulta", err);
+					res.send({Solution: "", Fitness: "", Success: false, msg: "Error en la consulta", Problem: obj.data});
+				}else 
+				{
+					if(individual != null){
+						var result = {Solution: individual.Solution, Fitness: individual.Fitness, Success: true, msg: "Obtenido individuo de la BBDD", Problem: obj.data};
+						res.send(result);
+					}else{
+						res.send({Solution: null, Fitness: null, Success: false, msg: "No hay individuos de este tipo aun en la BBDD", Problem: obj.data});
 					}
-				} else {
-					res.send({
-						Solution: null,
-						Fitness: "",
-						Success: false,
-						msg: "No individuals even in the BBDD",
-						Problem: obj.data
-					});
 				}
-			}
-		});
-		break;
-	case 'FloatVector':
-		jsEOFloat.findOne().exec(function(err, data) {
-			if (err) {
-				console.log("Error in the query", err);
-				res.send({
-					Solution: "",
-					Fitness: "",
-					Success: false,
-					msg: "Error in the query",
-					Problem: obj.data
-				});
-			} else {
-				if (data != null) {
-					console.log("Success consultation", data);
-					if (JSON.parse(data.Solution.length) === tam) {
-						res.send({
-							Solution: data.Solution,
-							Fitness: data.Fitness,
-							Success: true,
-							msg: "Obtained Individual of the BBDD",
-							Problem: obj.data
-						});
-					} else {
-						res.send({
-							Solution: null,
-							Fitness: "",
-							Success: false,
-							msg: "Obtained individual from the BBDD but does not match the requested. Error.",
-							Problem: obj.data
-						});
+			});
+			break;
+		case 'BitString':
+			var id = 1;
+			jsEOBit.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la consulta", err);
+					res.send({Solution: "", Fitness: "", Success: false, msg: "Error en la consulta", Problem: obj.data});
+				}else 
+				{
+					if(individual != null){
+						var result = {Solution: individual.Solution, Fitness: individual.Fitness, Success: true, msg: "Obtenido individuo de la BBDD", Problem: obj.data};
+						res.send(result);
+					}else{
+						res.send({Solution: null, Fitness: null, Success: false, msg: "No hay individuos de este tipo aun en la BBDD", Problem: obj.data});
 					}
-				} else {
-					res.send({
-						Solution: null,
-						Fitness: "",
-						Success: false,
-						msg: "No individuals even in the BBDD",
-						Problem: obj.data
-					});
 				}
-			}
-		});
-		break;
-	case 'TSP_MO':
-		jsEOMO.findOne().exec(function(err, data) {
-			if (err) {
-				console.log("Error in the query", err);
-				res.send({
-					Solution: "",
-					Objectives: "",
-					Success: false,
-					msg: "Error in the query",
-					Problem: obj.data
-				});
-			} else {
-				if (data != null) {
-					console.log("Success consultation", data);
-					if (JSON.parse(data.Solution.length) === tam) {
-						res.send({
-							Solution: data.Solution,
-							Objectives: data.Objectives,
-							Success: true,
-							msg: "Obtained Individual of the BBDD",
-							Problem: obj.data
-						});
-					} else {
-						res.send({
-							Solution: null,
-							Fitness: "",
-							Success: false,
-							msg: "Obtained individual from the BBDD but does not match the requested. Error.",
-							Problem: obj.data
-						});
+			});
+			break;
+		case 'FloatVector':
+			var id = 1;
+			jsEOFloat.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la consulta", err);
+					res.send({Solution: "", Fitness: "", Success: false, msg: "Error en la consulta", Problem: obj.data});
+				}else 
+				{
+					if(individual != null){
+						var result = {Solution: individual.Solution, Fitness: individual.Fitness, Success: true, msg: "Obtenido individuo de la BBDD", Problem: obj.data};
+						res.send(result);
+					}else{
+						res.send({Solution: null, Fitness: null, Success: false, msg: "No hay individuos de este tipo aun en la BBDD", Problem: obj.data});
 					}
-				} else {
-					res.send({
-						Solution: null,
-						Objectives: "",
-						Success: false,
-						msg: "No individuals even in the BBDD",
-						Problem: obj.data
-					});
 				}
+			});
+			break;
+		case 'TSP_MO':
+			
+			var id = 0;
+			switch(obj.tamIndividual){
+				case '5':
+					id=1;
+					break;
+				case '6':
+					id=2;
+					break;
+				case '7':
+					id=3;
+					break;
+				case '8':
+					id=4;
+					break;
 			}
-		});
-		break;
+			jsEOMO.findById(id, function(err, individual){
+				if(err){
+					console.log("Error en la consulta", err);
+					res.send({Solution: "", Fitness: "", Success: false, msg: "Error en la consulta", Problem: obj.data});
+				}else 
+				{
+					if(individual != null){
+						var result = {Solution: individual.Solution, Objectives: individual.Objectives, Success: true, msg: "Obtenido individuo de la BBDD", Problem: obj.data};
+						res.send(result);
+					}else{
+						res.send({Solution: null, Objectives: null, Success: false, msg: "No hay individuos de este tipo aun en la BBDD", Problem: obj.data});
+					}
+				}
+			});
+			break;
 	}
 }
 
 
-exports.root = function(req, res) {
+/**
+ * Description GET Method that is called the first time the application is executed
+ * @method root
+ * @param {JSON} req Consultation sent by the client
+ * @param {JSON} res Server response
+ * @return res 
+ */
+exports.root = function(req, res){
+		allowCORS(res);
+		deleteCollections();
+		res.writeHead( 301, {Location: '../jsEO/index.html'});
+		res.send();
+}
+
+/**
+ * Description POST Method called to save the experiments and / or tests
+ * @method experiments
+ * @param {JSON} req Consultation sent by the client
+ * @param {JSON} res Server response
+ * @return res 
+ */
+exports.experiments = function(req, res){
 	allowCORS(res);
-	deleteCollections();
-	res.writeHead(301, {
-		Location: '../jsEO/index.html'
-	});
-	res.send();
+	
+	var obj = req.body;
+	
+	var newjseo = new jsEOExperiments({
+				Ip : req.connection.remoteAddress,
+				Problem: obj.Problem,
+				Poblation: obj.Poblation,
+				NumberGen: obj.NumberGen,
+				Time: obj.Time,
+				FitnessInitial: obj.FitnessInitial,
+				FitnessFinal: obj.FitnessFinal,
+			});
+	newjseo.save(function(err, data){
+				if(err){
+					console.log("Error en la insercion", err);
+					res.send({Success:false, msg:"Error al guardar la prueba", Problem: obj.data});
+				}else{
+					console.log("Datos guardados", data);
+					var result = {Success: true, msg: "Se ha guardado la prueba", Problem: obj.data};
+					res.send(result);
+				}
+			});
 }
 
-function deleteCollections() {
-
+/**
+ * Description Deletes collections between different executions
+ * @method deleteCollections
+ * @return null
+ */
+function deleteCollections(){
+	
 	mongoose.connection.db.dropCollection('TSP', function(err, result) {
-		if (err) console.log("Error in TSP: ", err);
-		else console.log("Collection TSP erased successfully");
+		if(err) console.log("La coleccion TSP ya ha sido borrada");
+		else console.log("Coleccion TSP borrada con exito");
 	});
-
+	
 	mongoose.connection.db.dropCollection('NQueens', function(err, result) {
-		if (err) console.log("Error in NQueens: ", err);
-		else console.log("Collection NQueens erased successfully");
+		if(err) console.log("La coleccion NQueens ya ha sido borrada");
+		else console.log("Coleccion NQUeens borrada con exito");
 	});
-
+	
 	mongoose.connection.db.dropCollection('TSP_MO', function(err, result) {
-		if (err) console.log("Error in TSP_MO: ", err);
-		else console.log("Collection TSP_MO erased successfully");
+		if(err) console.log("La coleccion TSP_MO ya ha sido borrada");
+		else console.log("Coleccion TSP_MO borrada con exito");
 	});
-
+	
 	mongoose.connection.db.dropCollection('BitString', function(err, result) {
-		if (err) console.log("Error in BitString: ", err);
-		else console.log("Collection BitString erased successfully");
+		if(err) console.log("La coleccion BitString ya ha sido borrada");
+		else console.log("Coleccion BitString borrada con exito");
 	});
-
+	
 	mongoose.connection.db.dropCollection('FloatVector', function(err, result) {
-		if (err) console.log("Error in FloatVector: ", err);
-		else console.log("Collection FloatVector erased successfully");
+		if(err) console.log("La coleccion FloatVector ya ha sido borrada");
+		else console.log("Coleccion FloatVector borrada con exito");
 	});
-	console.log("Empty collections to avoid possible failures");
+	//console.log("Colecciones vacías para evitar posibles fallos");
 }
 
+/**
+ * Description A method that modifies the headers of the answers in order to be interpreted by the client
+ * @method allowCORS
+ * @param {JSON} res Server response
+ * @return null
+ */
 function allowCORS(res) {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Request-Method', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-	res.setHeader('Access-Control-Allow-Headers', '*');
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.setHeader('Access-Control-Request-Method', '*');
+		res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+		res.setHeader('Access-Control-Allow-Headers', '*');
+		res.setHeader('Content-Type',  'application/json'); 
 }

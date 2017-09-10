@@ -20,13 +20,29 @@
 
 
 
-
+/**
+* Individual for Web Block
+*
+* @class jsEOWBIndividual
+*/
 var jsEOWBIndividual = new Class({
     Extends: jsEOIndividual,
+    /**
+     * Initialization of the individual
+     * @method initialize
+     * @param {Array} _floats
+     * @return null
+     */
     initialize: function(_floats) {
         this.parent(_floats); // calls initalize method of jsEOIndividual class
         jsEOUtils.debug("Initializating a jsEOWBIndividual ");
     },
+   /**
+     * Creating an individual randomly
+     * @method randomize
+     * @param {} _length
+     * @return This individual
+     */
     randomize: function(_length) {
         var chr = new Array();
         if (typeof _length == 'undefined') {
@@ -55,6 +71,12 @@ var jsEOWBIndividual = new Class({
         this.setChromosome(chr);
         return this;
     },
+    /**
+     * Individual assessment
+     * @method evaluate
+     * @param {Integer} _fitFn
+     * @return This fitness
+     */
     evaluate: function(_fitFn) {
         this.setFitness(_fitFn(this.chromosome));
         return this;

@@ -17,11 +17,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+/**
+* Mutation Operator for WebBlock Individuals
+*
+* @class jsEOWBOpMutation
+*/
 var jsEOWBOpMutation = new Class({
     Extends: jsEOOperator,
+	/**
+	* Probability of mutation
+	* @property genesRate
+	* @type {Float}
+	* @default null
+	*/
     genesRate: null,
+	/**
+	* @property min
+	* @type {Float}
+	* @default null
+	*/
     min: null,
+	/**
+	* @property max
+	* @type {Float}
+	* @default null
+	*/
     max: null,
+    /**
+     * Description Initialization of the operator
+     * @method initialize
+     * @param {Float} _applicationRate Probability for operator application
+     * @param {Float} _genesRate Probability of mutation
+     * @return null
+     */
     initialize: function(_applicationRate, _genesRate) {
         this.parent(_applicationRate);
         this.genesRate = _genesRate;
@@ -31,6 +60,12 @@ var jsEOWBOpMutation = new Class({
                 );
 
     },
+    /**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to mutate
+     * @return toRet Population with the new individual (s)
+     */
     operate: function(_auxPop) {
         jsEOUtils.debugln("Applying jsEOWBMutation");
         var toRet = new jsEOPopulation();

@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jsEOMOIndividual</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/jsEO.html">jsEO</a></li>
+                                <li><a href="../classes/jsEOAlgorithm.html">jsEOAlgorithm</a></li>
+                                <li><a href="../classes/jsEOBSGA.html">jsEOBSGA</a></li>
+                                <li><a href="../classes/jsEOBSIndividual.html">jsEOBSIndividual</a></li>
+                                <li><a href="../classes/jsEOBSOpCrossOver.html">jsEOBSOpCrossOver</a></li>
+                                <li><a href="../classes/jsEOBSOpMutation.html">jsEOBSOpMutation</a></li>
+                                <li><a href="../classes/jsEOFVGA.html">jsEOFVGA</a></li>
+                                <li><a href="../classes/jsEOFVIndividual.html">jsEOFVIndividual</a></li>
+                                <li><a href="../classes/jsEOFVOpMutation.html">jsEOFVOpMutation</a></li>
+                                <li><a href="../classes/jsEOGA.html">jsEOGA</a></li>
+                                <li><a href="../classes/jsEOIndividual.html">jsEOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOCrowdingDistance.html">jsEOMOCrowdingDistance</a></li>
+                                <li><a href="../classes/jsEOMOGA.html">jsEOMOGA</a></li>
+                                <li><a href="../classes/jsEOMOIndividual.html">jsEOMOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOOpMutation.html">jsEOMOOpMutation</a></li>
+                                <li><a href="../classes/jsEOMOOpSortingND.html">jsEOMOOpSortingND</a></li>
+                                <li><a href="../classes/jsEOMOTSPGA.html">jsEOMOTSPGA</a></li>
+                                <li><a href="../classes/jsEOOperator.html">jsEOOperator</a></li>
+                                <li><a href="../classes/jsEOOperatorWheel.html">jsEOOperatorWheel</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividuals.html">jsEOOpGetIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNode.html">jsEOOpGetIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNodeMO.html">jsEOOpGetIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournament.html">jsEOOpSelectorTournament</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournamentBinary.html">jsEOOpSelectorTournamentBinary</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividuals.html">jsEOOpSendIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNode.html">jsEOOpSendIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNodeMO.html">jsEOOpSendIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOPGA.html">jsEOPGA</a></li>
+                                <li><a href="../classes/jsEOPIndividual.html">jsEOPIndividual</a></li>
+                                <li><a href="../classes/jsEOPOpMutation.html">jsEOPOpMutation</a></li>
+                                <li><a href="../classes/jsEOPopulation.html">jsEOPopulation</a></li>
+                                <li><a href="../classes/jsEOPosition.html">jsEOPosition</a></li>
+                                <li><a href="../classes/jsEOROGA.html">jsEOROGA</a></li>
+                                <li><a href="../classes/jsEOROIndividual.html">jsEOROIndividual</a></li>
+                                <li><a href="../classes/jsEOROOpMutation.html">jsEOROOpMutation</a></li>
+                                <li><a href="../classes/jsEOUtils.html">jsEOUtils</a></li>
+                                <li><a href="../classes/jsEOWBGA.html">jsEOWBGA</a></li>
+                                <li><a href="../classes/jsEOWBIndividual.html">jsEOWBIndividual</a></li>
+                                <li><a href="../classes/jsEOWBOpMutation.html">jsEOWBOpMutation</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>jsEOMOIndividual Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/core_jsEOMOIndividual.js.html#l21"><code>core&#x2F;jsEOMOIndividual.js:21</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    <p>jsEOMO Individual</p>
+
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_copy">copy</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_crowdedComparison">crowdedComparison</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_dominated">dominated</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_evaluate">evaluate</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getChromosome">getChromosome</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getCrowding">getCrowding</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getFitnessAt">getFitnessAt</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getNp">getNp</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getObjectives">getObjectives</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getRank">getRank</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getSp">getSp</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_initialize">initialize</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setChromosome">setChromosome</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setCrowding">setCrowding</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setFitnessAt">setFitnessAt</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setNp">setNp</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setObjectives">setObjectives</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setRank">setRank</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setSp">setSp</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_crowding">crowding</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_matrixObjectives">matrixObjectives</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_np">np</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_rank">rank</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_sp">sp</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_copy" class="method item">
+    <h3 class="name"><code>copy</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l75"><code>core&#x2F;jsEOMOIndividual.js:75</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Copy the chromosome</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>toRet</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_crowdedComparison" class="method item">
+    <h3 class="name"><code>crowdedComparison</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_aInd2</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l130"><code>core&#x2F;jsEOMOIndividual.js:130</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Comparison by distance of crowding</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_aInd2</code>
+                        <span class="type">JsEOMOIndividual</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>toRet</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_dominated" class="method item">
+    <h3 class="name"><code>dominated</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_aIndividual</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l107"><code>core&#x2F;jsEOMOIndividual.js:107</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method to know if a individual is dominated for this</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_aIndividual</code>
+                        <span class="type">JsEOMOIndividual</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>dominates</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_evaluate" class="method item">
+    <h3 class="name"><code>evaluate</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_fitFn</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l169"><code>core&#x2F;jsEOMOIndividual.js:169</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Individual assessment</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_fitFn</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This fitness</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getChromosome" class="method item">
+    <h3 class="name"><code>getChromosome</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l87"><code>core&#x2F;jsEOMOIndividual.js:87</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method get for the chromosome</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This chromosome</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getCrowding" class="method item">
+    <h3 class="name"><code>getCrowding</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l149"><code>core&#x2F;jsEOMOIndividual.js:149</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method get for the distance of crowding</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This distance of crowding</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getFitnessAt" class="method item">
+    <h3 class="name"><code>getFitnessAt</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_i</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l187"><code>core&#x2F;jsEOMOIndividual.js:187</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get fitness at one position</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_i</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This fitness at the position _i</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getNp" class="method item">
+    <h3 class="name"><code>getNp</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l227"><code>core&#x2F;jsEOMOIndividual.js:227</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the dominace level of the individual</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This dominace level of the individual</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getObjectives" class="method item">
+    <h3 class="name"><code>getObjectives</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l218"><code>core&#x2F;jsEOMOIndividual.js:218</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the objectives of the individual</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This objectives of the individual</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getRank" class="method item">
+    <h3 class="name"><code>getRank</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l265"><code>core&#x2F;jsEOMOIndividual.js:265</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the front of the individual</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This front of the individual</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getSp" class="method item">
+    <h3 class="name"><code>getSp</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l236"><code>core&#x2F;jsEOMOIndividual.js:236</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the individuals dominated by the individual</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This individuals dominated by the individual</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_initialize" class="method item">
+    <h3 class="name"><code>initialize</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_chromosome</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l63"><code>core&#x2F;jsEOMOIndividual.js:63</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Initialization of the individual</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_chromosome</code>
+                        <span class="type">Various</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setChromosome" class="method item">
+    <h3 class="name"><code>setChromosome</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_chromosome</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l96"><code>core&#x2F;jsEOMOIndividual.js:96</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method set for the chromosome</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_chromosome</code>
+                        <span class="type">Various</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This chromosome modify</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setCrowding" class="method item">
+    <h3 class="name"><code>setCrowding</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_crowding</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l158"><code>core&#x2F;jsEOMOIndividual.js:158</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method set for distance of crowding</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_crowding</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This distance of crowding modify</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setFitnessAt" class="method item">
+    <h3 class="name"><code>setFitnessAt</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_i</code>
+                </li>
+                <li class="arg">
+                        <code>_fitness</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l197"><code>core&#x2F;jsEOMOIndividual.js:197</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set fitness at one position</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_i</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">_fitness</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setNp" class="method item">
+    <h3 class="name"><code>setNp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_np</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l245"><code>core&#x2F;jsEOMOIndividual.js:245</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set the dominance level of the individual</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_np</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setObjectives" class="method item">
+    <h3 class="name"><code>setObjectives</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_objectives</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l208"><code>core&#x2F;jsEOMOIndividual.js:208</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set objectives for the individual</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_objectives</code>
+                        <span class="type">Array</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setRank" class="method item">
+    <h3 class="name"><code>setRank</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_rank</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l274"><code>core&#x2F;jsEOMOIndividual.js:274</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set the front of the individual</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_rank</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setSp" class="method item">
+    <h3 class="name"><code>setSp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_sp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l255"><code>core&#x2F;jsEOMOIndividual.js:255</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set the individuals dominated by the individual</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_sp</code>
+                        <span class="type">Array</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_crowding" class="property item">
+    <h3 class="name"><code>crowding</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l35"><code>core&#x2F;jsEOMOIndividual.js:35</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Distance of crowding</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0</p>
+
+
+</div>
+<div id="property_matrixObjectives" class="property item">
+    <h3 class="name"><code>matrixObjectives</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l28"><code>core&#x2F;jsEOMOIndividual.js:28</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Matrix with the objectives</p>
+
+    </div>
+
+        <p><strong>Default:</strong> Empty</p>
+
+
+</div>
+<div id="property_np" class="property item">
+    <h3 class="name"><code>np</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l42"><code>core&#x2F;jsEOMOIndividual.js:42</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Dominance Level</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0</p>
+
+
+</div>
+<div id="property_rank" class="property item">
+    <h3 class="name"><code>rank</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l56"><code>core&#x2F;jsEOMOIndividual.js:56</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Front of the individual</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0</p>
+
+
+</div>
+<div id="property_sp" class="property item">
+    <h3 class="name"><code>sp</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/core_jsEOMOIndividual.js.html#l49"><code>core&#x2F;jsEOMOIndividual.js:49</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Individuals dominated</p>
+
+    </div>
+
+        <p><strong>Default:</strong> Empty</p>
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

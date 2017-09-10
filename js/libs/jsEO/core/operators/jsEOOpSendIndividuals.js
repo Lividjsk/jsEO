@@ -17,111 +17,107 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+/**
+* Operator Send for individuals
+*
+* @class jsEOOpSendIndividuals
+*/
 var jsEOOpSendIndividuals = new Class({
-	Extends: jsEOOperator,
-	numIndividuals: 1,
-	initialize: function(_numIndividuals) {
-		this.parent(1);
-		if (typeof _numIndividuals === 'undefined') {
-			_numIndividuals = 1;
-		}
-		// By the moment, we only store 1 individual
-		_numIndividuals = 1;
-		this.numIndividuals = _numIndividuals
-		jsEOUtils.debugln("Initializing a jsEOOpSendIndividuals " + " with applicationRate " + this.applicationRate + ", numIndividuals " + this.numIndividuals);
+    Extends: jsEOOperator,
+	/**
+	* Number of individuals
+	* @property numIndividuals
+	* @type {Integer}
+	* @default 1
+	*/
+    numIndividuals: 1,
+    /**
+     * Inizialization for operator
+     * @method initialize
+     * @param {Integer} _numIndividuals
+     * @return null
+     */
+    initialize: function(_numIndividuals) {
+        this.parent(1);
+        if (typeof _numIndividuals === 'undefined') {
+            _numIndividuals = 1;
+        }
+        // By the moment, we only store 1 individual
+        _numIndividuals = 1;
+        this.numIndividuals = _numIndividuals
+        jsEOUtils.debugln("Initializing a jsEOOpSendIndividuals " +
+                " with applicationRate " + this.applicationRate +
+                ", numIndividuals " + this.numIndividuals
+                );
 
-	},
-	getNumIndividuals: function() {
-		return this.numIndividuals;
-	},
-	/// @pre _auxPop has to be ordered by fitness
-	operate: function(_auxPop) {
-		var tmpPop = new jsEOPopulation();
-		/*
-         var data2bSend = "data={\"problemID\":\"" + jsEOUtils.getProblemId() + "\"";
-         var tmpPop = "[";
-         for (var i = 0; i < this.numIndividuals; ++i) {
-         if (i > 0) {
-         tmpPop += ",";
-         }
-         tmpPop += "{\"chromosome\":[";
-         var tmpChr = _auxPop.getAt(i).getChromosome();
-         if (Object.prototype.toString.call(tmpChr) === '[object Array]') {
-         for (var j = 0; j < tmpChr.length; ++j) {
-         if (j > 0) {
-         tmpPop += ",";
-         }
-         tmpPop += "\"" + tmpChr[j] + "\"";
-         }
-         } else {
-         tmpPop += "\"" + tmpChr + "\"";
-         }
-         
-         tmpPop += "],\"fitness\":";
-         tmpPop += "\"" + _auxPop.getAt(i).getFitness() + "\"}";
-         }
-         tmpPop += "]}";
-         
-         data2bSend += ",\"pop\":" + tmpPop;
-         new Request.JSON({
-         url: jsEOUtils.getSendURL(),
-         method: 'GET',
-         async: true,
-         data: data2bSend,
-         timeout: 1000,
-         onTimeout: function() {
-         jsEOUtils.println( "Error while conecting to "+jsEOUtils.getSendURL() );
-         this.cancel();
-         }
-         }).send();
-         */
-		var data2bSend = "data=" + jsEOUtils.getProblemId() + ",";
-		var tmpPop = "";
-		for (var i = 0; i < this.numIndividuals; ++i) {
-			if (i > 0) {
-				tmpPop += ",";
-			}
-			var tmpChr = _auxPop.getAt(i).getChromosome();
-			if (Object.prototype.toString.call(tmpChr) === '[object Array]') {
-				for (var j = 0; j < tmpChr.length; ++j) {
-					if (j > 0) {
-						tmpPop += ",";
-					}
-					tmpPop += tmpChr[j];
-				}
-			} else {
-				tmpPop += tmpChr;
-			}
+    },
+    /**
+     * Method get for the number of individuals
+     * @method getNumIndividuals
+     * @return This number of individuals
+     */
+    getNumIndividuals: function() {
+        return this.numIndividuals;
+    },
+	/**
+     * Description Application of the operator
+     * @method operate
+     * @param {jsEOPopulation} _auxPop Population to send
+	 * * @pre _auxPop has to be ordered by fitness
+     * @return toRet Population with the new individual
+     */
+    operate: function(_auxPop) {
+        var tmpPop = new jsEOPopulation();
+        var data2bSend = "data=" + jsEOUtils.getProblemId() + ",";
+        var tmpPop = "";
+        for (var i = 0; i < this.numIndividuals; ++i) {
+            if (i > 0) {
+                tmpPop += ",";
+            }
+            var tmpChr = _auxPop.getAt(i).getChromosome();
+            if (Object.prototype.toString.call(tmpChr) === '[object Array]') {
+                for (var j = 0; j < tmpChr.length; ++j) {
+                    if (j > 0) {
+                        tmpPop += ",";
+                    }
+                    tmpPop += tmpChr[j];
+                }
+            } else {
+                tmpPop += tmpChr;
+            }
 
-			tmpPop += "," + _auxPop.getAt(i).getFitness();
-		}
+            tmpPop += "," + _auxPop.getAt(i).getFitness();
+        }
 
-		data2bSend += tmpPop;
-		try {
-			new Request({
-				url: jsEOUtils.getSendURL(),
-				method: 'GET',
-				async: true,
-				data: data2bSend,
-				timeout: 1000,
-				onSuccess: function(responseText) {
-					jsEOUtils.debugln('jsEOOpSendInddividual: Conection response: ' + responseText);
-				},
-				onTimeout: function() {
-					jsEOUtils.debugln("jsEOOpSendInddividual: Timeout while conecting to " + jsEOUtils.getSendURL());
-					this.cancel();
-				},
-				onFailure: function() {
-					jsEOUtils.debugln("jsEOOpSendIndividual: Failure while conecting to " + jsEOUtils.getSendURL());
-					this.cancel();
-				}
+        data2bSend += tmpPop;
+        try {
+            new Request({
+                url: jsEOUtils.getSendURL(),
+                method: 'GET',
+                async: true,
+                data: data2bSend,
+                timeout: 1000,
+                onSuccess: function(responseText) {
+                    jsEOUtils.debugln('jsEOOpSendInddividual: Conection response: ' + responseText);
+                },
+                onTimeout: function() {
+                    jsEOUtils.debugln("jsEOOpSendInddividual: Timeout while conecting to " +
+                            jsEOUtils.getSendURL());
+                    this.cancel();
+                },
+                onFailure: function() {
+                    jsEOUtils.debugln("jsEOOpSendIndividual: Failure while conecting to " +
+                            jsEOUtils.getSendURL());
+                    this.cancel();
+                }
 
-			}).send();
-		} catch (err) {
-			jsEOUtils.debugln("jsEOOpSendIndividual: Error captured!");
-			return null;
-		}
+            }).send();
+        } catch (err) {
+            jsEOUtils.debugln("jsEOOpSendIndividual: Error captured!");
+            return null;
+        }
 
-		return null;
-	}
+        return null;
+    }
 });

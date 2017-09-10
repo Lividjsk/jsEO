@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jsEOROGA</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/jsEO.html">jsEO</a></li>
+                                <li><a href="../classes/jsEOAlgorithm.html">jsEOAlgorithm</a></li>
+                                <li><a href="../classes/jsEOBSGA.html">jsEOBSGA</a></li>
+                                <li><a href="../classes/jsEOBSIndividual.html">jsEOBSIndividual</a></li>
+                                <li><a href="../classes/jsEOBSOpCrossOver.html">jsEOBSOpCrossOver</a></li>
+                                <li><a href="../classes/jsEOBSOpMutation.html">jsEOBSOpMutation</a></li>
+                                <li><a href="../classes/jsEOFVGA.html">jsEOFVGA</a></li>
+                                <li><a href="../classes/jsEOFVIndividual.html">jsEOFVIndividual</a></li>
+                                <li><a href="../classes/jsEOFVOpMutation.html">jsEOFVOpMutation</a></li>
+                                <li><a href="../classes/jsEOGA.html">jsEOGA</a></li>
+                                <li><a href="../classes/jsEOIndividual.html">jsEOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOCrowdingDistance.html">jsEOMOCrowdingDistance</a></li>
+                                <li><a href="../classes/jsEOMOGA.html">jsEOMOGA</a></li>
+                                <li><a href="../classes/jsEOMOIndividual.html">jsEOMOIndividual</a></li>
+                                <li><a href="../classes/jsEOMOOpMutation.html">jsEOMOOpMutation</a></li>
+                                <li><a href="../classes/jsEOMOOpSortingND.html">jsEOMOOpSortingND</a></li>
+                                <li><a href="../classes/jsEOMOTSPGA.html">jsEOMOTSPGA</a></li>
+                                <li><a href="../classes/jsEOOperator.html">jsEOOperator</a></li>
+                                <li><a href="../classes/jsEOOperatorWheel.html">jsEOOperatorWheel</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividuals.html">jsEOOpGetIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNode.html">jsEOOpGetIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpGetIndividualsNodeMO.html">jsEOOpGetIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournament.html">jsEOOpSelectorTournament</a></li>
+                                <li><a href="../classes/jsEOOpSelectorTournamentBinary.html">jsEOOpSelectorTournamentBinary</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividuals.html">jsEOOpSendIndividuals</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNode.html">jsEOOpSendIndividualsNode</a></li>
+                                <li><a href="../classes/jsEOOpSendIndividualsNodeMO.html">jsEOOpSendIndividualsNodeMO</a></li>
+                                <li><a href="../classes/jsEOPGA.html">jsEOPGA</a></li>
+                                <li><a href="../classes/jsEOPIndividual.html">jsEOPIndividual</a></li>
+                                <li><a href="../classes/jsEOPOpMutation.html">jsEOPOpMutation</a></li>
+                                <li><a href="../classes/jsEOPopulation.html">jsEOPopulation</a></li>
+                                <li><a href="../classes/jsEOPosition.html">jsEOPosition</a></li>
+                                <li><a href="../classes/jsEOROGA.html">jsEOROGA</a></li>
+                                <li><a href="../classes/jsEOROIndividual.html">jsEOROIndividual</a></li>
+                                <li><a href="../classes/jsEOROOpMutation.html">jsEOROOpMutation</a></li>
+                                <li><a href="../classes/jsEOUtils.html">jsEOUtils</a></li>
+                                <li><a href="../classes/jsEOWBGA.html">jsEOWBGA</a></li>
+                                <li><a href="../classes/jsEOWBIndividual.html">jsEOWBIndividual</a></li>
+                                <li><a href="../classes/jsEOWBOpMutation.html">jsEOWBOpMutation</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>jsEOROGA Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l20"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:20</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    <p>Algorithm for Representation Order</p>
+
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_doConfigure">doConfigure</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_run">run</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_configure">configure</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_getIndividualsRate">getIndividualsRate</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_indSize">indSize</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_maxValue">maxValue</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_minValue">minValue</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_mutPower">mutPower</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_mutRate">mutRate</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_numGenerations">numGenerations</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_popSize">popSize</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_positionsTSP">positionsTSP</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_replaceRate">replaceRate</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_showing">showing</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_tournament Size">tournament Size</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_verbose">verbose</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_xOverRate">xOverRate</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_doConfigure" class="method item">
+    <h3 class="name"><code>doConfigure</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l148"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:148</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method for view the configure</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>This configure</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_run" class="method item">
+    <h3 class="name"><code>run</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_fitFn</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l191"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:191</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method executing the algorithm</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_fitFn</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>null</p>
+
+            </div>
+        </div>
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_configure" class="property item">
+    <h3 class="name"><code>configure</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l34"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:34</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Parameter to view the configuration</p>
+
+    </div>
+
+        <p><strong>Default:</strong> false</p>
+
+
+</div>
+<div id="property_getIndividualsRate" class="property item">
+    <h3 class="name"><code>getIndividualsRate</code></h3>
+    <span class="type">Float</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l90"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:90</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Individuals Rate</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0.2</p>
+
+
+</div>
+<div id="property_indSize" class="property item">
+    <h3 class="name"><code>indSize</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l118"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:118</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Individual Size</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 2</p>
+
+
+</div>
+<div id="property_maxValue" class="property item">
+    <h3 class="name"><code>maxValue</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l111"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:111</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Maximun value possible</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 10</p>
+
+
+</div>
+<div id="property_minValue" class="property item">
+    <h3 class="name"><code>minValue</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l104"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:104</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Minimun value possible</p>
+
+    </div>
+
+        <p><strong>Default:</strong> -10</p>
+
+
+</div>
+<div id="property_mutPower" class="property item">
+    <h3 class="name"><code>mutPower</code></h3>
+    <span class="type">Float</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l69"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:69</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Mutation power</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0.5</p>
+
+
+</div>
+<div id="property_mutRate" class="property item">
+    <h3 class="name"><code>mutRate</code></h3>
+    <span class="type">Float</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l62"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:62</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Application Rate for mutation</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0.2</p>
+
+
+</div>
+<div id="property_numGenerations" class="property item">
+    <h3 class="name"><code>numGenerations</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l76"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:76</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Number of generations</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 500</p>
+
+
+</div>
+<div id="property_popSize" class="property item">
+    <h3 class="name"><code>popSize</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l41"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:41</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Individual size</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 100</p>
+
+
+</div>
+<div id="property_positionsTSP" class="property item">
+    <h3 class="name"><code>positionsTSP</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l125"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:125</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Positions for the graph</p>
+
+    </div>
+
+        <p><strong>Default:</strong> Empty</p>
+
+
+</div>
+<div id="property_replaceRate" class="property item">
+    <h3 class="name"><code>replaceRate</code></h3>
+    <span class="type">Float</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l83"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:83</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Replace Rate</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0.5</p>
+
+
+</div>
+<div id="property_showing" class="property item">
+    <h3 class="name"><code>showing</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l97"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:97</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Number of individuals displayed</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 3</p>
+
+
+</div>
+<div id="property_tournament Size" class="property item">
+    <h3 class="name"><code>tournament Size</code></h3>
+    <span class="type">Integer</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l48"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:48</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Tournament Size</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 2</p>
+
+
+</div>
+<div id="property_verbose" class="property item">
+    <h3 class="name"><code>verbose</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l27"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:27</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Parameter to view debugging</p>
+
+    </div>
+
+        <p><strong>Default:</strong> false</p>
+
+
+</div>
+<div id="property_xOverRate" class="property item">
+    <h3 class="name"><code>xOverRate</code></h3>
+    <span class="type">Float</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/jsEORepresentationOrder_jsEOROGA.js.html#l55"><code>jsEORepresentationOrder&#x2F;jsEOROGA.js:55</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Application Rate for cross-over</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 0.8</p>
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -19,52 +19,118 @@
  */
 
 
-
+/**
+* jsEO
+*
+* @class jsEO
+*/
 var jsEO = new Class({
-	fitness: null,
-	initialize: function() {
-		jsEOUtils.debug("Initializing a jsEO <br/>");
-	},
-	copy: function() {
-		var toRet = new jsEO();
-		toRet.fitness = this.fitness;
-		return toRet;
-	},
-	getFitness: function() {
-		return this.fitness;
-	},
-	setFitness: function(_fitness) {
-		this.fitness = _fitness;
-		return this;
-	}
-	// comparison for sort
-	,
-	compare: function(_eo) {
-		return (this.fitness < _eo.fitness ? -1 : (this.fitness == _eo.fitness ? 0 : 1));
-	}
-	// Less than
-	,
-	lt: function(_eo) {
-		return this.fitness < _eo.fitness;
-	}
-	// Equal to
-	,
-	eq: function(_eo) {
-		return this.fitness === _eo.fitness;
-	}
-	// Greater than
-	,
-	gt: function(_eo) {
-		return !(this.lt(_eo) || this.eq(_eo));
-	}
-	// Less than or equal to
-	,
-	le: function(_eo) {
-		return !this.gt(_eo);
-	}
-	// Greater than or equal to
-	,
-	ge: function(_eo) {
-		return !this.lt(_eo);
-	}
+    fitness:null
+    , 
+	/**
+	  * Inicialization for jsEO
+	  * @method initialize
+	  * @return null
+	  */
+	 initialize: function(){
+        jsEOUtils.debug( "Initializing a jsEO <br/>");
+    }
+    , 
+	/**
+	  * Copy for jsEO
+	  * @method copy
+	  * @return toRet
+	  */
+	 copy: function() {
+        var toRet=new jsEO();
+        toRet.fitness=this.fitness;
+        return toRet;
+    }
+    , 
+	/**
+	  * Method get for fitness
+	  * @method getFitness
+	  * @return This fitness
+	  */
+	 getFitness: function() {
+        return this.fitness;
+    }
+    , 
+	/**
+	  * Method set for fitness
+	  * @method setFitness
+	  * @param {Integer} _fitness
+	  * @return This fitness modify
+	  */
+	 setFitness: function(_fitness) {
+        this.fitness=_fitness;
+        return this;
+    }
+    // comparison for sort
+    , 
+	/**
+	  * Comparison for fitness
+	  * @method compare
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean 
+	  */
+	 compare: function( _eo ) {
+        return( this.fitness<_eo.fitness?-1:(this.fitness==_eo.fitness?0:1));
+    }
+    // Less than
+    , 
+	/**
+	  * Less than other individual
+	  * @method lt
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean
+	  */
+	 lt: function( _eo ) {
+        return this.fitness<_eo.fitness;
+    }
+    // Equal to
+    , 
+	/**
+	  * Equal to other individual
+	  * @method eq
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean
+	  */
+	 eq: function( _eo ) {
+       return this.fitness===_eo.fitness; 
+    }
+    // Greater than
+    , 
+	/**
+	  * Greater than other individual
+	  * @method gt
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean
+	  */
+	 gt: function( _eo ) {
+        return ! (this.lt(_eo) || this.eq( _eo ) );
+    }
+    // Less than or equal to
+    , 
+	/**
+	  * Less or equal than other individual
+	  * @method le
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean
+	  */
+	 le: function( _eo ) {
+        return !this.gt(_eo);
+    }
+    // Greater than or equal to
+    , 
+	/**
+	  * Greater or equal than other individual
+	  * @method ge
+	  * @param {jsEOIndividual} _eo
+	  * @return Boolean
+	  */
+	 ge: function( _eo ) {
+        return !this.lt(_eo);
+    }
 });
+

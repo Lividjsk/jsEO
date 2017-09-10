@@ -19,118 +19,221 @@
  */
 
 
-
+/**
+* jsEO Population
+*
+* @class jsEOPopulation
+*/
 var jsEOPopulation = new Class({
-	pop: [],
-	initialize: function() {
-		jsEOUtils.debug("Initialising a jsEOPopulation" + "<br/>");
-	},
-	getPopulation: function() {
-		return this.pop;
-	},
-	setPopulation: function(_indivs) {
-		this.pop = _indivs;
-		return this;
-	},
-	getAt: function(_i, _j) {
-		if (typeof _i === 'undefined') {
-			return null;
-		}
-		if (typeof _j === 'undefined') {
-			return this.pop[_i]; // Returns and individual
-		}
-		return this.pop.slice(_i, _j + 1); // Returns an array        
-	}
-	// Alias of getAt
-	,
-	getIndividualAt: function(_i) {
-		return this.getAt(_i);
-	},
-	getLast: function() {
-		return this.pop[this.pop.length - 1];
-	}
-	// Alias of getLast
-	,
-	getLastIndividual: function() {
-		return this.getLast();
-	},
-	setAt: function(_i, _indiv) {
-		this.pop[_i] = _indiv;
-		return this;
-	}
-	// Alias of setAt
-	,
-	setIndividualAt: function(_i, _indiv) {
-		return this.setAt(_i, _indiv);
-	},
-	add: function(_indiv) {
-		this.pop.push(_indiv);
-		return this;
-	}
-	// alias of add
-	,
-	addIndividual: function(_indiv) {
-		return this.add(_indiv);
-	},
-	length: function() {
-		return this.pop.length;
-	},
-	sort: function() {
-		pop = this.pop.sort(function(a, b) {
-			return (jsEOUtils.getMaximize() ? -1 : 1) * a.compare(b);;
-		});
-		return this;
-	},
-	crop: function(_size) {
-		if (typeof _size == 'undefined') {
-			_size = this.pop.length;
-		}
-		if (_size < 0) {
-			_size = 0;
-		}
-		this.pop = this.pop.slice(0, _size);
-		return this;
-	},
-	join: function(_aPop) {
-		this.pop = this.pop.concat(_aPop.pop);
-		return this;
-	},
-	replace: function(_i, _aPop) {
-		for (var j = 0; j < _aPop.pop.length; ++j) {
-			this.pop[j + _i] = _aPop.pop[j];
-		}
-		return this;
-	},
-	sortMO: function(_aPop, obj_index) {
-
-		if (_aPop.length == 1) return this;
-
-		var ind1 = 0,
-			ind2 = 0;
-		for (var i = (_aPop.length - 1); i > -1; --i) {
-			for (var j = 1; j < (i + 1); ++j) {
-				ind1 = _aPop[j - 1];
-				ind2 = _aPop[j];
-
-				if (ind1.getFitnessAt(obj_index) > ind2.getFitnessAt(obj_index)) {
-					_aPop[j - 1] = ind2;
-					_aPop[j] = ind1;
-				}
-			}
-		}
-		return this;
-	}
 	/**
-	 * Evaluates the individuals of the population, one after other
-	 * @param {function} _aFunction The function to evaluate
-	 * @param {array of different objects} _params Other parameters the function could need
-	 * @returns {The population object itself (to concatenate operations)}
-	 */,
-	evaluate: function(_aFunction, _params) {
-		this.pop.forEach(function(e) {
-			//console.log(e);
-			e.evaluate(_aFunction, _params);
-		});
-		return this;
-	}
+	* Array with the population
+	* @property pop
+	* @type {Array}
+	* @default Empty
+	*/
+    pop: []
+    , 
+	/**
+	  * Inicialization of the population
+	  * @method initialize
+	  * @return null
+	  */
+	 initialize: function ( ) {
+        jsEOUtils.debug("Initialising a jsEOPopulation" +
+                "<br/>");
+    }
+    , 
+	/**
+	  * Method get to population
+	  * @method getPopulation
+	  * @return This population
+	  */
+	 getPopulation: function () {
+        return this.pop;
+    }
+    , 
+	/**
+	  * Method set to population
+	  * @method setPopulation
+	  * @param {Individuals} _indivs
+	  * @return This population
+	  */
+	 setPopulation: function (_indivs) {
+        this.pop = _indivs;
+        return this;
+    }
+    , 
+	 getAt: function (_i, _j) {
+        if (typeof _i === 'undefined') {
+            return null;
+        }
+        if (typeof _j === 'undefined') {
+            return this.pop[_i]; // Returns and individual
+        }
+        return this.pop.slice(_i, _j + 1); // Returns an array        
+    }
+    // Alias of getAt
+    , 
+	/**
+	  * Return individual at one position
+	  * @method getIndividualAt
+	  * @param {Integer} _i
+	  * @return This individual at the position _i
+	  */
+	 getIndividualAt: function (_i) {
+        return this.getAt(_i);
+    }
+    ,
+	 getLast: function () {
+        return this.pop[this.pop.length - 1];
+    }
+    // Alias of getLast
+    , 
+	/**
+	  * Return the last individual of the opulation
+	  * @method getLastIndividual
+	  * @return This individual at the final position
+	  */
+	 getLastIndividual: function () {
+        return this.getLast();
+    }
+    , 
+ 	setAt: function (_i, _indiv) {
+        this.pop[_i] = _indiv;
+        return this;
+    }
+    // Alias of setAt
+    , 
+	/**
+	  * Modify one individual
+	  * @method setIndividualAt
+	  * @param {Integer} _i
+	  * @param {Individual} _indiv
+	  * @return This population
+	  */
+	 setIndividualAt: function (_i, _indiv) {
+        return this.setAt(_i, _indiv);
+    }
+    , 
+	 add: function (_indiv) {
+        this.pop.push(_indiv);
+        return this;
+    }
+    // alias of add
+    , 
+	/**
+	  * Add an individual to population
+	  * @method addIndividual
+	  * @param {Individual} _indiv
+	  * @return This population
+	  */
+	 addIndividual: function (_indiv) {
+        return this.add(_indiv);
+    }
+    , 
+	/**
+	  * Return the length of the population
+	  * @method length
+	  * @return This population length
+	  */
+	 length: function () {
+        return this.pop.length;
+    }
+    , 
+	/**
+	  * Order the population
+	  * @method sort
+	  * @return This population ordered
+	  */
+	 sort: function () {
+        pop = this.pop.sort(function (a, b) {
+            return (jsEOUtils.getMaximize() ? -1 : 1) * a.compare(b);
+            ;
+        });
+        return this;
+    }
+    , 
+	/**
+	  * Cut out this population
+	  * @method crop
+	  * @param {Integer} _size
+	  * @return This population modify
+	  */
+	 crop: function (_size) {
+        if (typeof _size == 'undefined') {
+            _size = this.pop.length;
+        }
+        if (_size < 0) {
+            _size = 0;
+        }
+        this.pop = this.pop.slice(0, _size);
+        return this;
+    }
+    , 
+	/**
+	  * Link tow populations
+	  * @method join
+	  * @param {jsEOPopulation} _aPop
+	  * @return This population
+	  */
+	 join: function (_aPop) {
+        this.pop = this.pop.concat(_aPop.pop);
+        return this;
+    }
+    , 
+	/**
+	  * Replace population
+	  * @method replace
+	  * @param {Integer} _i
+	  * @param {jsEOPopulation} _aPop
+	  * @return This population
+	  */
+	 replace: function (_i, _aPop) {
+        for (var j = 0; j < _aPop.pop.length; ++j) {
+            this.pop[j + _i] = _aPop.pop[j];
+        }
+        return this;
+    }
+	, 
+	/**
+	  * Ordering population by fitness
+	  * @method sortMO
+	  * @param {Array} _aPop
+	  * @param {Integer} obj_index
+	  * @return This population
+	  */
+	 sortMO: function (_aPop, obj_index) {
+
+        if(_aPop.length == 1)
+            return this;
+        
+        var ind1 = 0, ind2 = 0;
+		for (var i = (_aPop.length - 1); i > -1; --i) {
+            for (var j = 1; j < (i + 1); ++j) {
+                ind1 = _aPop[j - 1];
+                ind2 = _aPop[j];
+
+                if (ind1.getFitnessAt(obj_index) > ind2.getFitnessAt(obj_index)) {
+                    _aPop[j - 1] = ind2;
+                    _aPop[j] = ind1;
+                }
+            }
+        }
+        return this;
+    }
+    ,
+	/**
+     * Evaluates the individuals of the population, one after other
+     * @param {Function} _aFunction The function to evaluate
+     * @param {Array} _params Other parameters the function could need
+     * @return This population evaluated
+     */
+ 	evaluate: function (_aFunction, _params) {
+        this.pop.forEach(function (e) {
+            //console.log(e);
+            e.evaluate(_aFunction, _params);
+        });
+        return this;
+    }
 });
+
